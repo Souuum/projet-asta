@@ -40,3 +40,4 @@ build/
 
 ### custom ####
 workspace.xml
+.idea/
