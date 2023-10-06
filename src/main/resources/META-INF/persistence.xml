@@ -5,16 +5,16 @@
              version="3.0">
   <persistence-unit name="projet-asta">
 
-    <class>fr.efrei2023.projetasta.model.ApprentiEntity</class>
-    <class>fr.efrei2023.projetasta.model.EntrepriseEntity</class>
-    <class>fr.efrei2023.projetasta.model.EvaluationEcoleEntity</class>
-    <class>fr.efrei2023.projetasta.model.MaitreApprentissageEntity</class>
-    <class>fr.efrei2023.projetasta.model.MemoireEntity</class>
-    <class>fr.efrei2023.projetasta.model.MissionEntity</class>
-    <class>fr.efrei2023.projetasta.model.SoutenanceEntity</class>
-    <class>fr.efrei2023.projetasta.model.TuteurEnseignantEntity</class>
-    <class>fr.efrei2023.projetasta.model.UtilisateurEntity</class>
-    <class>fr.efrei2023.projetasta.model.VisiteEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.ApprentiEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.EntrepriseEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.EvaluationEcoleEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.MaitreApprentissageEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.MemoireEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.MissionEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.SoutenanceEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.UtilisateurEntity</class>
+    <class>fr.efrei2023.projetasta.model.Entity.VisiteEntity</class>
     <properties>
       <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/projet-asta"/>
       <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

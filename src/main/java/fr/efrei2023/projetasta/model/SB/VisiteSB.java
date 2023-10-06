@@ -1,5 +1,6 @@
-package fr.efrei2023.projetasta.model;
+package fr.efrei2023.projetasta.model.SB;
 
+import fr.efrei2023.projetasta.model.Entity.VisiteEntity;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
