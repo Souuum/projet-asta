@@ -1,6 +1,8 @@
 package fr.efrei2023.projetasta;
 
 import java.io.*;
+
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -12,7 +14,8 @@ public class HelloServlet extends HttpServlet {
         message = "Hello World!";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.getRequestDispatcher("/WEB-INF/apprenti-register.jsp").forward(request, response);
         response.setContentType("text/html");
 
         // Hello

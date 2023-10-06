@@ -10,5 +10,14 @@
             <include-prelude>/WEB-INF/taglibs.jspf</include-prelude>
         </jsp-property-group>
     </jsp-config>
+    <servlet>
+        <servlet-name>ApprentiController</servlet-name>
+        <servlet-class>fr.efrei2023.projetasta.controller.ApprentiController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApprentiController</servlet-name>
+        <url-pattern>apprenti-controller</url-pattern>
+    </servlet-mapping>
+
 </web-app>
 
