@@ -1,5 +1,6 @@
 
 
+
 USE `projet-asta`;
 
 
@@ -16,7 +17,8 @@ CREATE TABLE `utilisateur` (
   `id_utilisateur` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nom` varchar(50),
   `prenom` varchar(50),
-  `adresse_telephonique` varchar(50),
+  `email` varchar(50),
+  `password` varchar(32),
   `telephone` varchar(50),
   `isadmin` bool default false,
   `updated_at` timestamp DEFAULT now(),
@@ -36,7 +38,7 @@ CREATE TABLE `maitre_apprentissage` (
   `id_maitre_apprentissage` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nom` varchar(50),
   `prenom` varchar(50),
-  `adresse_electronique` varchar(50),
+  `email` varchar(50),
   `telephone` varchar(50),
   `id_entreprise` int NOT NULL,
   `updated_at` timestamp DEFAULT now(),

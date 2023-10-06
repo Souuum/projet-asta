@@ -18,8 +18,11 @@ public class UtilisateurEntity {
     @Column(name = "prenom", nullable = true, length = 50)
     private String prenom;
     @Basic
-    @Column(name = "adresse_telephonique", nullable = true, length = 50)
-    private String adresseTelephonique;
+    @Column(name = "email", nullable = true, length = 50)
+    private String email;
+    @Basic
+    @Column(name = "password", nullable = true, length = 50)
+    private String password;
     @Basic
     @Column(name = "telephone", nullable = true, length = 50)
     private String telephone;
@@ -57,12 +60,20 @@ public class UtilisateurEntity {
         this.prenom = prenom;
     }
 
-    public String getAdresseTelephonique() {
-        return adresseTelephonique;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAdresseTelephonique(String adresseTelephonique) {
-        this.adresseTelephonique = adresseTelephonique;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public String getTelephone() {
@@ -107,8 +118,8 @@ public class UtilisateurEntity {
         if (idUtilisateur != that.idUtilisateur) return false;
         if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
         if (prenom != null ? !prenom.equals(that.prenom) : that.prenom != null) return false;
-        if (adresseTelephonique != null ? !adresseTelephonique.equals(that.adresseTelephonique) : that.adresseTelephonique != null)
-            return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (telephone != null ? !telephone.equals(that.telephone) : that.telephone != null) return false;
         if (isadmin != null ? !isadmin.equals(that.isadmin) : that.isadmin != null) return false;
         if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
@@ -122,7 +133,8 @@ public class UtilisateurEntity {
         int result = idUtilisateur;
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
-        result = 31 * result + (adresseTelephonique != null ? adresseTelephonique.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? telephone.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (isadmin != null ? isadmin.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
