@@ -3,6 +3,16 @@
 
 USE `projet-asta`;
 
+DROP TABLE `memoire`;
+DROP TABLE `soutenance`;
+DROP TABLE `visite`;
+DROP TABLE `evaluation_ecole`;
+DROP TABLE  `apprenti`;
+DROP TABLE `mission`;
+DROP TABLE `tuteur_enseignant`;
+DROP TABLE `maitre_apprentissage`;
+DROP TABLE `utilisateur`;
+DROP TABLE `entreprise`;
 
 CREATE TABLE `entreprise` (
   `id_entreprise` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
