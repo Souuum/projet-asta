@@ -5,14 +5,39 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+
+import java.util.List;
+
 @Stateless
-public class EvaluationEcoleSB {
+public class EvaluationEcoleSB extends BaseSB<EvaluationEcoleEntity>{
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("projet-asta");
     EntityManager em = entityManagerFactory.createEntityManager();
 
-    public EvaluationEcoleEntity getEvaluationEcoleById(int id) {
+    @Override
+    public List<EvaluationEcoleEntity> getAll() {
+        Query query = em.createQuery("SELECT e FROM EvaluationEcoleEntity e");
+        return (List<EvaluationEcoleEntity>) query.getResultList();
+    }
+
+    @Override
+    public EvaluationEcoleEntity getById(int id) {
         Query query = em.createQuery("SELECT e FROM EvaluationEcoleEntity e WHERE e.idEvaluationEcole = :id");
         query.setParameter("id", id);
         return (EvaluationEcoleEntity) query.getSingleResult();
+    }
+
+    @Override
+    public void add(EvaluationEcoleEntity evaluationEcoleEntity) {
+
+    }
+
+    @Override
+    public void update(EvaluationEcoleEntity evaluationEcoleEntity) {
+
+    }
+
+    @Override
+    public void delete(EvaluationEcoleEntity evaluationEcoleEntity) {
+
     }
 }

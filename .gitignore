@@ -41,3 +41,4 @@ build/
 ### custom ####
 workspace.xml
 .idea/
+resources/META-INF/persistence.xml
