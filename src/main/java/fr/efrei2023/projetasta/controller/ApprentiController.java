@@ -20,10 +20,12 @@ public class ApprentiController extends HttpServlet {
 
     @EJB
     private ApprentiSB apprentiSessionBean;
+
     @EJB
     private UtilisateurSB utilisateurSessionBean;
 
-
+    public void init() {
+    }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         processRequest(request, response);
     }
@@ -36,7 +38,7 @@ public class ApprentiController extends HttpServlet {
         String action = request.getParameter("action");
 
         switch(action){
-            case "creation":
+            case "SignUp":
                 creationProcess(request, response);
                 break;
             default:
@@ -53,7 +55,7 @@ public class ApprentiController extends HttpServlet {
         unUtilisateur.setPrenom(request.getParameter(PRENOM));
         unUtilisateur.setEmail(request.getParameter(EMAIL));
         unUtilisateur.setPassword(request.getParameter(PASSWORD));
-        unUtilisateur.setIsadmin(Byte.parseByte(request.getParameter(ISADMIN)));
+        unUtilisateur.setIsadmin(APPRENTI_ROLE);
         return unUtilisateur;
     }
 

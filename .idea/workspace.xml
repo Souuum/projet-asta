@@ -10,11 +10,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f286c4c-bd1e-42b3-b67d-c803b688e053" name="Changes" comment="added taglibs and web.xml configuration">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="8f286c4c-bd1e-42b3-b67d-c803b688e053" name="Changes" comment="added Apprenti Creation">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/HelloServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/controller/ApprentiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/controller/ApprentiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/model/SB/UtilisateurSB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/model/SB/UtilisateurSB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/utils/ApprentiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/efrei2023/projetasta/utils/ApprentiConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,18 +29,25 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Souuum"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Souuum&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -56,35 +67,48 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2W1hTI8UHZqeTmbysihsItNcDoh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/soum/Documents/EFREI/Alternance/ProgrammationAvancee/projet-asta",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;hotfix&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/soum/Documents/EFREI/Alternance/ProgrammationAvancee/projet-asta&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "eb5b986d-f250-456a-bf6f-1b26da67da1a"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;eb5b986d-f250-456a-bf6f-1b26da67da1a&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected="Database Script.projet-asta.sql">
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="fr.efrei2023.projetasta" />
+      <recent name="fr.efrei2023.projetasta.utils" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JBoss/WildFly Server.JBoss/WildFly 29.0.1.Final">
     <configuration name="projet-asta.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/utils/projet-asta.sql" />
       <script-mode>FILE</script-mode>
@@ -177,7 +201,12 @@
       <option name="presentableId" value="Default" />
       <updated>1695906002563</updated>
       <workItem from="1695906003533" duration="1000" />
-      <workItem from="1695906321847" duration="4099000" />
+      <workItem from="1695906321847" duration="7097000" />
+      <workItem from="1696572032291" duration="2992000" />
+      <workItem from="1696575205727" duration="20365000" />
+      <workItem from="1696870622062" duration="1149000" />
+      <workItem from="1696872003405" duration="2360000" />
+      <workItem from="1697110246557" duration="2002000" />
     </task>
     <task id="LOCAL-00001" summary="added taglibs and web.xml configuration">
       <option name="closed" value="true" />
@@ -187,7 +216,39 @@
       <option name="project" value="LOCAL" />
       <updated>1695907304404</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added sql script">
+      <option name="closed" value="true" />
+      <created>1695910922393</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695910922393</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added utils/constants files">
+      <option name="closed" value="true" />
+      <created>1696573846953</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696573846953</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added password field and change adresse telephonique to email">
+      <option name="closed" value="true" />
+      <created>1696576584568</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696576584568</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added Apprenti Creation">
+      <option name="closed" value="true" />
+      <created>1696585786709</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696585786709</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +259,24 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -206,6 +284,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added taglibs and web.xml configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="added taglibs and web.xml configuration" />
+    <MESSAGE value="added sql script" />
+    <MESSAGE value="added utils/constants files" />
+    <MESSAGE value="added password field and change adresse telephonique to email" />
+    <MESSAGE value="added Apprenti Creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Apprenti Creation" />
   </component>
 </project>
