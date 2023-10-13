@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "apprenti", schema = "`projet-asta`", catalog = "")
 public class ApprentiEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "numero_etudiant", nullable = false, length = 50)
     private String numeroEtudiant;
@@ -23,15 +22,17 @@ public class ApprentiEntity {
     @Basic
     @Column(name = "feedback", nullable = true, length = 50)
     private String feedback;
-    @Basic
-    @Column(name = "id_maitre_apprentissage", nullable = false)
-    private int idMaitreApprentissage;
-    @Basic
-    @Column(name = "id_tuteur_enseignant", nullable = false)
-    private int idTuteurEnseignant;
-    @Basic
-    @Column(name = "id_mission", nullable = false)
-    private int idMission;
+    // Préciser que c'est une clé étrangère
+    @OneToOne
+    @JoinColumn(name = "id_maitre_apprentissage", referencedColumnName = "id_maitre_apprentissage")
+    private MaitreApprentissageEntity maitreApprentissage;
+    @OneToOne
+    @JoinColumn(name = "id_tuteur_enseignant", referencedColumnName = "id_tuteur_enseignant")
+    private TuteurEnseignantEntity tuteurEnseignant;
+    @OneToOne
+    @JoinColumn(name = "id_mission", referencedColumnName = "id_mission")
+    private MissionEntity mission;
+
     @Basic
     @Column(name = "id_utilisateur", nullable = false)
     private int idUtilisateur;
@@ -51,6 +52,13 @@ public class ApprentiEntity {
 
     public void setNumeroEtudiant(String numeroEtudiant) {
         this.numeroEtudiant = numeroEtudiant;
+    }
+    public MaitreApprentissageEntity getMaitreApprentissage() {
+        return maitreApprentissage;
+    }
+
+    public void setMaitreApprentissage(MaitreApprentissageEntity maitreApprentissage) {
+        this.maitreApprentissage = maitreApprentissage;
     }
 
     public String getProgramme() {
@@ -85,28 +93,19 @@ public class ApprentiEntity {
         this.feedback = feedback;
     }
 
-    public int getIdMaitreApprentissage() {
-        return idMaitreApprentissage;
+
+    public TuteurEnseignantEntity getTuteurEnseignant() {
+        return tuteurEnseignant;
+    }
+    public void setTuteurEnseignant(TuteurEnseignantEntity tuteurEnseignant) {
+        this.tuteurEnseignant = tuteurEnseignant;
     }
 
-    public void setIdMaitreApprentissage(int idMaitreApprentissage) {
-        this.idMaitreApprentissage = idMaitreApprentissage;
+    public MissionEntity getMission() {
+        return mission;
     }
-
-    public int getIdTuteurEnseignant() {
-        return idTuteurEnseignant;
-    }
-
-    public void setIdTuteurEnseignant(int idTuteurEnseignant) {
-        this.idTuteurEnseignant = idTuteurEnseignant;
-    }
-
-    public int getIdMission() {
-        return idMission;
-    }
-
-    public void setIdMission(int idMission) {
-        this.idMission = idMission;
+    public void setMission(MissionEntity mission) {
+        this.mission = mission;
     }
 
     public int getIdUtilisateur() {
@@ -148,9 +147,6 @@ public class ApprentiEntity {
 
         ApprentiEntity that = (ApprentiEntity) o;
 
-        if (idMaitreApprentissage != that.idMaitreApprentissage) return false;
-        if (idTuteurEnseignant != that.idTuteurEnseignant) return false;
-        if (idMission != that.idMission) return false;
         if (idUtilisateur != that.idUtilisateur) return false;
         if (numeroEtudiant != null ? !numeroEtudiant.equals(that.numeroEtudiant) : that.numeroEtudiant != null)
             return false;
@@ -173,9 +169,6 @@ public class ApprentiEntity {
         result = 31 * result + (anneeAcademique != null ? anneeAcademique.hashCode() : 0);
         result = 31 * result + (majeure != null ? majeure.hashCode() : 0);
         result = 31 * result + (feedback != null ? feedback.hashCode() : 0);
-        result = 31 * result + idMaitreApprentissage;
-        result = 31 * result + idTuteurEnseignant;
-        result = 31 * result + idMission;
         result = 31 * result + idUtilisateur;
         result = 31 * result + (isArchived != null ? isArchived.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);

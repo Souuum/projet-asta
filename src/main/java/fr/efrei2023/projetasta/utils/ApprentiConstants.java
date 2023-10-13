@@ -10,7 +10,7 @@ public class ApprentiConstants {
     public static final String PROGRAMME = "programme";
     public static final String ANNEE_ACADEMIQUE = "anneeAcademique";
     public static final String MAJEURE = "majeure";
-    public static final Byte APPRENTI_ROLE = 1;
+    public static final boolean APPRENTI_ROLE = false;
 
     // JSP PAGES
 

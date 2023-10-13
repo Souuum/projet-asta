@@ -15,9 +15,9 @@ public class SoutenanceEntity {
     @Basic
     @Column(name = "date_soutenance", nullable = true)
     private Date dateSoutenance;
-    @Basic
-    @Column(name = "id_evaluation_ecole", nullable = false)
-    private int idEvaluationEcole;
+    @OneToOne
+    @JoinColumn(name = "id_evaluation_ecole", referencedColumnName = "id_evaluation_ecole", nullable = false)
+    private EvaluationEcoleEntity evaluationEcole;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -41,12 +41,11 @@ public class SoutenanceEntity {
         this.dateSoutenance = dateSoutenance;
     }
 
-    public int getIdEvaluationEcole() {
-        return idEvaluationEcole;
+    public EvaluationEcoleEntity getEvaluationEcole() {
+        return evaluationEcole;
     }
-
-    public void setIdEvaluationEcole(int idEvaluationEcole) {
-        this.idEvaluationEcole = idEvaluationEcole;
+    public void setEvaluationEcole(EvaluationEcoleEntity evaluationEcole) {
+        this.evaluationEcole = evaluationEcole;
     }
 
     public Timestamp getUpdatedAt() {
@@ -73,7 +72,6 @@ public class SoutenanceEntity {
         SoutenanceEntity that = (SoutenanceEntity) o;
 
         if (idSoutenance != that.idSoutenance) return false;
-        if (idEvaluationEcole != that.idEvaluationEcole) return false;
         if (dateSoutenance != null ? !dateSoutenance.equals(that.dateSoutenance) : that.dateSoutenance != null)
             return false;
         if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
@@ -86,7 +84,6 @@ public class SoutenanceEntity {
     public int hashCode() {
         int result = idSoutenance;
         result = 31 * result + (dateSoutenance != null ? dateSoutenance.hashCode() : 0);
-        result = 31 * result + idEvaluationEcole;
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;

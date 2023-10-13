@@ -23,9 +23,9 @@ public class MaitreApprentissageEntity {
     @Basic
     @Column(name = "telephone", nullable = true, length = 50)
     private String telephone;
-    @Basic
-    @Column(name = "id_entreprise", nullable = false)
-    private int idEntreprise;
+    @OneToOne
+    @JoinColumn(name = "id_entreprise", referencedColumnName = "id_entreprise")
+    private EntrepriseEntity entreprise;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -73,12 +73,11 @@ public class MaitreApprentissageEntity {
         this.telephone = telephone;
     }
 
-    public int getIdEntreprise() {
-        return idEntreprise;
+    public EntrepriseEntity getEntreprise() {
+        return entreprise;
     }
-
-    public void setIdEntreprise(int idEntreprise) {
-        this.idEntreprise = idEntreprise;
+    public void setEntreprise(EntrepriseEntity entreprise) {
+        this.entreprise = entreprise;
     }
 
     public Timestamp getUpdatedAt() {
@@ -105,7 +104,6 @@ public class MaitreApprentissageEntity {
         MaitreApprentissageEntity that = (MaitreApprentissageEntity) o;
 
         if (idMaitreApprentissage != that.idMaitreApprentissage) return false;
-        if (idEntreprise != that.idEntreprise) return false;
         if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
         if (prenom != null ? !prenom.equals(that.prenom) : that.prenom != null) return false;
         if (adresseElectronique != null ? !adresseElectronique.equals(that.adresseElectronique) : that.adresseElectronique != null)
@@ -124,7 +122,6 @@ public class MaitreApprentissageEntity {
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
         result = 31 * result + (adresseElectronique != null ? adresseElectronique.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + idEntreprise;
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;

@@ -28,7 +28,7 @@ public class UtilisateurEntity {
     private String telephone;
     @Basic
     @Column(name = "isadmin", nullable = true)
-    private Byte isadmin;
+    private boolean isadmin;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -84,11 +84,11 @@ public class UtilisateurEntity {
         this.telephone = telephone;
     }
 
-    public Byte getIsadmin() {
+    public boolean getIsadmin() {
         return isadmin;
     }
 
-    public void setIsadmin(Byte isadmin) {
+    public void setIsadmin(boolean isadmin) {
         this.isadmin = isadmin;
     }
 
@@ -121,7 +121,6 @@ public class UtilisateurEntity {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (telephone != null ? !telephone.equals(that.telephone) : that.telephone != null) return false;
-        if (isadmin != null ? !isadmin.equals(that.isadmin) : that.isadmin != null) return false;
         if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
         if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
 
@@ -136,7 +135,6 @@ public class UtilisateurEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? telephone.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + (isadmin != null ? isadmin.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;
