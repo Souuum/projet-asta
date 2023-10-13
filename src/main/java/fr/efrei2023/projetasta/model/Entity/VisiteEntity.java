@@ -24,9 +24,9 @@ public class VisiteEntity {
     @Basic
     @Column(name = "numero_etudiant", nullable = false, length = 50)
     private String numeroEtudiant;
-    @Basic
-    @Column(name = "id_tuteur_enseignant", nullable = false)
-    private int idTuteurEnseignant;
+    @OneToOne
+    @JoinColumn(name = "id_tuteur_enseignant", referencedColumnName = "id_tuteur_enseignant", nullable = false)
+    private TuteurEnseignantEntity tuteurEnseignant;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -74,12 +74,11 @@ public class VisiteEntity {
         this.numeroEtudiant = numeroEtudiant;
     }
 
-    public int getIdTuteurEnseignant() {
-        return idTuteurEnseignant;
+    public TuteurEnseignantEntity getTuteurEnseignant() {
+        return tuteurEnseignant;
     }
-
-    public void setIdTuteurEnseignant(int idTuteurEnseignant) {
-        this.idTuteurEnseignant = idTuteurEnseignant;
+    public void setTuteurEnseignant(TuteurEnseignantEntity tuteurEnseignant) {
+        this.tuteurEnseignant = tuteurEnseignant;
     }
 
     public Timestamp getUpdatedAt() {
@@ -106,7 +105,6 @@ public class VisiteEntity {
         VisiteEntity that = (VisiteEntity) o;
 
         if (idVisite != that.idVisite) return false;
-        if (idTuteurEnseignant != that.idTuteurEnseignant) return false;
         if (dateVisite != null ? !dateVisite.equals(that.dateVisite) : that.dateVisite != null) return false;
         if (format != null ? !format.equals(that.format) : that.format != null) return false;
         if (compteRenduExpress != null ? !compteRenduExpress.equals(that.compteRenduExpress) : that.compteRenduExpress != null)
@@ -126,7 +124,6 @@ public class VisiteEntity {
         result = 31 * result + (format != null ? format.hashCode() : 0);
         result = 31 * result + (compteRenduExpress != null ? compteRenduExpress.hashCode() : 0);
         result = 31 * result + (numeroEtudiant != null ? numeroEtudiant.hashCode() : 0);
-        result = 31 * result + idTuteurEnseignant;
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;

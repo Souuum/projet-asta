@@ -23,10 +23,10 @@ public class ApprentiEntity {
     @Column(name = "feedback", nullable = true, length = 50)
     private String feedback;
     // Préciser que c'est une clé étrangère
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_maitre_apprentissage", referencedColumnName = "id_maitre_apprentissage")
     private MaitreApprentissageEntity maitreApprentissage;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_tuteur_enseignant", referencedColumnName = "id_tuteur_enseignant")
     private TuteurEnseignantEntity tuteurEnseignant;
     @OneToOne

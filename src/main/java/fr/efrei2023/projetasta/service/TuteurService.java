@@ -28,7 +28,7 @@ public class TuteurService {
         }else{
             TuteurEnseignantEntity unTuteur = getTuteurFromForm(request);
             //userService.createUser(unUtilisateur);
-            unTuteur.setIdUtilisateur(userService.getIdUtilisateurByEmail(unUtilisateur.getEmail()));
+            //unTuteur.setIdUtilisateur(userService.getIdUtilisateurByEmail(unUtilisateur.getEmail()));
             createTuteur(unTuteur);
             request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
         }
