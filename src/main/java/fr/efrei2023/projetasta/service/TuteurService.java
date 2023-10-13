@@ -27,38 +27,16 @@ public class TuteurService {
             request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
         }else{
             TuteurEnseignantEntity unTuteur = getTuteurFromForm(request);
-            userService.createUser(unUtilisateur);
-            unTuteur.setIdUtilisateur(userService.getIdUtilisateurByEmail(unUtilisateur.getEmail()));
+            //userService.createUser(unUtilisateur);
+            //unTuteur.setIdUtilisateur(userService.getIdUtilisateurByEmail(unUtilisateur.getEmail()));
             createTuteur(unTuteur);
             request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
         }
     }
 
-    public void loginProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UtilisateurEntity unUtilisateur = userService.getUtilisateur(request);
-        //Verify if user doesnt exists
-        if(!userService.verifyIfUserExistByEmail(unUtilisateur.getEmail())){
-            request.setAttribute("messageErreur",USER_NOT_EXIST_ERROR_MESSAGE);
-            request.getRequestDispatcher(TUTEUR_LOGIN_PAGE).forward(request, response);
-        }
+    public void getListeApprentis(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        //Verify if user is not tuteur
-        if(!userService.verifyIfUserIsTuteur(unUtilisateur.getEmail())){
-            request.setAttribute("messageErreur",USER_NOT_TUTEUR_ERROR_MESSAGE);
-            request.getRequestDispatcher(TUTEUR_LOGIN_PAGE).forward(request, response);
-        }
-
-        //Verify if password is not correct
-        if(!userService.getUtilisateurPasswordByEmail(unUtilisateur.getEmail()).equals(unUtilisateur.getPassword())){
-            request.setAttribute("messageErreur",PASSWORD_ERROR_MESSAGE);
-            request.getRequestDispatcher(TUTEUR_LOGIN_PAGE).forward(request, response);
-        }
-
-        //Create session
-        //TODO
-        request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
     }
-
 
     public TuteurEnseignantEntity getTuteurFromForm(HttpServletRequest request) {
         TuteurEnseignantEntity unTuteur = new TuteurEnseignantEntity();

@@ -2,7 +2,7 @@ package fr.efrei2023.projetasta.utils;
 
 public class TuteurEnseignantConstants {
     // GENERIC FIELD NAMES
-    public static final Byte TUTEUR_ROLE = 0;
+    public static final boolean TUTEUR_ROLE = true;
 
 
     // JSP PAGES

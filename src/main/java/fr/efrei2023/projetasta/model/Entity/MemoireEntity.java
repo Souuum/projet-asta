@@ -14,9 +14,9 @@ public class MemoireEntity {
     @Basic
     @Column(name = "theme", nullable = true, length = 50)
     private String theme;
-    @Basic
-    @Column(name = "id_evaluation_ecole", nullable = false)
-    private int idEvaluationEcole;
+    @OneToOne
+    @JoinColumn(name = "id_evaluation_ecole", referencedColumnName = "id_evaluation_ecole", nullable = false)
+    private EvaluationEcoleEntity evaluationEcole;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -40,12 +40,11 @@ public class MemoireEntity {
         this.theme = theme;
     }
 
-    public int getIdEvaluationEcole() {
-        return idEvaluationEcole;
+    public EvaluationEcoleEntity getEvaluationEcole() {
+        return evaluationEcole;
     }
-
-    public void setIdEvaluationEcole(int idEvaluationEcole) {
-        this.idEvaluationEcole = idEvaluationEcole;
+    public void setEvaluationEcole(EvaluationEcoleEntity evaluationEcole) {
+        this.evaluationEcole = evaluationEcole;
     }
 
     public Timestamp getUpdatedAt() {
@@ -72,7 +71,6 @@ public class MemoireEntity {
         MemoireEntity that = (MemoireEntity) o;
 
         if (idMemoire != that.idMemoire) return false;
-        if (idEvaluationEcole != that.idEvaluationEcole) return false;
         if (theme != null ? !theme.equals(that.theme) : that.theme != null) return false;
         if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
         if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
@@ -84,7 +82,6 @@ public class MemoireEntity {
     public int hashCode() {
         int result = idMemoire;
         result = 31 * result + (theme != null ? theme.hashCode() : 0);
-        result = 31 * result + idEvaluationEcole;
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;

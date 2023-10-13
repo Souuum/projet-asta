@@ -11,9 +11,9 @@ public class TuteurEnseignantEntity {
     @Id
     @Column(name = "id_tuteur_enseignant", nullable = false)
     private int idTuteurEnseignant;
-    @Basic
-    @Column(name = "id_utilisateur", nullable = false)
-    private int idUtilisateur;
+    @OneToOne
+    @JoinColumn(name = "id_utilisateur", referencedColumnName = "id_utilisateur", nullable = false)
+    private UtilisateurEntity utilisateur;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -29,12 +29,12 @@ public class TuteurEnseignantEntity {
         this.idTuteurEnseignant = idTuteurEnseignant;
     }
 
-    public int getIdUtilisateur() {
-        return idUtilisateur;
+    public UtilisateurEntity getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setUtilisateur(UtilisateurEntity utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public Timestamp getUpdatedAt() {
@@ -61,7 +61,6 @@ public class TuteurEnseignantEntity {
         TuteurEnseignantEntity that = (TuteurEnseignantEntity) o;
 
         if (idTuteurEnseignant != that.idTuteurEnseignant) return false;
-        if (idUtilisateur != that.idUtilisateur) return false;
         if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
         if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
 
@@ -71,7 +70,6 @@ public class TuteurEnseignantEntity {
     @Override
     public int hashCode() {
         int result = idTuteurEnseignant;
-        result = 31 * result + idUtilisateur;
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;

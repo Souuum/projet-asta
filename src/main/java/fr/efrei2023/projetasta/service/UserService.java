@@ -32,9 +32,7 @@ public class UserService {
         return utilisateurSessionBean.getUtilisateurByEmail(email).getPassword();
     }
 
-    public void createUser(UtilisateurEntity unUtilisateur){
-        utilisateurSessionBean.createUtilisateur(unUtilisateur);
-    }
+
 
     public UtilisateurEntity getUtilisateurFromForm(HttpServletRequest request){
         UtilisateurEntity unUtilisateur = new UtilisateurEntity();
@@ -50,15 +48,15 @@ public class UserService {
         UtilisateurEntity unUtilisateur = getUtilisateur(request);
         // Verify if user exist
         if(!verifyIfUserExistByEmail(unUtilisateur.getEmail())) {
-            request.setAttribute("messageErreur", EMAIL_NOT_EXIST_ERROR_MESSAGE);
-            request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
+            //request.setAttribute("messageErreur", EMAIL_NOT_EXIST_ERROR_MESSAGE);
+            //request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
 
         // Verify if password is correct
         String password = hashPassword(unUtilisateur.getPassword());
         if(!getUtilisateurPasswordByEmail(unUtilisateur.getEmail()).equals(password)) {
-            request.setAttribute("messageErreur", PASSWORD_ERROR_MESSAGE);
-            request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
+            //request.setAttribute("messageErreur", PASSWORD_ERROR_MESSAGE);
+            //request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
 
         //Create session
@@ -66,9 +64,9 @@ public class UserService {
 
         // Check role of user
         if(verifyRoleOfUser(unUtilisateur.getEmail()) == TUTEUR_ROLE) {
-            request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+            //request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
         } else {
-            request.getRequestDispatcher(ETUDIANT_HOME_PAGE).forward(request, response);
+            //request.getRequestDispatcher(ETUDIANT_HOME_PAGE).forward(request, response);
         }
 
     }
@@ -80,7 +78,7 @@ public class UserService {
         return unUtilisateur;
     }
 
-    public int verifyRoleOfUser(String email){
+    public boolean verifyRoleOfUser(String email){
         return utilisateurSessionBean.getUtilisateurByEmail(email).getIsadmin();
     }
 

@@ -53,7 +53,7 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
     }
 
     @Transactional
-    public void add(String nom, String prenom, String email, String motDePasse, Byte isAdmin){
+    public void add(String nom, String prenom, String email, String motDePasse, boolean isAdmin){
         UtilisateurEntity utilisateur = new UtilisateurEntity();
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);

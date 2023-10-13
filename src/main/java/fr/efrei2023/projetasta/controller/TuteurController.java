@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import fr.efrei2023.projetasta.service.TuteurService.*;
+import fr.efrei2023.projetasta.service.*;
 
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
-import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 
 @WebServlet(name = "TuteurController", value = "/tuteur-controller")
 public class TuteurController extends HttpServlet {
 
     private TuteurService tuteurService = new TuteurService();
+    private UserService userService = new UserService();
 
     public void init() {
     }
@@ -39,7 +39,7 @@ public class TuteurController extends HttpServlet {
                 tuteurService.creationProcess(request, response);
                 break;
             case "SignIn":
-                //TODO
+                userService.loginProcess(request, response);
                 break;
             case "ListApprentis":
                 //TODO
