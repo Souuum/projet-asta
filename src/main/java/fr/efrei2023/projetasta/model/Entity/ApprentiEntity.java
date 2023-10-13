@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "apprenti", schema = "`projet-asta`", catalog = "")
 public class ApprentiEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "numero_etudiant", nullable = false, length = 50)
     private String numeroEtudiant;
@@ -24,13 +23,13 @@ public class ApprentiEntity {
     @Column(name = "feedback", nullable = true, length = 50)
     private String feedback;
     @Basic
-    @Column(name = "id_maitre_apprentissage", nullable = false)
+    @Column(name = "id_maitre_apprentissage", nullable = true)
     private int idMaitreApprentissage;
     @Basic
-    @Column(name = "id_tuteur_enseignant", nullable = false)
+    @Column(name = "id_tuteur_enseignant", nullable = true)
     private int idTuteurEnseignant;
     @Basic
-    @Column(name = "id_mission", nullable = false)
+    @Column(name = "id_mission", nullable = true)
     private int idMission;
     @Basic
     @Column(name = "id_utilisateur", nullable = false)

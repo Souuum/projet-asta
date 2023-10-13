@@ -6,49 +6,66 @@ import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import jakarta.persistence.Query;
 
+import java.util.List;
+
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.ENTITY_ERROR_MESSAGE;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.SELECT_UTILISATEUR_BY_ID;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.SELECT_UTILISATEUR_BY_EMAIL;
 
 @Stateless
-public class UtilisateurSB {
+public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("projet-asta");
     EntityManager em = entityManagerFactory.createEntityManager();
 
-    public UtilisateurEntity getUtilisateurById(int id) {
+    public UtilisateurEntity getById(int id) {
         Query query = em.createQuery(SELECT_UTILISATEUR_BY_ID);
         query.setParameter("id", id);
         return (UtilisateurEntity) query.getSingleResult();
     }
 
     public UtilisateurEntity getUtilisateurByEmail(String email) {
-        Query query = em.createQuery(SELECT_UTILISATEUR_BY_EMAIL);
-        query.setParameter("email", email);
-        return (UtilisateurEntity) query.getSingleResult();
+        try{
+            Query query = em.createQuery(SELECT_UTILISATEUR_BY_EMAIL);
+            query.setParameter("email", email);
+            return (UtilisateurEntity) query.getSingleResult();
+        } catch (NoResultException e){
+            return null;
+        }
+    }
+
+    public List<UtilisateurEntity> getAll(){
+        Query query = em.createQuery("SELECT u FROM UtilisateurEntity u");
+        return (List<UtilisateurEntity>) query.getResultList();
+    }
+
+    public void delete(UtilisateurEntity utilisateur) {
+
+        em.getTransaction().begin();
+        em.remove(utilisateur);
+        em.getTransaction().commit();
     }
 
     @Transactional
-    public void createUtilisateur(UtilisateurEntity utilisateur) {
+    public void add(UtilisateurEntity utilisateur) {
         em.getTransaction().begin();
         em.persist(utilisateur);
         em.getTransaction().commit();
     }
 
     @Transactional
-    public void createUtilisateur(String nom, String prenom, String email, String motDePasse, Byte isAdmin){
+    public void add(String nom, String prenom, String email, String motDePasse, Byte isAdmin){
         UtilisateurEntity utilisateur = new UtilisateurEntity();
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setEmail(email);
         utilisateur.setPassword(motDePasse);
         utilisateur.setIsadmin(isAdmin);
-        createUtilisateur(utilisateur);
+        add(utilisateur);
     }
 
     @Transactional
-    public void updateUtilisateur(int id, UtilisateurEntity utilisateur){
-        UtilisateurEntity u = getUtilisateurById(id);
-
+    public void update(UtilisateurEntity utilisateur){
+        UtilisateurEntity u = em.find(UtilisateurEntity.class, utilisateur.getIdUtilisateur());
         if(u == null){
             throw new EntityNotFoundException(ENTITY_ERROR_MESSAGE);
         }

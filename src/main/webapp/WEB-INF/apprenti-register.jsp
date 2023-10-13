@@ -31,12 +31,16 @@
             <input type="text" class="form-control" id="prenom" name="prenom" required>
         </div>
         <div class="form-group">
-            <label for="telephone">TEL DOMICILE</label>
+            <label for="telephone">TELEPHONE</label>
             <input type="tel" class="form-control" id="telephone" name="telephone" required>
         </div>
         <div class="form-group">
             <label for="email">EMAIL</label>
             <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">MOT DE PASSE</label>
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <div class="form-group">
             <label for="anneeAcademique">ANNEE ACADEMIQUE</label>

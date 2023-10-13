@@ -56,6 +56,7 @@ public class ApprentiController extends HttpServlet {
         unUtilisateur.setEmail(request.getParameter(EMAIL));
         unUtilisateur.setPassword(request.getParameter(PASSWORD));
         unUtilisateur.setIsadmin(APPRENTI_ROLE);
+        unUtilisateur.setTelephone(request.getParameter(TELEPHONE));
         return unUtilisateur;
     }
 
@@ -77,7 +78,7 @@ public class ApprentiController extends HttpServlet {
     }
 
     public void createUser(UtilisateurEntity unUtilisateur){
-        utilisateurSessionBean.createUtilisateur(unUtilisateur);
+        utilisateurSessionBean.add(unUtilisateur);
     }
 
 
@@ -87,6 +88,7 @@ public class ApprentiController extends HttpServlet {
 
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UtilisateurEntity unUtilisateur = getUtilisateurFromForm(request);
+
         if(verifyIfUserExistByEmail(unUtilisateur.getEmail())){
             request.setAttribute("messageErreur",EMAIL_EXIST_ERROR_MESSAGE);
             request.getRequestDispatcher(APPRENTI_REGISTER_PAGE).forward(request, response);
