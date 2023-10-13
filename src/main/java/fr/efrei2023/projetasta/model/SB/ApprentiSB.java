@@ -24,22 +24,6 @@ public class ApprentiSB {
     }
 
     @Transactional
-    public void createApprenti(String numeroEtudiant, String programme, String anneeAcademique, String majeure, String feedback, int idMaitreApprentissage, int idTuteurEnseignant, int idMission, int idUtilisateur, Byte isArchived){
-        ApprentiEntity apprenti = new ApprentiEntity();
-        apprenti.setNumeroEtudiant(numeroEtudiant);
-        apprenti.setProgramme(programme);
-        apprenti.setAnneeAcademique(anneeAcademique);
-        apprenti.setMajeure(majeure);
-        apprenti.setFeedback(feedback);
-        apprenti.setIdMaitreApprentissage(idMaitreApprentissage);
-        apprenti.setIdTuteurEnseignant(idTuteurEnseignant);
-        apprenti.setIdMission(idMission);
-        apprenti.setIdUtilisateur(idUtilisateur);
-        apprenti.setIsArchived(isArchived);
-        createApprenti(apprenti);
-    }
-
-    @Transactional
     public void updateApprenti(int id, ApprentiEntity apprenti){
         ApprentiEntity a = getApprentiById(id);
 
@@ -52,9 +36,6 @@ public class ApprentiSB {
         a.setAnneeAcademique(apprenti.getAnneeAcademique());
         a.setMajeure(apprenti.getMajeure());
         a.setFeedback(apprenti.getFeedback());
-        a.setIdMaitreApprentissage(apprenti.getIdMaitreApprentissage());
-        a.setIdTuteurEnseignant(apprenti.getIdTuteurEnseignant());
-        a.setIdMission(apprenti.getIdMission());
         a.setIdUtilisateur(apprenti.getIdUtilisateur());
         a.setIsArchived(apprenti.getIsArchived());
         em.getTransaction().commit();
