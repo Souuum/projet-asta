@@ -18,6 +18,11 @@ import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
 @WebServlet(name = "TuteurController", value = "/tuteur-controller")
 public class TuteurController extends HttpServlet {
 
+
+    @EJB
+    private TuteurEnseignantSB tuteurEnseignantSessionBean;
+    @EJB
+    private UtilisateurSB utilisateurSessionBean;
     private TuteurService tuteurService = new TuteurService();
     private UserService userService = new UserService();
 

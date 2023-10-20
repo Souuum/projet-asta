@@ -15,7 +15,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/apprenti-register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/apprenti_register.jsp").forward(request, response);
         response.setContentType("text/html");
 
         // Hello

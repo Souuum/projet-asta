@@ -1,37 +1,65 @@
 package fr.efrei2023.projetasta.model.SB;
 import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
+import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
+import static fr.efrei2023.projetasta.utils.ApprentiConstants.*;
+import static fr.efrei2023.projetasta.utils.UtilisateurConstants.ENTITY_ERROR_MESSAGE;
+
 @Stateless
-public class ApprentiSB {
+public class ApprentiSB extends BaseSB<ApprentiEntity>{
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("projet-asta");
     EntityManager em = entityManagerFactory.createEntityManager();
 
-    public ApprentiEntity getApprentiById(int id) {
-        Query query = em.createQuery("SELECT a FROM ApprentiEntity a WHERE a.numeroEtudiant = :id");
+    public ApprentiEntity getApprentiById(String id) {
+        Query query = em.createQuery(FIND_APPRENTI_BY_NUMERO_ETUDIANT);
         query.setParameter("id", id);
         return (ApprentiEntity) query.getSingleResult();
     }
 
     @Transactional
 
-    public void createApprenti(ApprentiEntity apprenti) {
+
+    @Override
+    public List<ApprentiEntity> getAll() {
+        Query query = em.createQuery("SELECT a FROM ApprentiEntity a");
+        return (List<ApprentiEntity>) query.getResultList();
+    }
+
+    @Override
+    public ApprentiEntity getById(int id) {
+
+        return null;
+    }
+    public ApprentiEntity getById(String id){
+        Query query = em.createQuery(FIND_APPRENTI_BY_NUMERO_ETUDIANT);
+        query.setParameter("id", id);
+        return (ApprentiEntity) query.getSingleResult();
+    }
+
+    @Transactional
+    public void add(ApprentiEntity apprenti){
+        Date date = new Date(System.currentTimeMillis());
+        Timestamp timestamp = new Timestamp(date.getTime());
+        apprenti.setCreatedAt(timestamp);
+        apprenti.setUpdatedAt(timestamp);
         em.getTransaction().begin();
         em.persist(apprenti);
         em.getTransaction().commit();
     }
 
     @Transactional
-    public void updateApprenti(int id, ApprentiEntity apprenti){
-        ApprentiEntity a = getApprentiById(id);
-
+    public void update(ApprentiEntity apprenti){
+        ApprentiEntity a = em.find(ApprentiEntity.class, apprenti.getNumeroEtudiant());
         if(a == null){
-            throw new EntityNotFoundException("Apprenti can't be found");
+            throw new EntityNotFoundException(ENTITY_ERROR_MESSAGE);
         }
         em.getTransaction().begin();
-        a.setNumeroEtudiant(apprenti.getNumeroEtudiant());
         a.setProgramme(apprenti.getProgramme());
         a.setAnneeAcademique(apprenti.getAnneeAcademique());
         a.setMajeure(apprenti.getMajeure());
@@ -39,10 +67,18 @@ public class ApprentiSB {
         a.setIdUtilisateur(apprenti.getIdUtilisateur());
         a.setIsArchived(apprenti.getIsArchived());
         em.getTransaction().commit();
+
     }
 
+    public void delete(ApprentiEntity apprenti){
+        em.getTransaction().begin();
+        em.remove(apprenti);
+        em.getTransaction().commit();
+    }
+
+
     @Transactional
-    public void archiveApprenti(int id) {
+    public void archiveApprenti(String id) {
         ApprentiEntity a = getApprentiById(id);
         em.getTransaction().begin();
         a.setIsArchived((byte) 1);
@@ -50,7 +86,7 @@ public class ApprentiSB {
     }
 
     @Transactional
-    public void unarchivedApprenti(int id) {
+    public void unarchivedApprenti(String id) {
         ApprentiEntity a = getApprentiById(id);
         em.getTransaction().begin();
         a.setIsArchived((byte) 0);

@@ -2,6 +2,7 @@ package fr.efrei2023.projetasta.model.Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity

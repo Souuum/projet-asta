@@ -3,6 +3,7 @@ package fr.efrei2023.projetasta.service;
 import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,10 +17,12 @@ import java.io.IOException;
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.TUTEUR_ROLE;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.PASSWORD;
-
+@Stateless
 public class UserService {
+
     @EJB
     private UtilisateurSB utilisateurSessionBean;
+
     public boolean verifyIfUserExistByEmail(String email){
         return utilisateurSessionBean.getUtilisateurByEmail(email) != null;
     }
@@ -30,6 +33,10 @@ public class UserService {
 
     public String getUtilisateurPasswordByEmail(String email){
         return utilisateurSessionBean.getUtilisateurByEmail(email).getPassword();
+    }
+
+    public void createUser(UtilisateurEntity unUtilisateur){
+        utilisateurSessionBean.add(unUtilisateur);
     }
 
 

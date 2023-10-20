@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import jakarta.persistence.Query;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.ENTITY_ERROR_MESSAGE;
@@ -47,20 +49,13 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
 
     @Transactional
     public void add(UtilisateurEntity utilisateur) {
+        Date date = new Date(System.currentTimeMillis());
+        Timestamp timestamp = new Timestamp(date.getTime());
+        utilisateur.setCreatedAt(timestamp);
+        utilisateur.setUpdatedAt(timestamp);
         em.getTransaction().begin();
         em.persist(utilisateur);
         em.getTransaction().commit();
-    }
-
-    @Transactional
-    public void add(String nom, String prenom, String email, String motDePasse, boolean isAdmin){
-        UtilisateurEntity utilisateur = new UtilisateurEntity();
-        utilisateur.setNom(nom);
-        utilisateur.setPrenom(prenom);
-        utilisateur.setEmail(email);
-        utilisateur.setPassword(motDePasse);
-        utilisateur.setIsadmin(isAdmin);
-        add(utilisateur);
     }
 
     @Transactional
@@ -75,6 +70,9 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
         u.setEmail(utilisateur.getEmail());
         u.setPassword(utilisateur.getPassword());
         u.setIsadmin(utilisateur.getIsadmin());
+        Date date = new Date(System.currentTimeMillis());
+        Timestamp timestamp = new Timestamp(date.getTime());
+        u.setUpdatedAt(timestamp);
         em.getTransaction().commit();
     }
 

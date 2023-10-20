@@ -19,6 +19,8 @@ public class TuteurService {
     @EJB
     private TuteurEnseignantSB tuteurEnseignantSessionBean;
 
+    @EJB
+    private UtilisateurSB utilisateurSessionBean;
     private UserService userService = new UserService();
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request);
