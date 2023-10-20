@@ -2,12 +2,11 @@ package fr.efrei2023.projetasta.model.SB;
 
 import fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity;
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
 import java.util.List;
+
+import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
 
 @Stateless
 public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
@@ -15,14 +14,14 @@ public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
     EntityManager em = entityManagerFactory.createEntityManager();
 
     public TuteurEnseignantEntity getTuteurById(int id) {
-        Query query = em.createQuery("SELECT t FROM TuteurEnseignantEntity t WHERE t.idTuteurEnseignant = :id");
+        Query query = em.createQuery(SELECT_ALL_TUTEURS);
         query.setParameter("id", id);
         return (TuteurEnseignantEntity) query.getSingleResult();
     }
 
     @Override
     public List<TuteurEnseignantEntity> getAll() {
-        Query query = em.createQuery("SELECT t FROM TuteurEnseignantEntity t");
+        Query query = em.createQuery(SELECT_TUTEUR_BY_ID);
         return (List<TuteurEnseignantEntity>) query.getResultList();
     }
 
@@ -35,7 +34,9 @@ public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
 
     @Override
     public void add(TuteurEnseignantEntity tuteurEnseignantEntity) {
-
+        em.getTransaction().begin();
+        em.persist(tuteurEnseignantEntity);
+        em.getTransaction().commit();
     }
 
     @Override
@@ -45,6 +46,8 @@ public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
 
     @Override
     public void delete(TuteurEnseignantEntity tuteurEnseignantEntity) {
-
+        em.getTransaction().begin();
+        em.remove(tuteurEnseignantEntity);
+        em.getTransaction().commit();
     }
 }

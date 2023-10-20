@@ -1,12 +1,14 @@
 package fr.efrei2023.projetasta.model.SB;
 import fr.efrei2023.projetasta.model.Entity.EntrepriseEntity;
+import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
+
+import static fr.efrei2023.projetasta.utils.EntrepriseConstants.*;
 
 @Stateless
 public class EntrepriseSB extends BaseSB<EntrepriseEntity>{
@@ -15,29 +17,44 @@ public class EntrepriseSB extends BaseSB<EntrepriseEntity>{
 
     @Override
     public List<EntrepriseEntity> getAll() {
-        Query query = em.createQuery("SELECT e FROM EntrepriseEntity e");
+        Query query = em.createQuery(SELECT_ALL_ENTREPRISES);
         return (List<EntrepriseEntity>) query.getResultList();
     }
 
     @Override
     public EntrepriseEntity getById(int id) {
-        Query query = em.createQuery("SELECT e FROM EntrepriseEntity e WHERE e.idEntreprise = :id");
+        Query query = em.createQuery(SELECT_ENTREPRISE_BY_ID);
         query.setParameter("id", id);
         return (EntrepriseEntity) query.getSingleResult();
     }
 
     @Override
     public void add(EntrepriseEntity entrepriseEntity) {
-
+        em.getTransaction().begin();
+        em.persist(entrepriseEntity);
+        em.getTransaction().commit();
     }
 
     @Override
     public void update(EntrepriseEntity entrepriseEntity) {
-
+        EntrepriseEntity e = em.find(EntrepriseEntity.class, entrepriseEntity.getIdEntreprise());
+        if(e == null){
+            throw new EntityNotFoundException(ENTITY_ERROR_MESSAGE);
+        }
+        em.getTransaction().begin();
+        e.setAdresse(entrepriseEntity.getAdresse());
+        e.setInformations(entrepriseEntity.getInformations());
+        e.setRaisonSociale(entrepriseEntity.getRaisonSociale());
+        Date date = new Date(System.currentTimeMillis());
+        Timestamp ts = new Timestamp(date.getTime());
+        e.setUpdatedAt(ts);
+        em.getTransaction().commit();
     }
 
     @Override
     public void delete(EntrepriseEntity entrepriseEntity) {
-
+        em.getTransaction().begin();
+        em.remove(entrepriseEntity);
+        em.getTransaction().commit();
     }
 }
