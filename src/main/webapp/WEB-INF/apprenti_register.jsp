@@ -11,12 +11,15 @@
 <html>
 <head>
     <title>Login Apprenti</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <div class="row col-md-6 col-md-offset-0 custyle">
 
+
+
+<div class="container flex-col justify-center align-center align-content-center">
+
+    <div class="d-flex bg-dark w-100 vh-100 align-items-center justify-content-center">
     <form action ="apprenti-controller">
         <div class="form-group">
             <label for="numeroEtudiant">NUMERO ETUDIANT</label>
