@@ -30,24 +30,6 @@ public class ApprentiController extends HttpServlet {
 
 
 
-    public ApprentiEntity getApprentiFromForm(HttpServletRequest request) {
-        ApprentiEntity unApprenti = new ApprentiEntity();
-        unApprenti.setNumeroEtudiant(request.getParameter(NUMERO_ETUDIANT));
-        unApprenti.setProgramme(request.getParameter(PROGRAMME));
-        unApprenti.setAnneeAcademique(request.getParameter(ANNEE_ACADEMIQUE));
-        unApprenti.setMajeure(request.getParameter(MAJEURE));
-        return unApprenti;
-    }
-
-    public UtilisateurEntity getUtilisateurFromForm(HttpServletRequest request){
-        UtilisateurEntity unUtilisateur = new UtilisateurEntity();
-        unUtilisateur.setNom(request.getParameter(NOM));
-        unUtilisateur.setPrenom(request.getParameter(PRENOM));
-        unUtilisateur.setEmail(request.getParameter(EMAIL));
-        unUtilisateur.setPassword(request.getParameter(PASSWORD));
-        unUtilisateur.setIsadmin(TUTEUR_ROLE);
-        return unUtilisateur;
-    }
     public void init() {
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -87,13 +69,14 @@ public class ApprentiController extends HttpServlet {
 
 
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UtilisateurEntity unUtilisateur = getUtilisateurFromForm(request);
+        request.setAttribute("isAdmin", APPRENTI_ROLE);
+        UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request);
 
         if(userService.verifyIfUserExistByEmail(unUtilisateur.getEmail())){
             request.setAttribute("messageErreur",EMAIL_EXIST_ERROR_MESSAGE);
             request.getRequestDispatcher(APPRENTI_REGISTER_PAGE).forward(request, response);
         }else{
-            ApprentiEntity unApprenti = getApprentiFromForm(request);
+            ApprentiEntity unApprenti = apprentiService.getApprentiFromForm(request);
             userService.createUser(unUtilisateur);
             unApprenti.setIdUtilisateur(userService.getIdUtilisateurByEmail(unUtilisateur.getEmail()));
             apprentiService.createApprenti(unApprenti);

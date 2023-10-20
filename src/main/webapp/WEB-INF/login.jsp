@@ -16,23 +16,23 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <form class="mt-5" id="loginFrm">
+                <form class="mt-5" id="loginForm" action="user-controller" method="post">
                     <h2 class="mb-4 text-white">Se connecter</h2>
                     <div class="mb-3">
-                        <label for="username" class="form-label text-white">Prénom</label>
-                        <input type="text" class="form-control" id="username" placeholder="Entrer votre prénom">
+                        <label for="email" class="form-label text-white">Email</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Entrer votre email">
                     </div>
                     <div class="mb-3">
-                        <label for "password" class="form-label text-white">Mot de passe</label>
-                        <input type="password" class="form-control" id="password" placeholder="Entrer votre mot de passe">
+                        <label for="password" class="form-label text-white">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe">
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="login">Login</button>
                     <button type="button" class="btn btn-primary" id="createAccountBtn">Create Account</button>
                 </form>
                 <form class="mt-5" id="registerFrm" style="display: none">
                     <h2 class="mb-4 text-white">Créer un compte</h2>
-                    <button type="button" class="btn btn-primary">Compte Étudiant</button>
-                    <button type="button" class="btn btn-primary">Compte Professeur</button>
+                    <button type="button" class="btn btn-primary" name="action" value="createApprenti">Compte Étudiant</button>
+                    <button type="button" class="btn btn-primary" name="action" value="createTuteur">Compte Professeur</button>
                     <button type="button" class="btn btn-secondary" id="returnBtn">Retour</button>
                 </form>
             </div>

@@ -17,6 +17,8 @@ public class ApprentiConstants {
     public static final String ANNEE_ACADEMIQUE = "anneeAcademique";
     public static final String MAJEURE = "majeure";
     public static final boolean APPRENTI_ROLE = false;
+    public static final boolean IS_NOT_ARCHIVED = false;
+    public static final String FEEDBACK = "feedback";
 
     // JSP PAGES
 
