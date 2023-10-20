@@ -32,6 +32,8 @@ public class MemoireSB extends BaseSB<MemoireEntity>{
 
     @Override
     public void add(MemoireEntity memoireEntity) {
+        memoireEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        memoireEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(memoireEntity);
         em.getTransaction().commit();
