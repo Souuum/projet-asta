@@ -6,6 +6,9 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.ServletException;
 
 import fr.efrei2023.projetasta.service.UserService;
+
+import static fr.efrei2023.projetasta.utils.ApprentiConstants.APPRENTI_REGISTER_PAGE;
+import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.TUTEUR_REGISTER_PAGE;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 import jakarta.servlet.annotation.WebServlet;
 
@@ -35,16 +38,16 @@ public class UserController extends HttpServlet{
 
         switch(action){
             case "login":
-                loginProcess(request, response);
+                userService.loginProcess(request, response);
                 break;
             case "logout":
-                logoutProcess(request, response);
+                //userService.logoutProcess(request, response);
                 break;
             case "registerApprenti":
-                registerProcess(request, response);
+                request.getRequestDispatcher(APPRENTI_REGISTER_PAGE).forward(request, response);
                 break;
             case "registerTuteur":
-                updateProcess(request, response);
+                request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
                 break;
             default:
                 break;
