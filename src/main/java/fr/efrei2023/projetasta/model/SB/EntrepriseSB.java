@@ -30,6 +30,8 @@ public class EntrepriseSB extends BaseSB<EntrepriseEntity>{
 
     @Override
     public void add(EntrepriseEntity entrepriseEntity) {
+        entrepriseEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        entrepriseEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(entrepriseEntity);
         em.getTransaction().commit();

@@ -38,7 +38,7 @@ public class ApprentiEntity {
     private int idUtilisateur;
     @Basic
     @Column(name = "is_archived", nullable = true)
-    private Byte isArchived;
+    private boolean isArchived;
     @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
@@ -116,11 +116,11 @@ public class ApprentiEntity {
         this.idUtilisateur = idUtilisateur;
     }
 
-    public Byte getIsArchived() {
+    public boolean getIsArchived() {
         return isArchived;
     }
 
-    public void setIsArchived(Byte isArchived) {
+    public void setIsArchived(boolean isArchived) {
         this.isArchived = isArchived;
     }
 
@@ -155,7 +155,6 @@ public class ApprentiEntity {
             return false;
         if (majeure != null ? !majeure.equals(that.majeure) : that.majeure != null) return false;
         if (feedback != null ? !feedback.equals(that.feedback) : that.feedback != null) return false;
-        if (isArchived != null ? !isArchived.equals(that.isArchived) : that.isArchived != null) return false;
         if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
         if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
 
@@ -170,7 +169,6 @@ public class ApprentiEntity {
         result = 31 * result + (majeure != null ? majeure.hashCode() : 0);
         result = 31 * result + (feedback != null ? feedback.hashCode() : 0);
         result = 31 * result + idUtilisateur;
-        result = 31 * result + (isArchived != null ? isArchived.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;

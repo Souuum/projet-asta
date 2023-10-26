@@ -66,6 +66,9 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
         a.setFeedback(apprenti.getFeedback());
         a.setIdUtilisateur(apprenti.getIdUtilisateur());
         a.setIsArchived(apprenti.getIsArchived());
+        Date date = new Date(System.currentTimeMillis());
+        Timestamp timestamp = new Timestamp(date.getTime());
+        a.setUpdatedAt(timestamp);
         em.getTransaction().commit();
 
     }
@@ -81,7 +84,7 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
     public void archiveApprenti(String id) {
         ApprentiEntity a = getApprentiById(id);
         em.getTransaction().begin();
-        a.setIsArchived((byte) 1);
+        a.setIsArchived(true);
         em.getTransaction().commit();
     }
 
@@ -89,7 +92,7 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
     public void unarchivedApprenti(String id) {
         ApprentiEntity a = getApprentiById(id);
         em.getTransaction().begin();
-        a.setIsArchived((byte) 0);
+        a.setIsArchived(false);
         em.getTransaction().commit();
     }
 

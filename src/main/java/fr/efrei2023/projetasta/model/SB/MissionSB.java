@@ -31,6 +31,8 @@ public class MissionSB extends BaseSB<MissionEntity>{
 
     @Override
     public void add(MissionEntity missionEntity) {
+        missionEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        missionEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(missionEntity);
         em.getTransaction().commit();

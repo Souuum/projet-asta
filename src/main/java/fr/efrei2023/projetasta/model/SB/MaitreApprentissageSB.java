@@ -31,6 +31,8 @@ public class MaitreApprentissageSB extends BaseSB<MaitreApprentissageEntity>{
 
     @Override
     public void add(MaitreApprentissageEntity maitreApprentissageEntity) {
+        maitreApprentissageEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        maitreApprentissageEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(maitreApprentissageEntity);
         em.getTransaction().commit();

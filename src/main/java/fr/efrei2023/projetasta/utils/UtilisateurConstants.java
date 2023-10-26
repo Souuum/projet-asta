@@ -18,6 +18,10 @@ public class UtilisateurConstants {
     public static final String ENTITY_ERROR_MESSAGE = "Utilisateur non trouvé";
     public static final String EMAIL_EXIST_ERROR_MESSAGE = "Cette email est déjà utilisée";
 
+    public static final String EMAIL_NOT_EXIST_ERROR_MESSAGE = "Cette email n'existe pas";
+
+    public static final String PASSWORD_ERROR_MESSAGE = "Mot de passe incorrect";
+
 
     // SQL REQUESTS
 
@@ -28,6 +32,6 @@ public class UtilisateurConstants {
 
     // JSP
 
-    public static final String LOGIN_PAGE = "login.jsp";
+    public static final String LOGIN_PAGE = "/WEB-INF/login.jsp";
 
 }

@@ -4,6 +4,7 @@ import fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
@@ -13,27 +14,23 @@ public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("projet-asta");
     EntityManager em = entityManagerFactory.createEntityManager();
 
-    public TuteurEnseignantEntity getTuteurById(int id) {
-        Query query = em.createQuery(SELECT_ALL_TUTEURS);
-        query.setParameter("id", id);
-        return (TuteurEnseignantEntity) query.getSingleResult();
-    }
-
     @Override
     public List<TuteurEnseignantEntity> getAll() {
-        Query query = em.createQuery(SELECT_TUTEUR_BY_ID);
+        Query query = em.createQuery(SELECT_ALL_TUTEURS);
         return (List<TuteurEnseignantEntity>) query.getResultList();
     }
 
     @Override
     public TuteurEnseignantEntity getById(int id) {
-        Query query = em.createQuery("SELECT t FROM TuteurEnseignantEntity t WHERE t.idTuteurEnseignant = :id");
+        Query query = em.createQuery(SELECT_TUTEUR_BY_ID);
         query.setParameter("id", id);
         return (TuteurEnseignantEntity) query.getSingleResult();
     }
 
     @Override
     public void add(TuteurEnseignantEntity tuteurEnseignantEntity) {
+        tuteurEnseignantEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        tuteurEnseignantEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(tuteurEnseignantEntity);
         em.getTransaction().commit();

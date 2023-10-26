@@ -30,6 +30,8 @@ public class EvaluationEcoleSB extends BaseSB<EvaluationEcoleEntity>{
 
     @Override
     public void add(EvaluationEcoleEntity evaluationEcoleEntity) {
+        evaluationEcoleEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        evaluationEcoleEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(evaluationEcoleEntity);
         em.getTransaction().commit();
