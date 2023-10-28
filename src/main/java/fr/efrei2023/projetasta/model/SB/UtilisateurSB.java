@@ -70,6 +70,7 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
         u.setEmail(utilisateur.getEmail());
         u.setPassword(utilisateur.getPassword());
         u.setIsadmin(utilisateur.getIsadmin());
+        u.setTelephone(utilisateur.getTelephone());
         Date date = new Date(System.currentTimeMillis());
         Timestamp timestamp = new Timestamp(date.getTime());
         u.setUpdatedAt(timestamp);

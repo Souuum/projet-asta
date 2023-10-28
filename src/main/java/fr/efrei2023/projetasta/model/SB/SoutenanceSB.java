@@ -29,6 +29,8 @@ public class SoutenanceSB extends BaseSB<SoutenanceEntity>{
 
     @Override
     public void add(SoutenanceEntity soutenanceEntity) {
+        soutenanceEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        soutenanceEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(soutenanceEntity);
         em.getTransaction().commit();

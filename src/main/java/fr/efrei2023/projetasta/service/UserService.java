@@ -17,11 +17,17 @@ import java.io.IOException;
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.TUTEUR_ROLE;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.PASSWORD;
+import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
+import static fr.efrei2023.projetasta.utils.ApprentiConstants.*;
 @Stateless
 public class UserService {
 
     @EJB
     private UtilisateurSB utilisateurSessionBean;
+
+    public UtilisateurEntity getUtilisateurById(int id){
+        return utilisateurSessionBean.getById(id);
+    }
 
     public boolean verifyIfUserExistByEmail(String email){
         return utilisateurSessionBean.getUtilisateurByEmail(email) != null;
@@ -46,35 +52,49 @@ public class UserService {
         unUtilisateur.setNom(request.getParameter(NOM));
         unUtilisateur.setPrenom(request.getParameter(PRENOM));
         unUtilisateur.setEmail(request.getParameter(EMAIL));
-        unUtilisateur.setPassword(request.getParameter(PASSWORD));
-        unUtilisateur.setIsadmin(TUTEUR_ROLE);
+        unUtilisateur.setTelephone(request.getParameter(TELEPHONE));
+        String password = hashPassword(request.getParameter(PASSWORD));
+        unUtilisateur.setPassword(password);
+        unUtilisateur.setIsadmin(request.getParameter(ISADMIN) != null);
         return unUtilisateur;
     }
 
+
+
     public void loginProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UtilisateurEntity unUtilisateur = getUtilisateur(request);
         // Verify if user exist
-        if(!verifyIfUserExistByEmail(unUtilisateur.getEmail())) {
-            //request.setAttribute("messageErreur", EMAIL_NOT_EXIST_ERROR_MESSAGE);
-            //request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
+        String email = request.getParameter(EMAIL);
+        String password = request.getParameter(PASSWORD);
+
+        boolean emailValid = verifyIfUserExistByEmail(email);
+        boolean passwordValid = getUtilisateurPasswordByEmail(email).equals(hashPassword(password));
+        if(!emailValid) {
+            request.setAttribute("messageErreur", EMAIL_NOT_EXIST_ERROR_MESSAGE);
+            request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
 
         // Verify if password is correct
-        String password = hashPassword(unUtilisateur.getPassword());
-        if(!getUtilisateurPasswordByEmail(unUtilisateur.getEmail()).equals(password)) {
-            //request.setAttribute("messageErreur", PASSWORD_ERROR_MESSAGE);
-            //request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
+        if(!passwordValid) {
+            request.setAttribute("messageErreur", PASSWORD_ERROR_MESSAGE);
+            request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
 
-        //Create session
-        //TODO
-
-        // Check role of user
-        if(verifyRoleOfUser(unUtilisateur.getEmail()) == TUTEUR_ROLE) {
-            //request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
-        } else {
-            //request.getRequestDispatcher(ETUDIANT_HOME_PAGE).forward(request, response);
+        if(!emailValid || !passwordValid){
+            System.out.println("Email or password is not valid");
         }
+        else{
+            System.out.println("Login success");
+            UtilisateurEntity unUtilisateur = getUtilisateurById(getIdUtilisateurByEmail(email));
+            request.getSession().setAttribute("user", unUtilisateur);
+            // Check role of user
+            if(verifyRoleOfUser(unUtilisateur.getEmail()) == TUTEUR_ROLE) {
+                request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+            } else {
+                request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
+            }
+        }
+
+
 
     }
 

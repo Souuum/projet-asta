@@ -32,6 +32,8 @@ public class VisiteSB extends BaseSB<VisiteEntity>{
 
     @Override
     public void add(VisiteEntity visiteEntity) {
+        visiteEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        visiteEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().begin();
         em.persist(visiteEntity);
         em.getTransaction().commit();
