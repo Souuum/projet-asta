@@ -114,18 +114,26 @@
 
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row">
-                            <div class="m-3 d-flex flex-column">
-                                <div>
-                                   ${apprenti.maitreApprentissage.prenom} ${apprenti.maitreApprentissage.nom}
-                                </div>
-                                <div>
-                                    ${apprenti.maitreApprentissage.email}
-                                </div>
-                            </div>
-                            <div class="m-3 d-flex flex-column">
-                                <div style="color: #9166CC">Numero de telephone</div>
-                                <div>${apprenti.maitreApprentissage.telephone}</div>
-                            </div>
+                            <c:choose>
+                                <c:when test="${apprenti.maitreApprentissage!=null}">
+                                    <div class="m-3 d-flex flex-column">
+                                        <div>
+                                                ${apprenti.maitreApprentissage.prenom} ${apprenti.maitreApprentissage.nom}
+                                        </div>
+                                        <div>
+                                                ${apprenti.maitreApprentissage.email}
+                                        </div>
+                                    </div>
+                                    <div class="m-3 d-flex flex-column">
+                                        <div style="color: #9166CC">Numero de telephone</div>
+                                        <div>${apprenti.maitreApprentissage.telephone}</div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    pas de maitre d'apprentissage
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                         <div class="d-flex flex-column m-3">
                             <div style="color: #9166CC">Remarque</div>
@@ -142,21 +150,46 @@
                 <div class="align-self-stretch flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Remarques</h3>
                     <div style="height: 100%; border-radius: 20px; background-color: #454E56" class=" p-2 flex-column d-flex">
-                        <div><span style="color: #9166CC">Feedback de l'apprenti:</span> pas de feedback</div>
+                        <c:choose>
+                            <c:when test="${apprenti.remarques!=null}">
+                                <div>
+                                    <span style="color: #9166CC">Date:</span> ${apprenti.remarques.date}
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Remarques:</span> ${apprenti.remarques.remarques}
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div>
+                                    pas de remarques
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
                 <div class="flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Visite</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
-                        <div>
-                            <span style="color: #9166CC">Date:</span> 10/10/2023
-                        </div>
-                        <div>
-                            <span style="color: #9166CC">Format:</span> Visioconférence
-                        </div>
-                        <div>
-                            <span style="color: #9166CC">Compte-Rendu Express:</span> Très bein
-                        </div>
+                        <c:choose>
+                            <c:when test="${visites!=null}">
+                                <c:forEach items="${visites}" var="visite">
+                                    <div>
+                                        <span style="color: #9166CC">Date:</span> ${visites.date}
+                                    </div>
+                                    <div>
+                                        <span style="color: #9166CC">Format:</span> ${visites.format}
+                                    </div>
+                                    <div>
+                                        <span style="color: #9166CC">Compte-Rendu Express:</span> ${visites.compteRenduExpress}
+                                    </div>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <div>
+                                    pas de visite
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -191,15 +224,25 @@
                 <div class="flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Soutenance</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
-                        <div>
-                            <span style="color: #9166CC">Date:</span> 10/10/2024
-                        </div>
-                        <div>
-                            <span style="color: #9166CC">Note finale:</span> 16/20
-                        </div>
-                        <div>
-                            <span style="color: #9166CC">Commentaires:</span> pas de commentaires
-                        </div>
+                        <c:choose>
+                            <c:when test="${apprenti.soutenance!=null}">
+                                <div>
+                                    <span style="color: #9166CC">Date:</span> ${apprenti.soutenance.date}
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Note finale:</span> ${apprenti.soutenance.noteFinale}/20
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Commentaires:</span> ${apprenti.soutenance.commentaires}
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div>
+                                    Non actée
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
                     </div>
                 </div>
             </div>
