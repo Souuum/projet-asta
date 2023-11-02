@@ -42,6 +42,12 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
         return (ApprentiEntity) query.getSingleResult();
     }
 
+    public ApprentiEntity getByUserId(int id){
+        Query query = em.createQuery(FIND_APPRENTI_BY_USER_ID);
+        query.setParameter("id", id);
+        return (ApprentiEntity) query.getSingleResult();
+    }
+
     @Transactional
     public void add(ApprentiEntity apprenti){
         Date date = new Date(System.currentTimeMillis());

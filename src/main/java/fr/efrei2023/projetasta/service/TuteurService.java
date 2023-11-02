@@ -5,6 +5,7 @@ import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import fr.efrei2023.projetasta.model.SB.TuteurEnseignantSB;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import fr.efrei2023.projetasta.service.UserService.*;
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 
+@Stateless
 public class TuteurService {
     @EJB
     private TuteurEnseignantSB tuteurEnseignantSessionBean;
@@ -22,6 +24,10 @@ public class TuteurService {
     @EJB
     private UtilisateurSB utilisateurSessionBean;
     private UserService userService = new UserService();
+
+    public TuteurEnseignantEntity getTuteurByUserId(int id){
+        return tuteurEnseignantSessionBean.getByUserId(id);
+    }
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request);
         if(userService.verifyIfUserExistByEmail(unUtilisateur.getEmail())){

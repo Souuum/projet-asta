@@ -1,5 +1,7 @@
 package fr.efrei2023.projetasta.service;
 
+import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
+import fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity;
 import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
 import jakarta.ejb.EJB;
@@ -24,6 +26,12 @@ public class UserService {
 
     @EJB
     private UtilisateurSB utilisateurSessionBean;
+
+    @EJB
+    private ApprentiService apprentiService;
+
+    @EJB
+    private TuteurService tuteurService;
 
     public UtilisateurEntity getUtilisateurById(int id){
         return utilisateurSessionBean.getById(id);
@@ -67,13 +75,13 @@ public class UserService {
         String password = request.getParameter(PASSWORD);
 
         boolean emailValid = verifyIfUserExistByEmail(email);
-        boolean passwordValid = getUtilisateurPasswordByEmail(email).equals(hashPassword(password));
         if(!emailValid) {
             request.setAttribute("messageErreur", EMAIL_NOT_EXIST_ERROR_MESSAGE);
             request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
 
         // Verify if password is correct
+        boolean passwordValid = getUtilisateurPasswordByEmail(email).equals(hashPassword(password));
         if(!passwordValid) {
             request.setAttribute("messageErreur", PASSWORD_ERROR_MESSAGE);
             request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
@@ -88,8 +96,13 @@ public class UserService {
             request.getSession().setAttribute("user", unUtilisateur);
             // Check role of user
             if(verifyRoleOfUser(unUtilisateur.getEmail()) == TUTEUR_ROLE) {
+                TuteurEnseignantEntity tuteur = tuteurService.getTuteurByUserId(unUtilisateur.getIdUtilisateur());
+                request.getSession().setAttribute("tuteur", tuteur);
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
             } else {
+                ApprentiEntity apprenti = apprentiService.getApprentiByUserId(unUtilisateur.getIdUtilisateur());
+                System.out.println("VALUE: " + apprenti.getMaitreApprentissage());
+                request.getSession().setAttribute("apprenti", apprenti);
                 request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
             }
         }

@@ -26,15 +26,15 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="username" class="form-label text-white">Adresse mail</label>
-                        <input type="text" class="form-control" id="username" placeholder="Entrer votre mail">
+                        <label for="email" class="form-label text-white">Adresse mail</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Entrer votre mail">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label text-white">Mot de passe</label>
-                        <input type="password" class="form-control" id="password" placeholder="Entrer votre mot de passe">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe">
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-info"
+                        <button type="submit" class="btn btn-info" name="action" value="login"
                                 style="background-color: #8a2be2; border-color: #8a2be2;"
                                 onmouseover="this.style.backgroundColor='#9166CC'; this.style.borderColor='#9166CC';"
                                 onmouseout="this.style.backgroundColor='#8a2be2'; this.style.borderColor='#8a2be2';">

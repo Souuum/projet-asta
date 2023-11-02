@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label for="password">MOT DE PASSE</label>
                     <input style="border-color: #9166CC" type="password" class="rounded-pill form-control" id="password" name="password" required
-                           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$">
+                           <%--pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"> --%>
                     <div class="invalid-feedback">Inserrer un mot de pass valide.</div>
                 </div>
                 <div class="form-group">

@@ -23,6 +23,10 @@ public class ApprentiService {
     @EJB
     private UserService userService;
 
+    public ApprentiEntity getApprentiByUserId(int id){
+        return apprentiSessionBean.getByUserId(id);
+    }
+
     public ApprentiEntity getApprentiFromForm(HttpServletRequest request) {
         ApprentiEntity unApprenti = new ApprentiEntity();
         unApprenti.setNumeroEtudiant(request.getParameter(NUMERO_ETUDIANT));

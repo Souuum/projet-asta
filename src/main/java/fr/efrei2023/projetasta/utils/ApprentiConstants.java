@@ -9,6 +9,8 @@ public class ApprentiConstants {
     public static final String FIND_APPRENTI_BY_ID = "SELECT a FROM ApprentiEntity a WHERE a.idApprenti = :idApprenti";
     public static final String FIND_APPRENTI_BY_NUMERO_ETUDIANT = "SELECT a FROM ApprentiEntity a WHERE a.numeroEtudiant = :numeroEtudiant";
 
+    public static final String FIND_APPRENTI_BY_USER_ID = "SELECT a FROM ApprentiEntity a WHERE a.idUtilisateur = :id";
+
     // GENERIC FIELD NAMES
 
     public static final String ID_APPRENTI = "idApprenti";
@@ -24,7 +26,6 @@ public class ApprentiConstants {
 
     public static final String APPRENTI_REGISTER_PAGE = "/WEB-INF/apprenti_register.jsp";
     public static final String APPRENTI_LIST_PAGE = "/WEB-INF/apprenti_list.jsp";
-    public static final String APPRENTI_HOME_PAGE = "/WEB-INF/apprenti_home.jsp";
-
+    public static final String APPRENTI_HOME_PAGE = "/WEB-INF/home_page_apprenti.jsp";
 
 }

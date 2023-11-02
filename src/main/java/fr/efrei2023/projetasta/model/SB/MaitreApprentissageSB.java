@@ -47,7 +47,7 @@ public class MaitreApprentissageSB extends BaseSB<MaitreApprentissageEntity>{
         em.getTransaction().begin();
         m.setNom(maitreApprentissageEntity.getNom());
         m.setPrenom(maitreApprentissageEntity.getPrenom());
-        m.setAdresseElectronique(maitreApprentissageEntity.getAdresseElectronique());
+        m.setemail(maitreApprentissageEntity.getemail());
         m.setEntreprise(maitreApprentissageEntity.getEntreprise());
         m.setTelephone(maitreApprentissageEntity.getTelephone());
         Date date = new Date(System.currentTimeMillis());

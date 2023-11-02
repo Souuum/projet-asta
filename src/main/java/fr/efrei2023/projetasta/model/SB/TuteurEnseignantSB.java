@@ -27,6 +27,12 @@ public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
         return (TuteurEnseignantEntity) query.getSingleResult();
     }
 
+    public TuteurEnseignantEntity getByUserId(int id){
+        Query query = em.createQuery(FIND_TUTEUR_BY_USER_ID);
+        query.setParameter("id", id);
+        return (TuteurEnseignantEntity) query.getSingleResult();
+    }
+
     @Override
     public void add(TuteurEnseignantEntity tuteurEnseignantEntity) {
         tuteurEnseignantEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));

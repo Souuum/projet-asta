@@ -20,7 +20,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
 
         <div class="w-100 m-2 d-flex">
-            <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">NOM PRENOM</span></h2>
+            <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">${user.prenom} ${user.nom}</span></h2>
         </div>
 
 
@@ -37,23 +37,23 @@
                     </div>
                     <div class="m-3 d-flex flex-column">
                         <div>
-                            Gilbert Ziade
+                            ${user.prenom} ${user.nom}
                         </div>
                         <div>
-                            gilbert_z2001@hotmail.com
+                            ${user.email}
                         </div>
                     </div>
                     <div class="m-3 d-flex flex-column">
                         <div style="color: #9166CC">Numero de telephone</div>
-                        <div>+33 7 85 76 41 77</div>
+                        <div>${user.telephone}</div>
                     </div>
                     <div class="m-3 d-flex flex-column">
                         <div style="color: #9166CC">Majeure</div>
-                        <div>LSI</div>
+                        <div>${apprenti.majeure}</div>
                     </div>
                     <div class="m-3 d-flex flex-column">
                         <div style="color: #9166CC">Année</div>
-                        <div>2022-2025</div>
+                        <div>${apprenti.anneeAcademique}</div>
                     </div>
                     <div class="m-3">
                         <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
@@ -69,24 +69,37 @@
                 <div class="flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Entreprise</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
-                        <div><span style="color: #9166CC">Raison Sociale:</span> RATP</div>
-                        <div><span style="color: #9166CC">Addresse:</span> 54 Quai de la Rapée</div>
-                        <div><span style="color: #9166CC">Informations utiles pour les locaux:</span> Badge</div>
-
+                        <c:choose>
+                            <c:when test="${apprenti.maitreApprentissage.entreprise!=null}">
+                                <div><span style="color: #9166CC">Raison Sociale:</span> ${apprenti.maitreApprentissage.entreprise.raisonSociale}</div>
+                                <div><span style="color: #9166CC">Addresse:</span> ${apprenti.maitreApprentissage.entreprise.adresse}</div>
+                                <div><span style="color: #9166CC">Informations utiles pour les locaux:</span> ${apprenti.maitreApprentissage.entreprise.informations}</div>
+                            </c:when>
+                            <c:otherwise>
+                            pas d'entreprise
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
                 <div class="flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Missions</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
-                        <div>
-                            <span style="color: #9166CC">Mots-clés:</span> Programmation; développement; code; java
-                        </div>
-                        <div>
-                            <span style="color: #9166CC">Métier cible:</span> Développeur Java
-                        </div>
-                        <div>
-                            <span style="color: #9166CC">Commentaires:</span> pas de commentaires
-                        </div>
+                        <c:choose>
+                            <c:when test="${apprenti.mission!=null}">
+                                <div>
+                                    <span style="color: #9166CC">Mots-clés:</span> ${apprenti.mission.motsCles}
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Métier cible:</span> ${apprenti.mission.metierCible}
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Commentaires:</span> ${apprenti.mission.commentaires}
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                    pas de mission
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -103,19 +116,15 @@
                         <div class="d-flex flex-row">
                             <div class="m-3 d-flex flex-column">
                                 <div>
-                                    Gilbert Ziade
+                                   ${apprenti.maitreApprentissage.prenom} ${apprenti.maitreApprentissage.nom}
                                 </div>
                                 <div>
-                                    gilbert_z2001@hotmail.com
+                                    ${apprenti.maitreApprentissage.email}
                                 </div>
                             </div>
                             <div class="m-3 d-flex flex-column">
                                 <div style="color: #9166CC">Numero de telephone</div>
-                                <div>+33 7 85 76 41 77</div>
-                            </div>
-                            <div class="m-3 d-flex flex-column">
-                                <div style="color: #9166CC">Poste</div>
-                                <div>professeur de Programmation JAVA</div>
+                                <div>${apprenti.maitreApprentissage.telephone}</div>
                             </div>
                         </div>
                         <div class="d-flex flex-column m-3">
@@ -158,10 +167,25 @@
                 <div class="flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Mémoire/Rapport</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
-                        <div><span style="color: #9166CC">Thème:</span> Information Voyageur</div>
-                        <div><span style="color: #9166CC">Note finale:</span> 17/20</div>
-                        <div><span style="color: #9166CC">Commentaire:</span> Pas de commentaire</div>
+                        <c:choose>
+                            <c:when test="${apprenti.memoire!=null}">
+                                <div>
+                                    <span style="color: #9166CC">Date:</span> ${apprenti.memoire.date}
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Note:</span> ${apprenti.memoire.note}/20
+                                </div>
+                                <div>
+                                    <span style="color: #9166CC">Commentaires:</span> ${apprenti.memoire.commentaires}
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div>
+                                    Non rendu
+                                </div>
 
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
                 <div class="flex-fill d-flex flex-column m-2">
