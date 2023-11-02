@@ -1,9 +1,7 @@
 package fr.efrei2023.projetasta.service;
 
-import fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity;
-import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
-import fr.efrei2023.projetasta.model.SB.TuteurEnseignantSB;
-import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
+import fr.efrei2023.projetasta.model.Entity.*;
+import fr.efrei2023.projetasta.model.SB.*;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
@@ -11,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
+
 import fr.efrei2023.projetasta.service.UserService.*;
 
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
@@ -20,30 +20,57 @@ import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 public class TuteurService {
     @EJB
     private TuteurEnseignantSB tuteurEnseignantSessionBean;
-
+    @EJB
+    private ApprentiSB apprentiSessionBean;
     @EJB
     private UtilisateurSB utilisateurSessionBean;
-    private UserService userService = new UserService();
+    @EJB
+    private EntrepriseSB entrepriseSessionBean;
+    @EJB
+    private MaitreApprentissageSB maitreApprentissageSessionBean;
+    @EJB
+    private UserService userService;
 
     public TuteurEnseignantEntity getTuteurByUserId(int id){
         return tuteurEnseignantSessionBean.getByUserId(id);
     }
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setAttribute("isAdmin", TUTEUR_ROLE);
         UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request);
+
         if(userService.verifyIfUserExistByEmail(unUtilisateur.getEmail())){
             request.setAttribute("messageErreur",EMAIL_EXIST_ERROR_MESSAGE);
             request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
         }else{
             TuteurEnseignantEntity unTuteur = getTuteurFromForm(request);
-            //userService.createUser(unUtilisateur);
-            //unTuteur.setIdUtilisateur(userService.getIdUtilisateurByEmail(unUtilisateur.getEmail()));
+
+            userService.createUser(unUtilisateur);
+            unTuteur.setUtilisateur(userService.getUtilisateurByEmail(unUtilisateur.getEmail()));
             createTuteur(unTuteur);
+            request.getSession().setAttribute("user", unUtilisateur);
             request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
         }
     }
 
     public void getListeApprentis(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAll();
+        request.setAttribute("listeApprentis",listeApprentis);
+    }
 
+    public void getListeEntreprises(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<EntrepriseEntity> listeEntreprises = entrepriseSessionBean.getAll();
+        request.setAttribute("listeEntreprises",listeEntreprises);
+    }
+
+    public void getListeMaitresApprentissage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<MaitreApprentissageEntity> listeMaitresApprentissage = maitreApprentissageSessionBean.getAll();
+        request.setAttribute("listeMaitresApprentissage",listeMaitresApprentissage);
+    }
+
+    //TODO
+    public ApprentiEntity assignApprentiToCurrentTuteur(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        ApprentiEntity unApprenti = new ApprentiEntity();
+        return unApprenti;
     }
 
     public TuteurEnseignantEntity getTuteurFromForm(HttpServletRequest request) {

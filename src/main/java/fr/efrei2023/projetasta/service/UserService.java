@@ -45,6 +45,10 @@ public class UserService {
         return utilisateurSessionBean.getUtilisateurByEmail(email).getIdUtilisateur();
     }
 
+    public UtilisateurEntity getUtilisateurByEmail(String email){
+        return utilisateurSessionBean.getUtilisateurByEmail(email);
+    }
+
     public String getUtilisateurPasswordByEmail(String email){
         return utilisateurSessionBean.getUtilisateurByEmail(email).getPassword();
     }

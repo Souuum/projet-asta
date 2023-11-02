@@ -13,18 +13,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import fr.efrei2023.projetasta.service.*;
 
+import static fr.efrei2023.projetasta.utils.ApprentiConstants.APPRENTI_HOME_PAGE;
+import static fr.efrei2023.projetasta.utils.ApprentiConstants.APPRENTI_REGISTER_PAGE;
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
 
 @WebServlet(name = "TuteurController", value = "/tuteur-controller")
 public class TuteurController extends HttpServlet {
 
-
     @EJB
-    private TuteurEnseignantSB tuteurEnseignantSessionBean;
+    private TuteurService tuteurService;
     @EJB
-    private UtilisateurSB utilisateurSessionBean;
-    private TuteurService tuteurService = new TuteurService();
-    private UserService userService = new UserService();
+    private UserService userService;
 
     public void init() {
     }
@@ -39,58 +38,64 @@ public class TuteurController extends HttpServlet {
     public void processRequest (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
 
+        if (action.equals("SignUp") && request.getSession(false).getAttribute("user") == null) {
+            tuteurService.creationProcess(request, response);
+        }
+        if (request.getSession(false).getAttribute("user") == null) {
+            request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
+        } else {
+            tuteurService.getListeApprentis(request, response);
+            tuteurService.getListeEntreprises(request, response);
+            tuteurService.getListeMaitresApprentissage(request, response);
+            switch (action) {
+                case "AssignerApprenti":
+                    //TODO
+                    break;
+                case "AssignerMaitreApprentissage":
+                    //TODO
+                    break;
+                case "AjouterEntreprise":
+                    //TODO
+                    break;
+                case "AjouterMaitreApprentissage":
+                    //TODO
+                    break;
+                case "ModifierMaitreApprentissage":
+                    //TODO
+                    break;
+                case "AjouterMission":
+                    //TODO
+                    break;
+                case "ModifierMission":
+                    //TODO
+                    break;
+                case "AjouterVisite":
+                    //TODO
+                    break;
+                case "AjouterSoutenance":
+                    //TODO
+                    break;
+                case "ModifierSoutenance":
+                    //TODO
+                    break;
+                case "AjouterMemoire":
+                    //TODO
+                    break;
+                case "ModifierMemoire":
+                    //TODO
+                    break;
+                default:
+                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+                    break;
+
+            }
+        }
         switch(action){
-            case "SignUp":
-                tuteurService.creationProcess(request, response);
-                break;
+
             case "SignIn":
                 userService.loginProcess(request, response);
                 break;
-            case "ListApprentis":
-                //TODO
-                break;
-            case "ListEntreprises":
-                //TODO
-                break;
-            case "ListeMaitresApprentissage":
-                //TODO
-                break;
-            case "AssignerApprenti":
-                //TODO
-                break;
-            case "AssignerMaitreApprentissage":
-                //TODO
-                break;
-            case "AjouterEntreprise":
-                //TODO
-                break;
-            case "AjouterMaitreApprentissage":
-                //TODO
-                break;
-            case "ModifierMaitreApprentissage":
-                //TODO
-                break;
-            case "AjouterMission":
-                //TODO
-                break;
-            case "ModifierMission":
-                //TODO
-                break;
-            case "AjouterVisite":
-                //TODO
-                break;
-            case "AjouterSoutenance":
-                //TODO
-                break;
-            case "ModifierSoutenance":
-                //TODO
-                break;
-            case "AjouterMemoire":
-                //TODO
-                break;
-            case "ModifierMemoire":
-                //TODO
-                break;
+
 
             default:
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);

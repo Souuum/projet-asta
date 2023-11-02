@@ -19,6 +19,14 @@
         <url-pattern>apprenti-controller</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>TuteurController</servlet-name>
+        <servlet-class>fr.efrei2023.projetasta.controller.TuteurController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TuteurController</servlet-name>
+        <url-pattern>tuteur-controller</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>UserController</servlet-name>
         <servlet-class>fr.efrei2023.projetasta.controller.UserController</servlet-class>
     </servlet>
