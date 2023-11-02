@@ -12,10 +12,35 @@
 <head>
     <title>Login Apprenti</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hover_color{
+            background-color: #9166CC;
+        }
+        .hover_color:hover{
+            background-color: #bd93f3;
+        }
+    </style>
 </head>
-<body class="bg-dark text-light">
+<body class="bg-dark text-light overflow-hidden">
 
-<div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center overflow-hidden">
+<header class="d-flex flex-row justify-content-around position-relative" style="background-color: #2A2E35">
+    <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+
+    </div>
+    <div style="border-radius: 5px" class="hover_color my-auto">
+        <button class="p-2 border-0 bg-transparent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"></path>
+                <path fill-rule="evenodd"
+                      d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
 
     <div class="d-flex flex-column justify-content-center align-items-center">
 
@@ -71,12 +96,18 @@
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
                         <c:choose>
                             <c:when test="${apprenti.maitreApprentissage.entreprise!=null}">
-                                <div><span style="color: #9166CC">Raison Sociale:</span> ${apprenti.maitreApprentissage.entreprise.raisonSociale}</div>
-                                <div><span style="color: #9166CC">Addresse:</span> ${apprenti.maitreApprentissage.entreprise.adresse}</div>
-                                <div><span style="color: #9166CC">Informations utiles pour les locaux:</span> ${apprenti.maitreApprentissage.entreprise.informations}</div>
+                                <div><span
+                                        style="color: #9166CC">Raison Sociale:</span> ${apprenti.maitreApprentissage.entreprise.raisonSociale}
+                                </div>
+                                <div><span
+                                        style="color: #9166CC">Addresse:</span> ${apprenti.maitreApprentissage.entreprise.adresse}
+                                </div>
+                                <div><span
+                                        style="color: #9166CC">Informations utiles pour les locaux:</span> ${apprenti.maitreApprentissage.entreprise.informations}
+                                </div>
                             </c:when>
                             <c:otherwise>
-                            pas d'entreprise
+                                pas d'entreprise
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -97,7 +128,7 @@
                                 </div>
                             </c:when>
                             <c:otherwise>
-                                    pas de mission
+                                pas de mission
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -149,7 +180,8 @@
                  class="flex-row d-flex justify-content-between align-items-center m-3">
                 <div class="align-self-stretch flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Remarques</h3>
-                    <div style="height: 100%; border-radius: 20px; background-color: #454E56" class=" p-2 flex-column d-flex">
+                    <div style="height: 100%; border-radius: 20px; background-color: #454E56"
+                         class=" p-2 flex-column d-flex">
                         <c:choose>
                             <c:when test="${apprenti.remarques!=null}">
                                 <div>
@@ -246,10 +278,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
 
 
         </div>
