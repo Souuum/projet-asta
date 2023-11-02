@@ -28,6 +28,7 @@ public class UtilisateurConstants {
     public static final String SELECT_ALL_UTILISATEURS = "SELECT u FROM UtilisateurEntity u";
     public static final String SELECT_UTILISATEUR_BY_ID = "SELECT u FROM UtilisateurEntity u WHERE u.idUtilisateur = :id";
     public static final String SELECT_UTILISATEUR_BY_EMAIL = "SELECT u FROM UtilisateurEntity u WHERE u.email = :email";
+    public static final String FIND_ALL_UTILISATEURS_FROM_TUTEUR = "SELECT u FROM UtilisateurEntity u WHERE u.tuteurEnseignant.idTuteurEnseignant = :id";
 
 
     // JSP

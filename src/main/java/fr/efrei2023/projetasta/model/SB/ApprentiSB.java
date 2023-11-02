@@ -31,6 +31,12 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
         return (List<ApprentiEntity>) query.getResultList();
     }
 
+    public List<ApprentiEntity> getAllFromTuteur(int id) {
+        Query query = em.createQuery(FIND_ALL_APPRENTIS_FROM_TUTEUR);
+        query.setParameter("id", id);
+        return (List<ApprentiEntity>) query.getResultList();
+    }
+
     @Override
     public ApprentiEntity getById(int id) {
 

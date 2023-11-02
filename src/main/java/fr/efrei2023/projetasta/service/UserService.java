@@ -1,9 +1,12 @@
 package fr.efrei2023.projetasta.service;
 
+import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
 import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
 import fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity;
 import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
+import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
+import fr.efrei2023.projetasta.mapper.ApprentiInfoMapper;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
@@ -12,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -32,6 +36,8 @@ public class UserService {
 
     @EJB
     private TuteurService tuteurService;
+
+    private ApprentiInfoMapper apprentiInfoMapper = new ApprentiInfoMapper();
 
     public UtilisateurEntity getUtilisateurById(int id){
         return utilisateurSessionBean.getById(id);
@@ -102,10 +108,18 @@ public class UserService {
             if(verifyRoleOfUser(unUtilisateur.getEmail()) == TUTEUR_ROLE) {
                 TuteurEnseignantEntity tuteur = tuteurService.getTuteurByUserId(unUtilisateur.getIdUtilisateur());
                 request.getSession().setAttribute("tuteur", tuteur);
+
+                List<ApprentiEntity> apprentiList = tuteurService.getListeApprentisFromTuteur(tuteur.getIdTuteurEnseignant());
+                List<UtilisateurEntity> utilisateurList = tuteurService.getListeUtilisateurFromTuteur(tuteur.getIdTuteurEnseignant());
+                List<ApprentiInfoDTO> apprentiListDTO = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
+                request.getSession().setAttribute("apprentiListDTO", apprentiListDTO);
+                for(ApprentiInfoDTO apprentiInfoDTO : apprentiListDTO){
+                    System.out.println("NOOOO" + apprentiInfoDTO.getNom());
+                }
+
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
             } else {
                 ApprentiEntity apprenti = apprentiService.getApprentiByUserId(unUtilisateur.getIdUtilisateur());
-                System.out.println("VALUE: " + apprenti.getMaitreApprentissage());
                 request.getSession().setAttribute("apprenti", apprenti);
                 request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
             }

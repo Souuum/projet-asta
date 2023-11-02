@@ -51,6 +51,14 @@ public class TuteurService {
         }
     }
 
+    public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
+        List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllFromTuteur(id);
+        return listeApprentis;
+    }
+    public List<UtilisateurEntity> getListeUtilisateurFromTuteur(int id) {
+        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAll();
+        return listeUtilisateurs;
+    }
     public void getListeApprentis(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAll();
         request.setAttribute("listeApprentis",listeApprentis);

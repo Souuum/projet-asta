@@ -10,9 +10,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
-import static fr.efrei2023.projetasta.utils.UtilisateurConstants.ENTITY_ERROR_MESSAGE;
-import static fr.efrei2023.projetasta.utils.UtilisateurConstants.SELECT_UTILISATEUR_BY_ID;
-import static fr.efrei2023.projetasta.utils.UtilisateurConstants.SELECT_UTILISATEUR_BY_EMAIL;
+import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 
 @Stateless
 public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
@@ -37,6 +35,11 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
 
     public List<UtilisateurEntity> getAll(){
         Query query = em.createQuery("SELECT u FROM UtilisateurEntity u");
+        return (List<UtilisateurEntity>) query.getResultList();
+    }
+
+    public List<UtilisateurEntity> getAllFromTuteur(int id) {
+        Query query = em.createQuery(FIND_ALL_UTILISATEURS_FROM_TUTEUR);
         return (List<UtilisateurEntity>) query.getResultList();
     }
 
