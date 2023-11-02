@@ -59,7 +59,7 @@ public class UserService {
 
 
 
-    public UtilisateurEntity getUtilisateurFromForm(HttpServletRequest request){
+    public UtilisateurEntity getUtilisateurFromForm(HttpServletRequest request, boolean isAdmin){
         UtilisateurEntity unUtilisateur = new UtilisateurEntity();
         unUtilisateur.setNom(request.getParameter(NOM));
         unUtilisateur.setPrenom(request.getParameter(PRENOM));
@@ -67,7 +67,7 @@ public class UserService {
         unUtilisateur.setTelephone(request.getParameter(TELEPHONE));
         String password = hashPassword(request.getParameter(PASSWORD));
         unUtilisateur.setPassword(password);
-        unUtilisateur.setIsadmin(request.getParameter(ISADMIN) != null);
+        unUtilisateur.setIsadmin(isAdmin);
         return unUtilisateur;
     }
 
@@ -91,8 +91,8 @@ public class UserService {
             request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
 
-        if(!emailValid || !passwordValid){
-            System.out.println("Email or password is not valid");
+            if(!emailValid || !passwordValid){
+                System.out.println("Email or password is not valid");
         }
         else{
             System.out.println("Login success");

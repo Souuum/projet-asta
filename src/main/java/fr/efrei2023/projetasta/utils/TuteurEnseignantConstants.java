@@ -17,5 +17,5 @@ public class TuteurEnseignantConstants {
     public static final String SELECT_ALL_TUTEURS = "SELECT t FROM TuteurEnseignantEntity t";
     public static final String SELECT_TUTEUR_BY_ID = "SELECT t FROM TuteurEnseignantEntity t WHERE t.idTuteurEnseignant = :id";
 
-    public static final String FIND_TUTEUR_BY_USER_ID = "SELECT t FROM TuteurEnseignantEntity t WHERE t.idUtilisateur = :id";
+    public static final String FIND_TUTEUR_BY_USER_ID = "SELECT t FROM TuteurEnseignantEntity t WHERE t.utilisateur.idUtilisateur = :id";
 }

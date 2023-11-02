@@ -69,8 +69,7 @@ public class ApprentiController extends HttpServlet {
 
 
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("isAdmin", APPRENTI_ROLE);
-        UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request);
+        UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request, APPRENTI_ROLE);
 
         if(userService.verifyIfUserExistByEmail(unUtilisateur.getEmail())){
             request.setAttribute("messageErreur",EMAIL_EXIST_ERROR_MESSAGE);
