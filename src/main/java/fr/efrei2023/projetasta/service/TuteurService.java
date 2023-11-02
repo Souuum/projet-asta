@@ -35,8 +35,7 @@ public class TuteurService {
         return tuteurEnseignantSessionBean.getByUserId(id);
     }
     public void creationProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("isAdmin", TUTEUR_ROLE);
-        UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request);
+        UtilisateurEntity unUtilisateur = userService.getUtilisateurFromForm(request, TUTEUR_ROLE);
 
         if(userService.verifyIfUserExistByEmail(unUtilisateur.getEmail())){
             request.setAttribute("messageErreur",EMAIL_EXIST_ERROR_MESSAGE);
