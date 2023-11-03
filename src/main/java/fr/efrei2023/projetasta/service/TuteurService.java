@@ -61,6 +61,17 @@ public class TuteurService {
         request.setAttribute("listeApprentis", apprentiInfoDTOList);
     }
 
+    public void assignerApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String apprentiId = request.getParameter("apprentiId");
+        String tuteurId = request.getParameter("tuteurId");
+        int numeroEtudiant = Integer.parseInt(apprentiId);
+        int idTuteur = Integer.parseInt(tuteurId);
+        ApprentiEntity apprenti = apprentiSessionBean.getById(numeroEtudiant);
+        TuteurEnseignantEntity tuteur = tuteurEnseignantSessionBean.getById(idTuteur);
+        apprenti.setTuteurEnseignant(tuteur);
+        apprentiSessionBean.update(apprenti);
+    }
+
     public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllFromTuteur(id);
         return listeApprentis;
