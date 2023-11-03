@@ -18,7 +18,7 @@ public class home_page_tuteur_servlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/tuteur-home.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/tuteur_page/tuteur-home.jsp").forward(request, response);
         response.setContentType("text/html");
 
         // Hello
