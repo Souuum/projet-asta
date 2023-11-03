@@ -9,6 +9,7 @@ import java.util.List;
 public class ApprentiInfoMapper {
     public ApprentiInfoDTO toApprentiInfoDTO(ApprentiEntity apprentiEntity, UtilisateurEntity utilisateurEntity) {
         return new ApprentiInfoDTO(
+            apprentiEntity.getNumeroEtudiant(),
             utilisateurEntity.getNom(),
             utilisateurEntity.getPrenom(),
             utilisateurEntity.getEmail(),
