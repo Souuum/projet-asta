@@ -40,42 +40,73 @@
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
 
     <div class="d-flex flex-column justify-content-center align-items-center">
+        <form id="AddApprentiForm" action="tuteur-controller">
+            <div class="w-100 m-2 d-flex justify-content-between">
+                <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">${user.prenom} ${user.nom}</span></h2>
+                <input name="action" class="btn border-0 btn-primary" style="background-color: #9166CC; margin-left: auto"  type="submit"
+                       value="+ Ajouter">
+            </div>
 
-        <div class="w-100 m-2 d-flex justify-content-between">
-            <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">${user.prenom} ${user.nom}</span></h2>
-            <input class="btn border-0 btn-primary" style="background-color: #9166CC; margin-left: auto" type="button"
-                   value="+ Ajouter">
-        </div>
 
+            <div style="border-radius: 20px; background-color: #2A2E35"
+                 class="w-100 p-4 flex-column d-flex justify-content-center align-items-center">
 
-        <div style="border-radius: 20px; background-color: #2A2E35"
-             class="w-100 p-4 flex-column d-flex justify-content-center align-items-center">
+                <c:forEach items="${apprentiListDTO}" var="apprenti">
+                    <div style="border-radius: 20px; background-color: #454E56"
+                         class="p-2 m-3 flex-row d-flex justify-content-center align-items-center">
+                        <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
 
-            <c:forEach items="${apprentiListDTO}" var="apprenti">
+                        </div>
+                        <div style="width:250px" class="m-3 d-flex flex-column">
+                            <div>
+                                    ${apprenti.prenom} ${apprenti.nom}
+                            </div>
+                            <div>
+                                    ${apprenti.email}
+                            </div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div style="color: #9166CC">Numero de telephone</div>
+                            <div>${apprenti.telephone}</div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div style="color: #9166CC">Majeure</div>
+                            <div>${apprenti.majeure}</div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div style="color: #9166CC">Année</div>
+                            <div>${apprenti.anneeAcademique}</div>
+                        </div>
+                        <div class="m-3">
+                            <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
+                            </button>
+                        </div>
+
+                    </div>
+                </c:forEach>
                 <div style="border-radius: 20px; background-color: #454E56"
                      class="p-2 m-3 flex-row d-flex justify-content-center align-items-center">
-                    <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
-
+                    <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
                     </div>
-                    <div class="m-3 d-flex flex-column">
+                    <div style="width:250px " class="d-flex flex-column m-3">
                         <div>
-                                ${apprenti.prenom} ${apprenti.nom}
+                            Gilbert Ziade
                         </div>
                         <div>
-                                ${apprenti.email}
+                            gilbert_z2001@hotmail.com
                         </div>
                     </div>
-                    <div class="m-3 d-flex flex-column">
+                    <div class="d-flex flex-column m-3">
                         <div style="color: #9166CC">Numero de telephone</div>
-                        <div>${apprenti.telephone}</div>
+                        <div>+33 7 85 76 41 77</div>
                     </div>
-                    <div class="m-3 d-flex flex-column">
+                    <div class="d-flex flex-column m-3">
                         <div style="color: #9166CC">Majeure</div>
-                        <div>${apprenti.majeure}</div>
+                        <div>LSI</div>
                     </div>
-                    <div class="m-3 d-flex flex-column">
+                    <div class="d-flex flex-column m-3">
                         <div style="color: #9166CC">Année</div>
-                        <div>${apprenti.anneeAcademique}</div>
+                        <div>2022-2025</div>
                     </div>
                     <div class="m-3">
                         <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
@@ -83,70 +114,11 @@
                     </div>
 
                 </div>
-            </c:forEach>
-            <div style="border-radius: 20px; background-color: #454E56"
-                 class="p-2 m-3 flex-row d-flex justify-content-center align-items-center">
-                <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                </div>
-                <div style="width:250px " class="d-flex flex-column m-3">
-                    <div>
-                        Gilbert Ziade
-                    </div>
-                    <div>
-                        gilbert_z2001@hotmail.com
-                    </div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Numero de telephone</div>
-                    <div>+33 7 85 76 41 77</div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Majeure</div>
-                    <div>LSI</div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Année</div>
-                    <div>2022-2025</div>
-                </div>
-                <div class="m-3">
-                    <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
-                    </button>
-                </div>
-
             </div>
+        </form>
 
-            <div style="border-radius: 20px; background-color: #454E56"
-                 class="p-2 m-3 flex-row d-flex justify-content-center align-items-center">
-                <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                </div>
-                <div style="width:250px " class="d-flex flex-column m-3">
-                    <div>
-                        Gilbert
-                    </div>
-                    <div>
-                        01@hotmail.com
-                    </div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Numero de telephone</div>
-                    <div>+33 7 85 76 41 77</div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Majeure</div>
-                    <div>LSI</div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Année</div>
-                    <div>2022-2025</div>
-                </div>
-                <div class="m-3">
-                    <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
-                    </button>
-                </div>
 
-            </div>
 
-        </div>
     </div>
 </div>
 

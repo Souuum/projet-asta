@@ -62,7 +62,7 @@ public class TuteurService {
     }
 
     public void assignerApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String apprentiId = request.getParameter("apprentiId");
+        String apprentiId = request.getParameter("numeroEtudiant");
         String tuteurId = request.getParameter("tuteurId");
         int numeroEtudiant = Integer.parseInt(apprentiId);
         int idTuteur = Integer.parseInt(tuteurId);
@@ -77,7 +77,7 @@ public class TuteurService {
         return listeApprentis;
     }
     public List<UtilisateurEntity> getListeUtilisateurFromTuteur(int id) {
-        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAllFromTuteur(id);
+        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAll();
         return listeUtilisateurs;
     }
 
@@ -87,7 +87,7 @@ public class TuteurService {
     }
 
     public List<UtilisateurEntity> getListeUtilisateursNotAssignedToTuteur() {
-        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAllNotAssignedToTuteur();
+        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAll();
         return listeUtilisateurs;
     }
 

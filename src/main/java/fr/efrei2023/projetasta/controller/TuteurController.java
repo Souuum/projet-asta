@@ -50,7 +50,7 @@ public class TuteurController extends HttpServlet {
             tuteurService.getListeEntreprises(request, response);
             tuteurService.getListeMaitresApprentissage(request, response);
             switch (action) {
-                case "AssignerApprentiPage":
+                case "+ Ajouter":
                     tuteurService.getListeApprentisNotFromTuteur(request, response);
                     request.getRequestDispatcher(ASSIGNER_APPRENTI_PAGE).forward(request, response);
                     break;

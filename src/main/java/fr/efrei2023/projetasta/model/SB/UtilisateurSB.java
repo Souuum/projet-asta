@@ -40,6 +40,7 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
 
     public List<UtilisateurEntity> getAllFromTuteur(int id) {
         Query query = em.createQuery(FIND_ALL_UTILISATEURS_FROM_TUTEUR);
+        query.setParameter("id", id);
         return (List<UtilisateurEntity>) query.getResultList();
     }
 
