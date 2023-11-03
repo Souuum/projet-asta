@@ -37,6 +37,11 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
         return (List<ApprentiEntity>) query.getResultList();
     }
 
+    public List<ApprentiEntity> getAllNotAssignedToTuteur() {
+        Query query = em.createQuery(FIND_ALL_APPRENTIS_NOT_ASSIGNED_TO_TUTEUR);
+        return (List<ApprentiEntity>) query.getResultList();
+    }
+
     @Override
     public ApprentiEntity getById(int id) {
 

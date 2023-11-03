@@ -43,6 +43,11 @@ public class UtilisateurSB extends BaseSB<UtilisateurEntity>{
         return (List<UtilisateurEntity>) query.getResultList();
     }
 
+    public List<UtilisateurEntity> getAllNotAssignedToTuteur(){
+        Query query = em.createQuery(FIND_ALL_UTILISATEURS_NOT_ASSIGNED_TO_TUTEUR);
+        return (List<UtilisateurEntity>) query.getResultList();
+    }
+
     public void delete(UtilisateurEntity utilisateur) {
 
         em.getTransaction().begin();

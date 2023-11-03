@@ -1,5 +1,6 @@
 package fr.efrei2023.projetasta.controller;
 
+import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
 import fr.efrei2023.projetasta.model.SB.TuteurEnseignantSB;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
 import fr.efrei2023.projetasta.service.TuteurService;
@@ -11,6 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
+
 import fr.efrei2023.projetasta.service.*;
 
 import static fr.efrei2023.projetasta.utils.ApprentiConstants.APPRENTI_HOME_PAGE;
@@ -44,12 +47,16 @@ public class TuteurController extends HttpServlet {
         if (request.getSession(false).getAttribute("user") == null) {
             request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
         } else {
-            tuteurService.getListeApprentis(request, response);
             tuteurService.getListeEntreprises(request, response);
             tuteurService.getListeMaitresApprentissage(request, response);
             switch (action) {
+                case "AssignerApprentiPage":
+                    tuteurService.getListeApprentisNotFromTuteur(request, response);
+                    request.getRequestDispatcher(ASSIGNER_APPRENTI_PAGE).forward(request, response);
+                    break;
                 case "AssignerApprenti":
-                    //TODO
+                    //tuteurService.assignerApprenti(request, response);
+                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "AssignerMaitreApprentissage":
                     //TODO

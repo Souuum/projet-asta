@@ -1,5 +1,7 @@
 package fr.efrei2023.projetasta.service;
 
+import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
+import fr.efrei2023.projetasta.mapper.ApprentiInfoMapper;
 import fr.efrei2023.projetasta.model.Entity.*;
 import fr.efrei2023.projetasta.model.SB.*;
 import jakarta.ejb.EJB;
@@ -30,6 +32,7 @@ public class TuteurService {
     private MaitreApprentissageSB maitreApprentissageSessionBean;
     @EJB
     private UserService userService;
+    private ApprentiInfoMapper apprentiInfoMapper = new ApprentiInfoMapper();
 
     public TuteurEnseignantEntity getTuteurByUserId(int id){
         return tuteurEnseignantSessionBean.getByUserId(id);
@@ -51,14 +54,32 @@ public class TuteurService {
         }
     }
 
+    public void getListeApprentisNotFromTuteur(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<ApprentiEntity> apprentiList = getListeApprentisNotAssignedToTuteur();
+        List<UtilisateurEntity> utilisateurList = getListeUtilisateursNotAssignedToTuteur();
+        List<ApprentiInfoDTO> apprentiInfoDTOList = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
+        request.setAttribute("listeApprentis", apprentiInfoDTOList);
+    }
+
     public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllFromTuteur(id);
         return listeApprentis;
     }
     public List<UtilisateurEntity> getListeUtilisateurFromTuteur(int id) {
-        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAll();
+        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAllFromTuteur(id);
         return listeUtilisateurs;
     }
+
+    public List<ApprentiEntity> getListeApprentisNotAssignedToTuteur() {
+        List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllNotAssignedToTuteur();
+        return listeApprentis;
+    }
+
+    public List<UtilisateurEntity> getListeUtilisateursNotAssignedToTuteur() {
+        List<UtilisateurEntity> listeUtilisateurs = utilisateurSessionBean.getAllNotAssignedToTuteur();
+        return listeUtilisateurs;
+    }
+
     public void getListeApprentis(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAll();
         request.setAttribute("listeApprentis",listeApprentis);

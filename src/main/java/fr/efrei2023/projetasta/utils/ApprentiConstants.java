@@ -12,6 +12,7 @@ public class ApprentiConstants {
     public static final String FIND_APPRENTI_BY_USER_ID = "SELECT a FROM ApprentiEntity a WHERE a.idUtilisateur = :id";
     public static final String FIND_ALL_APPRENTIS_FROM_TUTEUR = "SELECT a FROM ApprentiEntity a WHERE a.tuteurEnseignant.idTuteurEnseignant = :id";
 
+    public static final String FIND_ALL_APPRENTIS_NOT_ASSIGNED_TO_TUTEUR = "SELECT a FROM ApprentiEntity a WHERE a.tuteurEnseignant IS NULL";
 
     // GENERIC FIELD NAMES
 
