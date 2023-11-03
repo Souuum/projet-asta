@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Tuteur Home</title>
+    <title>Ajouter Apprenti</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .hover_button:hover {
@@ -22,6 +22,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 </head>
 <body class="bg-dark text-light overflow-hidden">
 
@@ -41,10 +42,8 @@
 
     <div class="d-flex flex-column justify-content-center align-items-center">
 
-        <div class="w-100 m-2 d-flex justify-content-between">
+        <div class="w-100 m-2 d-flex justify-content-start">
             <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">${user.prenom} ${user.nom}</span></h2>
-            <input class="btn border-0 btn-primary" style="background-color: #9166CC; margin-left: auto" type="button"
-                   value="+ Ajouter">
         </div>
 
 
@@ -78,8 +77,8 @@
                         <div>${apprenti.anneeAcademique}</div>
                     </div>
                     <div class="m-3">
-                        <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
-                        </button>
+                        <input class="btn border-0 btn-primary" style="background-color: #9166CC; margin-left: auto" type="button"
+                               value="+ Ajouter">
                     </div>
 
                 </div>
@@ -88,43 +87,12 @@
                  class="p-2 m-3 flex-row d-flex justify-content-center align-items-center">
                 <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
                 </div>
-                <div style="width:250px " class="d-flex flex-column m-3">
+                <div class="d-flex flex-column m-3">
                     <div>
                         Gilbert Ziade
                     </div>
                     <div>
                         gilbert_z2001@hotmail.com
-                    </div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Numero de telephone</div>
-                    <div>+33 7 85 76 41 77</div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Majeure</div>
-                    <div>LSI</div>
-                </div>
-                <div class="d-flex flex-column m-3">
-                    <div style="color: #9166CC">Année</div>
-                    <div>2022-2025</div>
-                </div>
-                <div class="m-3">
-                    <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
-                    </button>
-                </div>
-
-            </div>
-
-            <div style="border-radius: 20px; background-color: #454E56"
-                 class="p-2 m-3 flex-row d-flex justify-content-center align-items-center">
-                <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                </div>
-                <div style="width:250px " class="d-flex flex-column m-3">
-                    <div>
-                        Gilbert
-                    </div>
-                    <div>
-                        01@hotmail.com
                     </div>
                 </div>
                 <div class="d-flex flex-column m-3">
