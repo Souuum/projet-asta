@@ -47,7 +47,7 @@
             <input style="border-color: #9166CC" type="password" class="rounded-pill form-control" id="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$">
             <div class="invalid-feedback">au minimum 8 characters: une majuscule, une minuscule et un chiffre.</div>
         </div>
-        <button id="btnn" type="submit" style="width: 35%; background-color: #9166CC" name="action" value="SignUp" class="text-light mx-auto rounded-pill btn border-0">S'inscrire</button>
+        <button id="btn" type="submit" style="width: 35%; background-color: #9166CC" name="action" value="SignUp" class="text-light mx-auto rounded-pill btn border-0">S'inscrire</button>
     </form>
 </div>
 

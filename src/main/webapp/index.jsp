@@ -16,5 +16,7 @@
 <a href="home-page-tuteur-servlet">Home page tuteur</a>
 <br>
 <a href="login_page">Home page login</a>
+<br>
+<a href="ajouter-apprenti">Ajouter Apprenti Page</a>
 </body>
 </html>

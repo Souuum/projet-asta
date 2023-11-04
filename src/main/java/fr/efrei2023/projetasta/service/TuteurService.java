@@ -54,6 +54,20 @@ public class TuteurService {
         }
     }
 
+    public void modifierApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String apprentiInfoDTOString = request.getParameter("currentApprenti");
+        System.out.println("CURRENTAPPRENTI" + apprentiInfoDTOString);
+
+    }
+
+    public void getListeApprentiInfoFromTuteur(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        TuteurEnseignantEntity currentTuteur = getTuteurByUserId(((UtilisateurEntity) request.getSession().getAttribute("user")).getIdUtilisateur());
+        List<ApprentiEntity> apprentiList = getListeApprentisFromTuteur(currentTuteur.getIdTuteurEnseignant());
+        List<UtilisateurEntity> utilisateurList = getListeUtilisateurFromTuteur(currentTuteur.getIdTuteurEnseignant());
+        List<ApprentiInfoDTO> apprentiInfoDTOList = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
+        request.setAttribute("apprentiListDTO", apprentiInfoDTOList);
+    }
+
     public void getListeApprentisNotFromTuteur(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<ApprentiEntity> apprentiList = getListeApprentisNotAssignedToTuteur();
         List<UtilisateurEntity> utilisateurList = getListeUtilisateursNotAssignedToTuteur();
@@ -62,13 +76,11 @@ public class TuteurService {
     }
 
     public void assignerApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String apprentiId = request.getParameter("numeroEtudiant");
-        String tuteurId = request.getParameter("tuteurId");
-        int numeroEtudiant = Integer.parseInt(apprentiId);
-        int idTuteur = Integer.parseInt(tuteurId);
+        String numeroEtudiant = request.getParameter("numeroEtudiant");
+        String utilisateurId = request.getParameter("idUtilisateur");
+        TuteurEnseignantEntity currentTuteur = getTuteurByUserId(Integer.parseInt(utilisateurId));
         ApprentiEntity apprenti = apprentiSessionBean.getById(numeroEtudiant);
-        TuteurEnseignantEntity tuteur = tuteurEnseignantSessionBean.getById(idTuteur);
-        apprenti.setTuteurEnseignant(tuteur);
+        apprenti.setTuteurEnseignant(currentTuteur);
         apprentiSessionBean.update(apprenti);
     }
 

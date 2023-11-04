@@ -56,7 +56,12 @@ public class TuteurController extends HttpServlet {
                     break;
                 case "AssignerApprenti":
                     tuteurService.assignerApprenti(request, response);
+                    tuteurService.getListeApprentiInfoFromTuteur(request, response);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+                    break;
+                case "ModifierApprenti":
+                    tuteurService.modifierApprenti(request, response);
+
                     break;
                 case "AssignerMaitreApprentissage":
                     //TODO

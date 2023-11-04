@@ -28,7 +28,6 @@ public class TuteurEnseignantSB extends BaseSB<TuteurEnseignantEntity>{
     }
 
     public TuteurEnseignantEntity getByUserId(int id){
-        System.out.println("USER ID: " + id);
         Query query = em.createQuery(FIND_TUTEUR_BY_USER_ID);
         query.setParameter("id", id);
         return (TuteurEnseignantEntity) query.getSingleResult();

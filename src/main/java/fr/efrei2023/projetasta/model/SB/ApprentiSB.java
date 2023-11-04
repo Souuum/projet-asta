@@ -47,9 +47,9 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
 
         return null;
     }
-    public ApprentiEntity getById(String id){
+    public ApprentiEntity getById(String numeroEtudiant){
         Query query = em.createQuery(FIND_APPRENTI_BY_NUMERO_ETUDIANT);
-        query.setParameter("id", id);
+        query.setParameter("numeroEtudiant", numeroEtudiant);
         return (ApprentiEntity) query.getSingleResult();
     }
 
@@ -83,6 +83,7 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
         a.setFeedback(apprenti.getFeedback());
         a.setIdUtilisateur(apprenti.getIdUtilisateur());
         a.setIsArchived(apprenti.getIsArchived());
+        a.setTuteurEnseignant(apprenti.getTuteurEnseignant());
         Date date = new Date(System.currentTimeMillis());
         Timestamp timestamp = new Timestamp(date.getTime());
         a.setUpdatedAt(timestamp);
