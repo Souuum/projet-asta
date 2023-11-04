@@ -67,13 +67,17 @@
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
 
     <div style="width: 500px" class="text-light d-flex flex-row justify-content-around">
-        <div id="headerApprentissages" class="p-2" style="cursor: pointer;background-color: #9166CC; border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
+        <div id="headerApprentissages" class="p-2"
+             style="cursor: pointer;background-color: #9166CC; border: #2A2E35 solid 4px; border-radius: 5px"
+             onclick="changeColor(this)">
             Apprentissages
         </div>
-        <div id="headerMaitreApprentissage" class="p-2" style="cursor:pointer; border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
+        <div id="headerMaitreApprentissage" class="p-2"
+             style="cursor:pointer; border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
             Maitre d'apprentissage
         </div>
-        <div id="headerEntreprise" class="p-2" style="cursor: pointer ;border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
+        <div id="headerEntreprise" class="p-2" style="cursor: pointer ;border: #2A2E35 solid 4px; border-radius: 5px"
+             onclick="changeColor(this)">
             Entreprise
         </div>
     </div>
@@ -103,42 +107,42 @@
                            class="flex-fill text-light mx-auto" onkeyup="AfilterMajor()"
                            placeholder="Search for majeur..">
                 </div>
-
-                <c:forEach items="${apprentiListDTO}" var="apprenti">
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
-
-                        </div>
-                        <div style="width:250px" class="m-3 d-flex flex-column">
-                            <div class="_myfullname">
-                                <span>${apprenti.prenom} ${apprenti.nom}</span>
-                            </div>
-                            <div class="_myemail">
-                                <span>${apprenti.email}</span>
-                            </div>
-                        </div>
-                        <div class="m-3 d-flex flex-column">
-                            <div style="color: #9166CC">Numero de telephone</div>
-                            <div>${apprenti.telephone}</div>
-                        </div>
-                        <div class="m-3 d-flex flex-column">
-                            <div style="color: #9166CC">Majeure</div>
-                            <div class="_mymajor"><span>${apprenti.majeure}</span></div>
-                        </div>
-                        <div class="m-3 d-flex flex-column">
-                            <div style="color: #9166CC">Année</div>
-                            <div>${apprenti.anneeAcademique}</div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="toggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
-
-                    </div>
-                </c:forEach>
                 <div id="ApprentiList">
+
+                    <c:forEach items="${apprentiListDTO}" var="apprenti">
+                        <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                             class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
+                            <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+
+                            </div>
+                            <div style="width:250px" class="m-3 d-flex flex-column">
+                                <div class="_myfullname">
+                                    <span>${apprenti.prenom} ${apprenti.nom}</span>
+                                </div>
+                                <div class="_myemail">
+                                    <span>${apprenti.email}</span>
+                                </div>
+                            </div>
+                            <div class="m-3 d-flex flex-column">
+                                <div style="color: #9166CC">Numero de telephone</div>
+                                <div>${apprenti.telephone}</div>
+                            </div>
+                            <div class="m-3 d-flex flex-column">
+                                <div style="color: #9166CC">Majeure</div>
+                                <div class="_mymajor"><span>${apprenti.majeure}</span></div>
+                            </div>
+                            <div class="m-3 d-flex flex-column">
+                                <div style="color: #9166CC">Année</div>
+                                <div>${apprenti.anneeAcademique}</div>
+                            </div>
+                            <div class="m-3">
+                                <button onclick="toggleOverlay()" style="color: #9166CC"
+                                        class="border-0 bg-transparent btn-link" type="button">Editer
+                                </button>
+                            </div>
+
+                        </div>
+                    </c:forEach>
 
                     <div style="display: flex; border-radius: 20px; background-color: #454E56"
                          class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
@@ -206,7 +210,6 @@
             </div>
 
 
-
             <!--Maitre d'apprentissage-->
 
             <div id="maitre_apprenti_field" style="display: none ;border-radius: 20px; background-color: #2A2E35"
@@ -223,37 +226,33 @@
                            class="flex-fill text-light mx-auto" onkeyup="MAfilterEntreprise()"
                            placeholder="Search for entreprise..">
                 </div>
-
-                <c:forEach items="${apprentiListDTO}" var="apprenti">
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
-
-                        </div>
-                        <div style="width:250px" class="m-3 d-flex flex-column">
-                            <div class="_myfullname">
-                                <span>${apprenti.prenom} ${apprenti.nom}</span>
-                            </div>
-                            <div class="_myemail">
-                                <span>${apprenti.email}</span>
-                            </div>
-                        </div>
-                        <div class="m-3 d-flex flex-column">
-                            <div style="color: #9166CC">Numero de telephone</div>
-                            <div>${apprenti.telephone}</div>
-                        </div>
-                        <div class="m-3 d-flex flex-column">
-                            <div style="color: #9166CC">Majeure</div>
-                            <div class="_mymajor"><span>${apprenti.majeure}</span></div>
-                        </div>
-                        <div class="m-3 d-flex flex-column">
-                            <div style="color: #9166CC">Année</div>
-                            <div>${apprenti.anneeAcademique}</div>
-                        </div>
-
-                    </div>
-                </c:forEach>
                 <div id="MaitreAppList">
+
+                    <c:forEach items="${apprentiListDTO}" var="apprenti">
+                        <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                             class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
+                            <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+
+                            </div>
+                            <div style="width:250px" class="m-3 d-flex flex-column">
+                                <div class="_myfullname">
+                                    <span>${apprenti.prenom} ${apprenti.nom}</span>
+                                </div>
+                                <div class="_myemail">
+                                    <span>${apprenti.email}</span>
+                                </div>
+                            </div>
+                            <div class="m-3 d-flex flex-column">
+                                <div style="color: #9166CC">Numero de telephone</div>
+                                <div>${apprenti.telephone}</div>
+                            </div>
+                            <div style="width:250px " class="d-flex flex-column m-3">
+                                <div style="color: #9166CC">Entreprise</div>
+                                <div class="_myentreprise"><span>XXX</span></div>
+                            </div>
+
+                        </div>
+                    </c:forEach>
 
                     <div style="display: flex; border-radius: 20px; background-color: #454E56"
                          class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
@@ -271,7 +270,7 @@
                             <div style="color: #9166CC">Numero de telephone</div>
                             <div>+33 7 85 76 41 77</div>
                         </div>
-                        <div class="d-flex flex-column m-3">
+                        <div style="width:250px " class="d-flex flex-column m-3">
                             <div style="color: #9166CC">Entreprise</div>
                             <div class="_myentreprise"><span>XXX</span></div>
                         </div>
@@ -283,7 +282,7 @@
 
                     </div>
                     <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center" >
+                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                         <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
                         </div>
                         <div style="width:250px " class="d-flex flex-column m-3">
@@ -298,7 +297,7 @@
                             <div style="color: #9166CC">Numero de telephone</div>
                             <div>+33 7 85 76 41 77</div>
                         </div>
-                        <div class="d-flex flex-column m-3">
+                        <div style="width:250px " class="d-flex flex-column m-3">
                             <div style="color: #9166CC">Entreprise</div>
                             <div class="_myentreprise"><span>YYY</span></div>
                         </div>
@@ -311,6 +310,106 @@
                     </div>
                 </div>
             </div>
+
+
+            <!--Entreprise-->
+
+            <div id="entrperise_field" style="display: none ;border-radius: 20px; background-color: #2A2E35"
+                 class="w-100 p-4 flex-column justify-content-center align-items-center">
+
+                <div style="width: 100%" class="d-flex flex-row">
+                    <input style="background-color: #454E56" type="text" id="ENomfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="EfilterName()"
+                           placeholder="Search for Name..">
+                    <input style="background-color: #454E56" type="text" id="EAddressfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="EfilterAddress()"
+                           placeholder="Search for address..">
+                </div>
+
+                <div id="EntrepriseList">
+
+                    <c:forEach items="${apprentiListDTO}" var="apprenti">
+                        <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                             class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
+                            <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+
+                            </div>
+                            <div style="width:250px " class="d-flex flex-column m-3">
+                                <div class="_myfullname">
+                                    <div style="color: #9166CC">Entreprise</div>
+                                    <span>${apprenti.prenom} ${apprenti.nom}</span>
+                                </div>
+                            </div>
+                            <div style="width:250px " class="d-flex flex-column m-3">
+                                <div class="_myaddress">
+                                    <div style="color: #9166CC">Addresse</div>
+                                    <span>${apprenti.addresse}</span>
+                                </div>
+                            </div>
+
+                            <div style="width:250px " class="d-flex flex-column m-3">
+                                <div style="color: #9166CC">Information</div>
+                                <div>${apprenti.telephone}</div>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                         class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
+                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div class="_myfullname">
+                                <div style="color: #9166CC">Entreprise</div>
+                                <span>Muvraline</span>
+                            </div>
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div class="_myaddress">
+                                <div style="color: #9166CC">Addresse</div>
+                                <span>Villejuif</span>
+                            </div>
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div style="color: #9166CC">Information</div>
+                            <div>Pas d'info</div>
+                        </div>
+                        <div class="m-3">
+                            <button onclick="toggleOverlay()" style="color: #9166CC"
+                                    class="border-0 bg-transparent btn-link" type="button">Editer
+                            </button>
+                        </div>
+                    </div>
+                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                         class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
+                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div class="_myfullname">
+                                <div style="color: #9166CC">Entreprise</div>
+                                <span>Google</span>
+                            </div>
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div class="_myaddress">
+                                <div style="color: #9166CC">Addresse</div>
+                                <span>palaiseau</span>
+                            </div>
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div style="color: #9166CC">Information</div>
+                            <div>Pas d'information</div>
+                        </div>
+                        <div class="m-3">
+                            <button onclick="toggleOverlay()" style="color: #9166CC"
+                                    class="border-0 bg-transparent btn-link" type="button">Editer
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
         </form>
 
@@ -570,6 +669,53 @@
     }
 
 
+    // filter Entreprise
+
+    function EfilterAddress() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('EAddressfilterInput');
+        document.getElementById('ENomfilterInput').value = "";
+        filter = input.value.toUpperCase();
+        ul = document.getElementById('EntrepriseList');
+        li = ul.getElementsByClassName('_myaddress');
+
+        var li_person = ul.getElementsByClassName('_myentreprise');
+        console.log(li_person)
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName('span')[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li_person[i].style.display = 'flex';
+            } else {
+                li_person[i].style.display = 'none';
+            }
+        }
+    }
+
+    function EfilterName() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('ENomfilterInput');
+
+        document.getElementById('EAddressfilterInput').value = "";
+
+        filter = input.value.toUpperCase();
+        ul = document.getElementById('EntrepriseList');
+        li = ul.getElementsByClassName('_myfullname');
+        var li_person = ul.getElementsByClassName('_myentreprise');
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName('span')[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li_person[i].style.display = 'flex';
+            } else {
+                li_person[i].style.display = 'none';
+            }
+        }
+    }
+
+
     // change the header
     function changeColor(square) {
         var header_list = [
@@ -579,26 +725,23 @@
         ]
 
 
-        for(var i =0 ; i< header_list.length; i++){
-            if(square === header_list[i]){
+        for (var i = 0; i < header_list.length; i++) {
+            if (square === header_list[i]) {
                 header_list[i].style.backgroundColor = "#9166CC";
-                if(i === 0){
+                if (i === 0) {
                     document.getElementById("apprentissage_field").style.display = 'flex'
                     document.getElementById("maitre_apprenti_field").style.display = 'none'
-                    //document.getElementById("apprentissage_field").style.display = 'none'
-                }
-                else if(i === 1){
+                    document.getElementById("entrperise_field").style.display = 'none'
+                } else if (i === 1) {
                     document.getElementById("apprentissage_field").style.display = 'none'
                     document.getElementById("maitre_apprenti_field").style.display = 'flex'
-                    //document.getElementById("apprentissage_field").style.display = 'none'
-                }
-                else{
+                    document.getElementById("entrperise_field").style.display = 'none'
+                } else {
                     document.getElementById("apprentissage_field").style.display = 'none'
                     document.getElementById("maitre_apprenti_field").style.display = 'none'
-                    //document.getElementById("apprentissage_field").style.display = 'flex'
+                    document.getElementById("entrperise_field").style.display = 'flex'
                 }
-            }
-            else{
+            } else {
                 header_list[i].style.backgroundColor = "rgba(255, 255, 255, 0)";
             }
         }
