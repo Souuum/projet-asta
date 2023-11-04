@@ -77,9 +77,11 @@
                             <div style="color: #9166CC">Année</div>
                             <div>${apprenti.anneeAcademique}</div>
                         </div>
+                        <input type="hidden" name="numeroEtudiant" value="${apprenti.numeroEtudiant}"/>
+                        <input type="hidden" name="idUtilisateur" value="${user.idUtilisateur}"/>
                         <div class="m-3">
-                            <input class="btn border-0 btn-primary" style="background-color: #9166CC; margin-left: auto" type="button"
-                                   value="+ Ajouter">
+                            <button class="btn border-0 btn-primary" style="background-color: #9166CC; margin-left: auto" type="submit"
+                                    name="action" value="AssignerApprenti">+ Ajouter</button>
                         </div>
 
                     </div>

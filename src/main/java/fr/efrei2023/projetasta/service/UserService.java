@@ -113,9 +113,6 @@ public class UserService {
                 List<UtilisateurEntity> utilisateurList = tuteurService.getListeUtilisateurFromTuteur(tuteur.getIdTuteurEnseignant());
                 List<ApprentiInfoDTO> apprentiListDTO = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
                 request.getSession().setAttribute("apprentiListDTO", apprentiListDTO);
-                for(ApprentiInfoDTO apprentiInfoDTO : apprentiListDTO){
-                    System.out.println("NOOOO" + apprentiInfoDTO.getNom());
-                }
 
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
             } else {
