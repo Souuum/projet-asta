@@ -54,6 +54,12 @@ public class TuteurService {
         }
     }
 
+    public void modifierApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String apprentiInfoDTOString = request.getParameter("currentApprenti");
+        System.out.println("CURRENTAPPRENTI" + apprentiInfoDTOString);
+
+    }
+
     public void getListeApprentiInfoFromTuteur(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         TuteurEnseignantEntity currentTuteur = getTuteurByUserId(((UtilisateurEntity) request.getSession().getAttribute("user")).getIdUtilisateur());
         List<ApprentiEntity> apprentiList = getListeApprentisFromTuteur(currentTuteur.getIdTuteurEnseignant());

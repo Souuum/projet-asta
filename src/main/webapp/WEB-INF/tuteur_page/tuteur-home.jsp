@@ -135,9 +135,10 @@
                                 <div style="color: #9166CC">Année</div>
                                 <div>${apprenti.anneeAcademique}</div>
                             </div>
+                            <input type="hidden" name="currentApprenti" value="${apprenti}"/>
                             <div class="m-3">
                                 <button onclick="APtoggleOverlay()" style="color: #9166CC"
-                                        class="border-0 bg-transparent btn-link" type="button">Editer
+                                        class="border-0 bg-transparent btn-link" type="submit" value="ModifierApprenti" name="action">Editer
                                 </button>
                             </div>
 
@@ -435,7 +436,7 @@
 
 
         <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
-            <div class="h2">Modification de <span style="color: #9166CC">NOM PRENOM</span></div>
+            <div class="h2">Modification de <span style="color: #9166CC">${currentApprenti.nom} ${currentApprenti.prenom}</span></div>
             <br>
             <form class="flex-column d-flex justify-content-center align-content-center"
                   style="width: 50%" action="apprenti-controller" method="post">
@@ -446,25 +447,25 @@
                         <div class="form-group">
                             <label for="numeroEtudiant">NUMERO ETUDIANT</label>
                             <input style="border-color: #9166CC" type="text" class="rounded-pill form-control"
-                                   id="numeroEtudiant" name="numeroEtudiant" disabled>
+                                   id="numeroEtudiant" name="numeroEtudiant" placeholder="${currentApprenti.numeroEtudiant}" disabled>
 
                         </div>
                         <div class="form-group">
                             <label for="nom">NOM</label>
                             <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="nom"
-                                   name="nom" required pattern=".*" disabled>
+                                   name="nom" required pattern=".*" placeholder="${currentApprenti.nom}">
                         </div>
                         <div class="form-group">
                             <label for="prenom">PRENOM</label>
                             <input style="border-color: #9166CC" type="text" class="rounded-pill form-control"
                                    id="prenom"
-                                   name="prenom" disabled>
+                                   name="prenom" placeholder="${currentApprenti.prenom}">
                         </div>
                         <div class="form-group">
                             <label for="telephone">TELEPHONE</label>
                             <input style="border-color: #9166CC" type="tel" class="rounded-pill form-control"
                                    id="telephone"
-                                   name="telephone" disabled>
+                                   name="telephone" placeholder="${currentApprenti.telephone}">
                         </div>
 
                         <div class="form-group">
