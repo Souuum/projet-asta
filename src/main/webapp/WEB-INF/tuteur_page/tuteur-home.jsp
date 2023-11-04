@@ -66,6 +66,18 @@
 
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
 
+    <div style="width: 500px" class="text-light d-flex flex-row justify-content-around">
+        <div id="headerApprentissages" class="p-2" style="cursor: pointer;background-color: #9166CC; border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
+            Apprentissages
+        </div>
+        <div id="headerMaitreApprentissage" class="p-2" style="cursor:pointer; border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
+            Maitre d'apprentissage
+        </div>
+        <div id="headerEntreprise" class="p-2" style="cursor: pointer ;border: #2A2E35 solid 4px; border-radius: 5px" onclick="changeColor(this)">
+            Entreprise
+        </div>
+    </div>
+
     <div class="d-flex flex-column justify-content-center align-items-center">
         <form id="AddApprentiForm" action="tuteur-controller">
             <div class="w-100 m-2 d-flex justify-content-between">
@@ -76,26 +88,25 @@
                        value="+ Ajouter">
             </div>
 
-
-            <div style="border-radius: 20px; background-color: #2A2E35"
-                 class="w-100 p-4 flex-column d-flex justify-content-center align-items-center">
+            <!--apprentissage-->
+            <div id="apprentissage_field" style="display: flex ;border-radius: 20px; background-color: #2A2E35"
+                 class="w-100 p-4 flex-column justify-content-center align-items-center">
 
                 <div style="width: 100%" class="d-flex flex-row">
-                    <input style="background-color: #454E56" type="text" id="nomPrenomfilterInput"
-                           class="flex-fill text-light mx-auto" onkeyup="filterName()"
+                    <input style="background-color: #454E56" type="text" id="AnomPrenomfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="AfilterName()"
                            placeholder="Search for Nom et Prenom..">
-                    <input style="background-color: #454E56" type="text" id="emailfilterInput"
-                           class="flex-fill text-light mx-auto" onkeyup="filterEmails()"
+                    <input style="background-color: #454E56" type="text" id="AemailfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="AfilterEmails()"
                            placeholder="Search for emails..">
-                    <input style="background-color: #454E56" type="text" id="majeurfilterInput"
-                           class="flex-fill text-light mx-auto" onkeyup="filterMajor()"
+                    <input style="background-color: #454E56" type="text" id="AmajeurfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="AfilterMajor()"
                            placeholder="Search for majeur..">
                 </div>
 
-
                 <c:forEach items="${apprentiListDTO}" var="apprenti">
                     <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myperson p-2 m-3 flex-row justify-content-center align-items-center">
+                         class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                         <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
 
                         </div>
@@ -127,10 +138,10 @@
 
                     </div>
                 </c:forEach>
-                <div id="List">
+                <div id="ApprentiList">
 
                     <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myperson p-2 m-3 flex-row justify-content-center align-items-center" id="gilbert">
+                         class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                         <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
                         </div>
                         <div style="width:250px " class="d-flex flex-column m-3">
@@ -161,14 +172,14 @@
 
                     </div>
                     <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myperson p-2 m-3 flex-row justify-content-center align-items-center" id="margo">
+                         class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                         <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
                         </div>
                         <div style="width:250px " class="d-flex flex-column m-3">
-                            <div title="margo" class="_myfullname">
+                            <div class="_myfullname">
                                 <span>margo</span>
                             </div>
-                            <div title="margo" class="_myemail">
+                            <div class="_myemail">
                                 <span>margo@hotmail.com</span>
                             </div>
                         </div>
@@ -178,11 +189,118 @@
                         </div>
                         <div class="d-flex flex-column m-3">
                             <div style="color: #9166CC">Majeure</div>
-                            <div title="margo" class="_mymajor"><span>OBI</span></div>
+                            <div class="_mymajor"><span>OBI</span></div>
                         </div>
                         <div class="d-flex flex-column m-3">
                             <div style="color: #9166CC">Année</div>
                             <div>2022-2025</div>
+                        </div>
+                        <div class="m-3">
+                            <button onclick="toggleOverlay()" style="color: #9166CC"
+                                    class="border-0 bg-transparent btn-link" type="button">Editer
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--Maitre d'apprentissage-->
+
+            <div id="maitre_apprenti_field" style="display: none ;border-radius: 20px; background-color: #2A2E35"
+                 class="w-100 p-4 flex-column justify-content-center align-items-center">
+
+                <div style="width: 100%" class="d-flex flex-row">
+                    <input style="background-color: #454E56" type="text" id="MAnomPrenomfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="MAfilterName()"
+                           placeholder="Search for Nom et Prenom..">
+                    <input style="background-color: #454E56" type="text" id="MAemailfilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="MAfilterEmails()"
+                           placeholder="Search for emails..">
+                    <input style="background-color: #454E56" type="text" id="MAentreprisefilterInput"
+                           class="flex-fill text-light mx-auto" onkeyup="MAfilterEntreprise()"
+                           placeholder="Search for entreprise..">
+                </div>
+
+                <c:forEach items="${apprentiListDTO}" var="apprenti">
+                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
+                        <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+
+                        </div>
+                        <div style="width:250px" class="m-3 d-flex flex-column">
+                            <div class="_myfullname">
+                                <span>${apprenti.prenom} ${apprenti.nom}</span>
+                            </div>
+                            <div class="_myemail">
+                                <span>${apprenti.email}</span>
+                            </div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div style="color: #9166CC">Numero de telephone</div>
+                            <div>${apprenti.telephone}</div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div style="color: #9166CC">Majeure</div>
+                            <div class="_mymajor"><span>${apprenti.majeure}</span></div>
+                        </div>
+                        <div class="m-3 d-flex flex-column">
+                            <div style="color: #9166CC">Année</div>
+                            <div>${apprenti.anneeAcademique}</div>
+                        </div>
+
+                    </div>
+                </c:forEach>
+                <div id="MaitreAppList">
+
+                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
+                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div class="_myfullname">
+                                <span>Gilbert Ziade</span>
+                            </div>
+                            <div class="_myemail">
+                                <span>gilbert_z2001@hotmail.com</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column m-3">
+                            <div style="color: #9166CC">Numero de telephone</div>
+                            <div>+33 7 85 76 41 77</div>
+                        </div>
+                        <div class="d-flex flex-column m-3">
+                            <div style="color: #9166CC">Entreprise</div>
+                            <div class="_myentreprise"><span>XXX</span></div>
+                        </div>
+                        <div class="m-3">
+                            <button onclick="toggleOverlay()" style="color: #9166CC"
+                                    class="border-0 bg-transparent btn-link" type="button">Editer
+                            </button>
+                        </div>
+
+                    </div>
+                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
+                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center" >
+                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
+                        </div>
+                        <div style="width:250px " class="d-flex flex-column m-3">
+                            <div class="_myfullname">
+                                <span>margo</span>
+                            </div>
+                            <div class="_myemail">
+                                <span>margo@hotmail.com</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column m-3">
+                            <div style="color: #9166CC">Numero de telephone</div>
+                            <div>+33 7 85 76 41 77</div>
+                        </div>
+                        <div class="d-flex flex-column m-3">
+                            <div style="color: #9166CC">Entreprise</div>
+                            <div class="_myentreprise"><span>YYY</span></div>
                         </div>
                         <div class="m-3">
                             <button onclick="toggleOverlay()" style="color: #9166CC"
@@ -307,18 +425,18 @@
     }
 
 
-    // filter
+    // filter apprenti
 
-    function filterEmails() {
+    function AfilterEmails() {
         var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById('emailfilterInput');
-        document.getElementById('nomPrenomfilterInput').value = "";
-        document.getElementById('majeurfilterInput').value = "";
+        input = document.getElementById('AemailfilterInput');
+        document.getElementById('AnomPrenomfilterInput').value = "";
+        document.getElementById('AmajeurfilterInput').value = "";
         filter = input.value.toUpperCase();
-        ul = document.getElementById('List');
+        ul = document.getElementById('ApprentiList');
         li = ul.getElementsByClassName('_myemail');
 
-        var li_person = ul.getElementsByClassName('_myperson');
+        var li_person = ul.getElementsByClassName('_myapprenti');
 
 
         for (i = 0; i < li.length; i++) {
@@ -332,17 +450,17 @@
         }
     }
 
-    function filterName() {
+    function AfilterName() {
         var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById('nomPrenomfilterInput');
+        input = document.getElementById('AnomPrenomfilterInput');
 
-        document.getElementById('emailfilterInput').value = "";
-        document.getElementById('majeurfilterInput').value = "";
+        document.getElementById('AemailfilterInput').value = "";
+        document.getElementById('AmajeurfilterInput').value = "";
 
         filter = input.value.toUpperCase();
-        ul = document.getElementById('List');
+        ul = document.getElementById('ApprentiList');
         li = ul.getElementsByClassName('_myfullname');
-        var li_person = ul.getElementsByClassName('_myperson');
+        var li_person = ul.getElementsByClassName('_myapprenti');
 
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByTagName('span')[0];
@@ -355,17 +473,17 @@
         }
     }
 
-    function filterMajor() {
+    function AfilterMajor() {
         var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById('majeurfilterInput');
+        input = document.getElementById('AmajeurfilterInput');
 
-        document.getElementById('nomPrenomfilterInput').value = "";
-        document.getElementById('emailfilterInput').value = "";
+        document.getElementById('AnomPrenomfilterInput').value = "";
+        document.getElementById('AemailfilterInput').value = "";
         filter = input.value.toUpperCase();
-        ul = document.getElementById('List');
+        ul = document.getElementById('ApprentiList');
         li = ul.getElementsByClassName('_mymajor');
 
-        var li_person = ul.getElementsByClassName('_myperson');
+        var li_person = ul.getElementsByClassName('_myapprenti');
 
 
         for (i = 0; i < li.length; i++) {
@@ -379,5 +497,112 @@
         }
     }
 
+    // filter maitre apprenti
+
+    function MAfilterEmails() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('MAemailfilterInput');
+        document.getElementById('MAnomPrenomfilterInput').value = "";
+        document.getElementById('MAentreprisefilterInput').value = "";
+        filter = input.value.toUpperCase();
+        ul = document.getElementById('MaitreAppList');
+        li = ul.getElementsByClassName('_myemail');
+
+        var li_person = ul.getElementsByClassName('_mymaitreapprenti');
+        console.log(li_person)
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName('span')[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li_person[i].style.display = 'flex';
+            } else {
+                li_person[i].style.display = 'none';
+            }
+        }
+    }
+
+    function MAfilterName() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('MAnomPrenomfilterInput');
+
+        document.getElementById('MAemailfilterInput').value = "";
+        document.getElementById('MAentreprisefilterInput').value = "";
+
+        filter = input.value.toUpperCase();
+        ul = document.getElementById('MaitreAppList');
+        li = ul.getElementsByClassName('_myfullname');
+        var li_person = ul.getElementsByClassName('_mymaitreapprenti');
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName('span')[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li_person[i].style.display = 'flex';
+            } else {
+                li_person[i].style.display = 'none';
+            }
+        }
+    }
+
+    function MAfilterEntreprise() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('MAentreprisefilterInput');
+
+        document.getElementById('MAnomPrenomfilterInput').value = "";
+        document.getElementById('MAemailfilterInput').value = "";
+        filter = input.value.toUpperCase();
+        ul = document.getElementById('MaitreAppList');
+        li = ul.getElementsByClassName('_myentreprise');
+
+        var li_person = ul.getElementsByClassName('_mymaitreapprenti');
+
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName('span')[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li_person[i].style.display = 'flex';
+            } else {
+                li_person[i].style.display = 'none';
+            }
+        }
+    }
+
+
+    // change the header
+    function changeColor(square) {
+        var header_list = [
+            document.getElementById("headerApprentissages"),
+            document.getElementById("headerMaitreApprentissage"),
+            document.getElementById("headerEntreprise"),
+        ]
+
+
+        for(var i =0 ; i< header_list.length; i++){
+            if(square === header_list[i]){
+                header_list[i].style.backgroundColor = "#9166CC";
+                if(i === 0){
+                    document.getElementById("apprentissage_field").style.display = 'flex'
+                    document.getElementById("maitre_apprenti_field").style.display = 'none'
+                    //document.getElementById("apprentissage_field").style.display = 'none'
+                }
+                else if(i === 1){
+                    document.getElementById("apprentissage_field").style.display = 'none'
+                    document.getElementById("maitre_apprenti_field").style.display = 'flex'
+                    //document.getElementById("apprentissage_field").style.display = 'none'
+                }
+                else{
+                    document.getElementById("apprentissage_field").style.display = 'none'
+                    document.getElementById("maitre_apprenti_field").style.display = 'none'
+                    //document.getElementById("apprentissage_field").style.display = 'flex'
+                }
+            }
+            else{
+                header_list[i].style.backgroundColor = "rgba(255, 255, 255, 0)";
+            }
+        }
+
+    }
 </script>
 </html>
