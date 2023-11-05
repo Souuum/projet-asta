@@ -10,6 +10,11 @@ public class TuteurEnseignantConstants {
     public static final String TUTEUR_LIST_PAGE = "/WEB-INF/tuteur_page/tuteur-list.jsp";
     public static final String TUTEUR_HOME_PAGE = "/WEB-INF/tuteur_page/tuteur-home.jsp";
     public static final String ASSIGNER_APPRENTI_PAGE = "/WEB-INF/tuteur_page/ajouter-etudiant-page.jsp";
+    public static final String MODIFIER_APPRENTI_PAGE = "/WEB-INF/tuteur_page/edit-apprenti.jsp";
+    public static final String MODIFIER_MAITRE_APPRENTISSAGE_PAGE = "/WEB-INF/tuteur_page/edit-maitre-apprenti.jsp";
+
+    public static final String MODIFIER_ENTREPRISE_PAGE = "/WEB-INF/tuteur_page/edit-entreprise.jsp";
+
 
     // ERROR MESSAGES
     public static final String ENTITY_ERROR_MESSAGE = "Tuteur non trouvé";

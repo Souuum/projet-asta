@@ -112,8 +112,8 @@
                             </div>
                             <input type="hidden" name="currentApprenti" value="${apprenti}"/>
                             <div class="m-3">
-                                <button onclick="APtoggleOverlay()" style="color: #9166CC"
-                                        class="border-0 bg-transparent btn-link" type="submit"  value="ModifierApprenti" name="action">Editer
+                                <button style="color: #9166CC"
+                                        class="border-0 bg-transparent btn-link" type="submit"  value="ModifierApprentiPage" name="action">Editer
                                 </button>
                             </div>
 
@@ -228,8 +228,8 @@
                             </div>
 
                             <div class="m-3">
-                                <button onclick="MAtoggleOverlay()" style="color: #9166CC"
-                                        class="border-0 bg-transparent btn-link" type="button">Editer
+                                <button style="color: #9166CC"
+                                        class="border-0 bg-transparent btn-link" type="submit" value="ModifierMaitreApprentissagePage" name="action">Editer
                                 </button>
                             </div>
                         </div>
@@ -334,8 +334,8 @@
                             </div>
 
                             <div class="m-3">
-                                <button onclick="MAtoggleOverlay()" style="color: #9166CC"
-                                        class="border-0 bg-transparent btn-link" type="button">Editer
+                                <button style="color: #9166CC"
+                                        class="border-0 bg-transparent btn-link" type="submit" value="ModifierEntreprisePage" name="action">Editer
                                 </button>
                             </div>
 
