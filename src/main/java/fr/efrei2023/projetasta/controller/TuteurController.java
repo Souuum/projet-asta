@@ -47,8 +47,6 @@ public class TuteurController extends HttpServlet {
         if (request.getSession(false).getAttribute("user") == null) {
             request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
         } else {
-            tuteurService.getListeEntreprises(request, response);
-            tuteurService.getListeMaitresApprentissage(request, response);
             switch (action) {
                 case "+ Ajouter":
                     tuteurService.getListeApprentisNotFromTuteur(request, response);
@@ -60,6 +58,8 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "ModifierApprenti":
+                    //TODO
+                    System.out.println("MODIFIERAPPRENTI");
                     tuteurService.modifierApprenti(request, response);
 
                     break;

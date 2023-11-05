@@ -1,9 +1,7 @@
 package fr.efrei2023.projetasta.service;
 
 import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
-import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
-import fr.efrei2023.projetasta.model.Entity.TuteurEnseignantEntity;
-import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
+import fr.efrei2023.projetasta.model.Entity.*;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
 import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
 import fr.efrei2023.projetasta.mapper.ApprentiInfoMapper;
@@ -113,6 +111,12 @@ public class UserService {
                 List<UtilisateurEntity> utilisateurList = tuteurService.getListeUtilisateurFromTuteur(tuteur.getIdTuteurEnseignant());
                 List<ApprentiInfoDTO> apprentiListDTO = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
                 request.getSession().setAttribute("apprentiListDTO", apprentiListDTO);
+
+                List<MaitreApprentissageEntity> maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);
+                request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
+
+                List<EntrepriseEntity> entrepriseList = tuteurService.getListeEntreprises(request, response);
+                request.getSession().setAttribute("entrepriseList", entrepriseList);
 
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
             } else {

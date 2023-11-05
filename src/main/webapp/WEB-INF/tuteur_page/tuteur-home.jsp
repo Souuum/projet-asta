@@ -113,7 +113,7 @@
                             <input type="hidden" name="currentApprenti" value="${apprenti}"/>
                             <div class="m-3">
                                 <button onclick="APtoggleOverlay()" style="color: #9166CC"
-                                        class="border-0 bg-transparent btn-link" type="submit" value="ModifierApprenti" name="action">Editer
+                                        class="border-0 bg-transparent btn-link" type="submit"  value="ModifierApprenti" name="action">Editer
                                 </button>
                             </div>
 
@@ -204,7 +204,7 @@
                 </div>
                 <div id="MaitreAppList">
 
-                    <c:forEach items="${apprentiListDTO}" var="apprenti">
+                    <c:forEach items="${maitreApprentissageList}" var="maitreApprentissage">
                         <div style="display: flex; border-radius: 20px; background-color: #454E56"
                              class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                             <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
@@ -212,19 +212,19 @@
                             </div>
                             <div style="width:250px" class="m-3 d-flex flex-column">
                                 <div class="_myfullname">
-                                    <span>${apprenti.prenom} ${apprenti.nom}</span>
+                                    <span>${maitreApprentissage.prenom} ${maitreApprentissage.nom}</span>
                                 </div>
                                 <div class="_myemail">
-                                    <span>${apprenti.email}</span>
+                                    <span>${maitreApprentissage.email}</span>
                                 </div>
                             </div>
                             <div class="m-3 d-flex flex-column">
                                 <div style="color: #9166CC">Numero de telephone</div>
-                                <div>${apprenti.telephone}</div>
+                                <div>${maitreApprentissage.telephone}</div>
                             </div>
                             <div style="width:250px " class="d-flex flex-column m-3">
                                 <div style="color: #9166CC">Entreprise</div>
-                                <div class="_myentreprise"><span>XXX</span></div>
+                                <div class="_myentreprise"><span>${maitreApprentissage.entreprise.raisonSociale}</span></div>
                             </div>
 
                             <div class="m-3">
@@ -309,7 +309,7 @@
 
                 <div id="EntrepriseList">
 
-                    <c:forEach items="${apprentiListDTO}" var="apprenti">
+                    <c:forEach items="${entrepriseList}" var="entreprise">
                         <div style="display: flex; border-radius: 20px; background-color: #454E56"
                              class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
                             <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
@@ -318,19 +318,19 @@
                             <div style="width:250px " class="d-flex flex-column m-3">
                                 <div class="_myfullname">
                                     <div style="color: #9166CC">Entreprise</div>
-                                    <span>${apprenti.prenom} ${apprenti.nom}</span>
+                                    <span>${entreprise.raisonSociale}</span>
                                 </div>
                             </div>
                             <div style="width:250px " class="d-flex flex-column m-3">
                                 <div class="_myaddress">
                                     <div style="color: #9166CC">Addresse</div>
-                                    <span>${apprenti.addresse}</span>
+                                    <span>${entreprise.adresse}</span>
                                 </div>
                             </div>
 
                             <div style="width:250px " class="d-flex flex-column m-3">
                                 <div style="color: #9166CC">Information</div>
-                                <div>${apprenti.telephone}</div>
+                                <div>${entreprise.informations}</div>
                             </div>
 
                             <div class="m-3">

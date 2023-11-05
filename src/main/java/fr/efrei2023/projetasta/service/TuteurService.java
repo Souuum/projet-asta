@@ -72,7 +72,7 @@ public class TuteurService {
         List<ApprentiEntity> apprentiList = getListeApprentisNotAssignedToTuteur();
         List<UtilisateurEntity> utilisateurList = getListeUtilisateursNotAssignedToTuteur();
         List<ApprentiInfoDTO> apprentiInfoDTOList = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
-        request.setAttribute("listeApprentis", apprentiInfoDTOList);
+        request.getSession().setAttribute("listeApprentis", apprentiInfoDTOList);
     }
 
     public void assignerApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -108,14 +108,14 @@ public class TuteurService {
         request.setAttribute("listeApprentis",listeApprentis);
     }
 
-    public void getListeEntreprises(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public List<EntrepriseEntity> getListeEntreprises(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<EntrepriseEntity> listeEntreprises = entrepriseSessionBean.getAll();
-        request.setAttribute("listeEntreprises",listeEntreprises);
+        return listeEntreprises;
     }
 
-    public void getListeMaitresApprentissage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public List<MaitreApprentissageEntity> getListeMaitresApprentissage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<MaitreApprentissageEntity> listeMaitresApprentissage = maitreApprentissageSessionBean.getAll();
-        request.setAttribute("listeMaitresApprentissage",listeMaitresApprentissage);
+        return listeMaitresApprentissage;
     }
 
     //TODO
