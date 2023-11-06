@@ -58,6 +58,8 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "ModifierApprentiPage":
+                    String currentApprentiNumeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant." + request.getParameter("itemIndex"));
+                    System.out.println("CURRENT APPRENTI " + request.getParameter("itemIndex") + ' '+ currentApprentiNumeroEtudiant);
                     request.getRequestDispatcher(MODIFIER_APPRENTI_PAGE).forward(request, response);
                     break;
                 case "ModifierMaitreApprentissagePage":

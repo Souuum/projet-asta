@@ -84,7 +84,7 @@
                 </div>
                 <div id="ApprentiList">
 
-                    <c:forEach items="${apprentiListDTO}" var="apprenti">
+                    <c:forEach items="${apprentiListDTO}" var="apprenti" varStatus="i">
                         <div style="display: flex; border-radius: 20px; background-color: #454E56"
                              class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                             <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
@@ -110,9 +110,9 @@
                                 <div style="color: #9166CC">Année</div>
                                 <div>${apprenti.anneeAcademique}</div>
                             </div>
-                            <input type="hidden" name="currentApprenti" value="${apprenti}"/>
+                            <input type="hidden" name="currentApprentiNumeroEtudiant.${i.index}" value="${apprenti.numeroEtudiant}"/>
                             <div class="m-3">
-                                <button style="color: #9166CC"
+                                <button style="color: #9166CC" onclick="setSelectedItemIndex(${i.index})"
                                         class="border-0 bg-transparent btn-link" type="submit"  value="ModifierApprentiPage" name="action">Editer
                                 </button>
                             </div>
@@ -632,5 +632,15 @@
         }
 
     }
+
+    function setSelectedItemIndex(index) {
+        var form = document.getElementById('AddApprentiForm');
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'itemIndex';
+        input.value = index;
+        form.appendChild(input);
+    }
+
 </script>
 </html>
