@@ -83,6 +83,37 @@ public class TuteurService {
         apprenti.setTuteurEnseignant(currentTuteur);
         apprentiSessionBean.update(apprenti);
     }
+    //TODO
+    public void modifierApprentiPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String numeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant." + request.getParameter("itemIndex"));
+
+    }
+    public void modifierMaitreApprentissagePage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String IdMaitreApprentissage = request.getParameter("currentMaitreApprentissageId." + request.getParameter("itemIndex"));
+        MaitreApprentissageEntity maitreApprentissage = maitreApprentissageSessionBean.getById(Integer.parseInt(IdMaitreApprentissage));
+        request.setAttribute("maitreApprentissage", maitreApprentissage);
+        List<EntrepriseEntity> entrepriseList = getListeEntreprises(request, response);
+        request.setAttribute("entrepriseList", entrepriseList);
+
+    }
+    public void modifierMaitreApprentissage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String IdMaitreApprentissage = request.getParameter("currentMaitreApprentissageId");
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String email = request.getParameter("email");
+        String telephone = request.getParameter("telephone");
+        String entrepriseId = request.getParameter("currentEntrepriseId");
+
+        System.out.println("ENTREPRISEID" + entrepriseId);
+        MaitreApprentissageEntity maitreApprentissage = new MaitreApprentissageEntity();
+        maitreApprentissage.setIdMaitreApprentissage(Integer.parseInt(IdMaitreApprentissage));
+        maitreApprentissage.setNom(nom);
+        maitreApprentissage.setPrenom(prenom);
+        maitreApprentissage.setemail(email);
+        maitreApprentissage.setTelephone(telephone);
+        maitreApprentissage.setEntreprise(entrepriseSessionBean.getById(Integer.parseInt(entrepriseId)));
+        maitreApprentissageSessionBean.update(maitreApprentissage);
+    }
 
     public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllFromTuteur(id);

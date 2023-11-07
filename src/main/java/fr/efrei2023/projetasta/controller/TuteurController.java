@@ -58,11 +58,12 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "ModifierApprentiPage":
-                    String currentApprentiNumeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant." + request.getParameter("itemIndex"));
-                    System.out.println("CURRENT APPRENTI " + request.getParameter("itemIndex") + ' '+ currentApprentiNumeroEtudiant);
+                    //TODO
+                    tuteurService.modifierApprentiPage(request, response);
                     request.getRequestDispatcher(MODIFIER_APPRENTI_PAGE).forward(request, response);
                     break;
                 case "ModifierMaitreApprentissagePage":
+                    tuteurService.modifierMaitreApprentissagePage(request, response);
                     request.getRequestDispatcher(MODIFIER_MAITRE_APPRENTISSAGE_PAGE).forward(request, response);
                     break;
                 case "ModifierEntreprisePage":
@@ -72,7 +73,10 @@ public class TuteurController extends HttpServlet {
                     //TODO
                     System.out.println("MODIFIERAPPRENTI");
                     tuteurService.modifierApprenti(request, response);
-
+                case "ModifierMaitreApprentissage":
+                    tuteurService.modifierMaitreApprentissage(request, response);
+                    tuteurService.getListeMaitresApprentissage(request, response);
+                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "AssignerMaitreApprentissage":
                     //TODO
@@ -81,9 +85,6 @@ public class TuteurController extends HttpServlet {
                     //TODO
                     break;
                 case "AjouterMaitreApprentissage":
-                    //TODO
-                    break;
-                case "ModifierMaitreApprentissage":
                     //TODO
                     break;
                 case "AjouterMission":

@@ -204,7 +204,7 @@
                 </div>
                 <div id="MaitreAppList">
 
-                    <c:forEach items="${maitreApprentissageList}" var="maitreApprentissage">
+                    <c:forEach items="${maitreApprentissageList}" var="maitreApprentissage" varStatus="i">
                         <div style="display: flex; border-radius: 20px; background-color: #454E56"
                              class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
                             <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
@@ -226,9 +226,10 @@
                                 <div style="color: #9166CC">Entreprise</div>
                                 <div class="_myentreprise"><span>${maitreApprentissage.entreprise.raisonSociale}</span></div>
                             </div>
+                            <input type="hidden" name="currentMaitreApprentissageId.${i.index}" value="${maitreApprentissage.idMaitreApprentissage}"/>
 
                             <div class="m-3">
-                                <button style="color: #9166CC"
+                                <button style="color: #9166CC" onclick="setSelectedItemIndex(${i.index})"
                                         class="border-0 bg-transparent btn-link" type="submit" value="ModifierMaitreApprentissagePage" name="action">Editer
                                 </button>
                             </div>
@@ -309,7 +310,7 @@
 
                 <div id="EntrepriseList">
 
-                    <c:forEach items="${entrepriseList}" var="entreprise">
+                    <c:forEach items="${entrepriseList}" var="entreprise" varStatus="i">
                         <div style="display: flex; border-radius: 20px; background-color: #454E56"
                              class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
                             <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
@@ -332,9 +333,9 @@
                                 <div style="color: #9166CC">Information</div>
                                 <div>${entreprise.informations}</div>
                             </div>
-
+                            <input type="hidden" name="currentEntreprise.${i.index}" value="${entreprise.idEntreprise}"/>
                             <div class="m-3">
-                                <button style="color: #9166CC"
+                                <button style="color: #9166CC" onclick="setSelectedItemIndex(${i.index})"
                                         class="border-0 bg-transparent btn-link" type="submit" value="ModifierEntreprisePage" name="action">Editer
                                 </button>
                             </div>
