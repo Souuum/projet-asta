@@ -139,6 +139,23 @@ public class TuteurService {
         entrepriseSessionBean.update(entreprise);
     }
 
+    public void addMaitreApprentissage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String email = request.getParameter("email");
+        String telephone = request.getParameter("telephone");
+        String entrepriseId = request.getParameter("currentEntrepriseId");
+
+        //TODO Check if same email already exist
+
+        MaitreApprentissageEntity maitreApprentissage = new MaitreApprentissageEntity();
+        maitreApprentissage.setNom(nom);
+        maitreApprentissage.setPrenom(prenom);
+        maitreApprentissage.setemail(email);
+        maitreApprentissage.setTelephone(telephone);
+        maitreApprentissage.setEntreprise(entrepriseSessionBean.getById(Integer.parseInt(entrepriseId)));
+        maitreApprentissageSessionBean.add(maitreApprentissage);
+    }
     public void addEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String raisonSociale = request.getParameter("raisonSociale");
         String adresse = request.getParameter("adresse");

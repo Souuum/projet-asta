@@ -57,13 +57,15 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(ASSIGNER_APPRENTI_PAGE).forward(request, response);
                     break;
                 case "+ Ajouter Maitre Apprentissage":
+                    entrepriseList = tuteurService.getListeEntreprises(request, response);
+                    request.getSession().setAttribute("entrepriseList", entrepriseList);
                     request.getRequestDispatcher(AJOUTER_MAITRE_APPRENTISSAGE_PAGE).forward(request, response);
                     break;
                 case "+ Ajouter Entreprise":
                     request.getRequestDispatcher(AJOUTER_ENTREPRISE_PAGE).forward(request, response);
                     break;
                 case "AjouterMaitreApprentissage":
-
+                    tuteurService.addMaitreApprentissage(request, response);
                     maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);
                     request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);

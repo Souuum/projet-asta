@@ -16,9 +16,9 @@
 <body class="bg-dark text-light">
 
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
-    <div class="h2">Créee votre compte en tant que <span style="color: #9166CC">tuteur</span></div>
+    <div class="h2">Ajouter un <span style="color: #9166CC">Maitre d'Apprentissage</span></div>
     <br>
-    <form class="flex-column d-flex justify-content-center align-content-center" id="registrationForm" style="width: 25%" action ="tuteur-controller">
+    <form class="flex-column d-flex justify-content-center align-content-center" id="AddMaitreApprentissage" style="width: 25%" action ="tuteur-controller">
         <div class="form-group">
 
         </div>
@@ -43,15 +43,15 @@
             <div class="invalid-feedback">Inserrer un Email valide.</div>
         </div>
         <div class="form-group">
-            <label for="entreprise">ENTREPRISE</label><br>
-            <select style="width: 100%; border-color: #9166CC" id="entreprise" name="entreprise"
-                    class="rounded-pill form-select form-select-lg mb-3">
-                <option value="entreprise_1" selected> entreprise 1</option>
-                <option value="entreprise_3"> entreprise 3</option>
-                <option value="entreprise_2"> entreprise 2</option>
+            <label for="MAentreprise">Entreprise</label><br>
+            <select style="width: 100%; border-color: #9166CC" id="MAentreprise" name="currentEntrepriseId"
+                    class="rounded-pill form-select form-select-lg mb-3"  value="${entreprise.idEntreprise}">
+                <c:forEach items="${entrepriseList}" var="entreprise">
+                    <option value="${entreprise.idEntreprise}">${entreprise.raisonSociale}</option>
+                </c:forEach>
             </select>
         </div>
-        <button id="btn" type="submit" style="width: 35%; background-color: #9166CC" name="action" value="SignUp" class="text-light mx-auto rounded-pill btn border-0">S'inscrire</button>
+        <button id="btn" type="submit" style="width: 35%; background-color: #9166CC" name="action" value="AjouterMaitreApprentissage" class="text-light mx-auto rounded-pill btn border-0">Ajouter</button>
     </form>
 </div>
 
@@ -72,3 +72,4 @@
 </script>
 </body>
 </html>
+```
