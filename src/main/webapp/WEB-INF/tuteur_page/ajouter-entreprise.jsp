@@ -16,28 +16,30 @@
 <body class="bg-dark text-light">
 
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
-    <div class="h2">Créee une <span style="color: #9166CC">entreprise</span></div>
+    <div class="h2">Ajouter une <span style="color: #9166CC">entreprise</span></div>
     <br>
     <form class="flex-column d-flex justify-content-center align-content-center" id="registrationForm" style="width: 25%" action ="tuteur-controller">
         <div class="form-group">
 
         </div>
         <div class="form-group">
-            <label for="raisonSociale">raisonSociale</label>
+            <label for="raisonSociale">Raison Sociale</label>
             <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="raisonSociale" name="raisonSociale" required pattern=".*">
             <div class="invalid-feedback">Inserrer une raisonSociale valide.</div>
         </div>
         <div class="form-group">
-            <label for="adresse">adresse</label>
+            <label for="adresse">Adresse</label>
             <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="adresse" name="adresse" required pattern=".*">
             <div class="invalid-feedback">Inserrer une addresse valide.</div>
         </div>
         <div class="form-group">
-            <label for="info">informations</label>
-            <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="info" name="info" required pattern=".*">
+            <label for="info">Informations</label>
+            <textarea placeholder="Ecrire des informations supplementaire..." class="form-control"
+                      style="resize: none ;border-radius: 20px; border-color: #9166CC" type="text"
+                      id="info" name="informations"></textarea>
             <div class="invalid-feedback">inserrer des information valide.</div>
         </div>
-        <button id="btn" type="submit" style="width: 35%; background-color: #9166CC" name="action" value="add" class="text-light mx-auto rounded-pill btn border-0">Ajouter</button>
+        <button id="btn" type="submit" style="width: 35%; background-color: #9166CC" name="action" value="AjouterEntreprise" class="text-light mx-auto rounded-pill btn border-0">Ajouter</button>
     </form>
 </div>
 

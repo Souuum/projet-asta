@@ -139,6 +139,20 @@ public class TuteurService {
         entrepriseSessionBean.update(entreprise);
     }
 
+    public void addEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String raisonSociale = request.getParameter("raisonSociale");
+        String adresse = request.getParameter("adresse");
+        String informations = request.getParameter("informations");
+
+        //TODO Check if same raison Sociale already exist
+
+        EntrepriseEntity entreprise = new EntrepriseEntity();
+        entreprise.setRaisonSociale(raisonSociale);
+        entreprise.setAdresse(adresse);
+        entreprise.setInformations(informations);
+        entrepriseSessionBean.add(entreprise);
+    }
+
     public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllFromTuteur(id);
         return listeApprentis;

@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                     <label for="Einformation">INFORMATIONS</label>
-                    <textarea placeholder="Ecrire des information supplementaire..." class="form-control"
+                    <textarea placeholder="Ecrire des informations supplementaire..." class="form-control"
                               style="resize: none ;border-radius: 20px; border-color: #9166CC" type="text"
                               id="Einformation" name="informations">${entreprise.informations}</textarea>
                 </div>

@@ -64,7 +64,13 @@
                 </h2>
                 <input name="action" class="hover_button btn border-0 btn-primary"
                        style="background-color: #9166CC; margin-left: auto" type="submit"
-                       value="+ Ajouter">
+                       value="+ Ajouter Apprenti">
+                <input name="action" class="hover_button btn border-0 btn-primary"
+                       style="background-color: #9166CC; margin-left: auto" type="submit"
+                       value="+ Ajouter Maitre Apprentissage">
+                <input name="action" class="hover_button btn border-0 btn-primary"
+                       style="background-color: #9166CC; margin-left: auto" type="submit"
+                       value="+ Ajouter Entreprise">
             </div>
 
             <!--apprentissage-->
@@ -333,7 +339,7 @@
                                 <div style="color: #9166CC">Information</div>
                                 <div>${entreprise.informations}</div>
                             </div>
-                            <input type="hidden" name="currentEntreprise.${i.index}" value="${entreprise.idEntreprise}"/>
+                            <input type="hidden" name="currentEntrepriseId.${i.index}" value="${entreprise.idEntreprise}"/>
                             <div class="m-3">
                                 <button style="color: #9166CC" onclick="setSelectedItemIndex(${i.index})"
                                         class="border-0 bg-transparent btn-link" type="submit" value="ModifierEntreprisePage" name="action">Editer
