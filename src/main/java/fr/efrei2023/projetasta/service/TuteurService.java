@@ -114,6 +114,30 @@ public class TuteurService {
         maitreApprentissage.setEntreprise(entrepriseSessionBean.getById(Integer.parseInt(entrepriseId)));
         maitreApprentissageSessionBean.update(maitreApprentissage);
     }
+    public void modifierEntreprisePage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String IdEntreprise = request.getParameter("currentEntrepriseId." + request.getParameter("itemIndex"));
+        EntrepriseEntity entreprise = entrepriseSessionBean.getById(Integer.parseInt(IdEntreprise));
+        request.setAttribute("entreprise", entreprise);
+    }
+
+    public void modifierEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String IdEntreprise = request.getParameter("currentEntrepriseId");
+        String raisonSociale = request.getParameter("raisonSociale");
+        String adresse = request.getParameter("adresse");
+        String informations = request.getParameter("informations");
+
+        System.out.println("IDENTREPRISE" + IdEntreprise);
+        System.out.println("RAISONSOCIALE" + raisonSociale);
+        System.out.println("ADRESSE" + adresse);
+        System.out.println("INFORMATIONS" + informations);
+
+        EntrepriseEntity entreprise = new EntrepriseEntity();
+        entreprise.setIdEntreprise(Integer.parseInt(IdEntreprise));
+        entreprise.setRaisonSociale(raisonSociale);
+        entreprise.setAdresse(adresse);
+        entreprise.setInformations(informations);
+        entrepriseSessionBean.update(entreprise);
+    }
 
     public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
         List<ApprentiEntity> listeApprentis = apprentiSessionBean.getAllFromTuteur(id);

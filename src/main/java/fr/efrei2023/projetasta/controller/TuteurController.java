@@ -67,6 +67,7 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(MODIFIER_MAITRE_APPRENTISSAGE_PAGE).forward(request, response);
                     break;
                 case "ModifierEntreprisePage":
+                    tuteurService.modifierEntreprisePage(request, response);
                     request.getRequestDispatcher(MODIFIER_ENTREPRISE_PAGE).forward(request, response);
                     break;
                 case "ModifierApprenti":
@@ -76,6 +77,12 @@ public class TuteurController extends HttpServlet {
                 case "ModifierMaitreApprentissage":
                     tuteurService.modifierMaitreApprentissage(request, response);
                     tuteurService.getListeMaitresApprentissage(request, response);
+                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+                    break;
+
+                case "ModifierEntreprise":
+                    tuteurService.modifierEntreprise(request, response);
+                    tuteurService.getListeEntreprises(request, response);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "AssignerMaitreApprentissage":
