@@ -113,6 +113,10 @@
                                 <div class="_mymajor"><span>${apprenti.majeure}</span></div>
                             </div>
                             <div class="m-3 d-flex flex-column">
+                                <div style="color: #9166CC">Programme</div>
+                                <div class="_myprogramme"><span>${apprenti.programme}</span></div>
+                            </div>
+                            <div class="m-3 d-flex flex-column">
                                 <div style="color: #9166CC">Année</div>
                                 <div>${apprenti.anneeAcademique}</div>
                             </div>
