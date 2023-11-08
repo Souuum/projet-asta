@@ -1,6 +1,7 @@
 package fr.efrei2023.projetasta.controller;
 
 import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
+import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
 import fr.efrei2023.projetasta.model.Entity.EntrepriseEntity;
 import fr.efrei2023.projetasta.model.Entity.MaitreApprentissageEntity;
 import fr.efrei2023.projetasta.model.SB.TuteurEnseignantSB;
@@ -44,6 +45,7 @@ public class TuteurController extends HttpServlet {
         String action = request.getParameter("action");
         List<MaitreApprentissageEntity> maitreApprentissageList;
         List<EntrepriseEntity> entrepriseList;
+        List<ApprentiInfoDTO> apprentiDTOList;
 
         if (action.equals("SignUp") && request.getSession(false).getAttribute("user") == null) {
             tuteurService.creationProcess(request, response);
@@ -82,7 +84,6 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
                 case "ModifierApprentiPage":
-                    //TODO
                     tuteurService.modifierApprentiPage(request, response);
                     request.getRequestDispatcher(MODIFIER_APPRENTI_PAGE).forward(request, response);
                     break;
@@ -95,9 +96,9 @@ public class TuteurController extends HttpServlet {
                     request.getRequestDispatcher(MODIFIER_ENTREPRISE_PAGE).forward(request, response);
                     break;
                 case "ModifierApprenti":
-                    //TODO
-                    System.out.println("MODIFIERAPPRENTI");
                     tuteurService.modifierApprenti(request, response);
+                    tuteurService.getListeApprentiInfoFromTuteur(request, response);
+                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                 case "ModifierMaitreApprentissage":
                     tuteurService.modifierMaitreApprentissage(request, response);
                     maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);

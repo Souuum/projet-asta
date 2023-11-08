@@ -1,5 +1,7 @@
 package fr.efrei2023.projetasta.dto;
 
+import fr.efrei2023.projetasta.model.Entity.MissionEntity;
+
 public class ApprentiInfoDTO {
 
     private String numeroEtudiant;
@@ -9,8 +11,10 @@ public class ApprentiInfoDTO {
     private String telephone;
     private String majeure;
     private String anneeAcademique;
+    private String programme;
+    private MissionEntity mission;
 
-    public ApprentiInfoDTO(String numeroEtudiant, String nom, String prenom, String email, String telephone, String majeure, String anneeAcademique) {
+    public ApprentiInfoDTO(String numeroEtudiant, String nom, String prenom, String email, String telephone, String majeure, String anneeAcademique, String programme, MissionEntity mission) {
         this.numeroEtudiant = numeroEtudiant;
         this.nom = nom;
         this.prenom = prenom;
@@ -18,6 +22,9 @@ public class ApprentiInfoDTO {
         this.telephone = telephone;
         this.majeure = majeure;
         this.anneeAcademique = anneeAcademique;
+        this.programme = programme;
+        this.mission = mission;
+
     }
 
 
@@ -46,5 +53,12 @@ public class ApprentiInfoDTO {
     }
     public String getNumeroEtudiant() {
         return numeroEtudiant;
+    }
+    public String getProgramme() {
+        return programme;
+}
+
+    public MissionEntity getMission() {
+        return mission;
     }
 }

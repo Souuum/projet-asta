@@ -15,82 +15,154 @@
 <div class="overlay" id="APoverlay">
 
     <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
-        <div class="h2">Modification de <span style="color: #9166CC">NOM PRENOM</span></div>
-        <br>
+
         <form class="flex-column d-flex justify-content-center align-content-center"
-              style="width: 50%" action="apprenti-controller" method="post">
+              style="width: 50%" action="tuteur-controller">
+            <div class="h2">Modification de <span style="color: #9166CC">${apprenti.nom} ${apprenti.prenom}</span></div>
+            <br>
             <div class="d-flex flex-row">
-
+                <!-- APPRENTI INFOS -->
+                <input hidden name="currentApprentiNumeroEtudiant" value="${apprenti.numeroEtudiant}">
                 <div class="d-flex flex-column" style="width: 40%; margin: 5%">
 
                     <div class="form-group">
-                        <label for="numeroEtudiant">NUMERO ETUDIANT</label>
+                        <label>APPRENTI INFO</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="programme">PROGRAMME</label>
                         <input style="border-color: #9166CC" type="text" class="rounded-pill form-control"
-                               id="numeroEtudiant" name="numeroEtudiant" disabled>
+                               id="programme" name="programme" value="${apprenti.programme}">
 
-                    </div>
-                    <div class="form-group">
-                        <label for="nom">NOM</label>
-                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="nom"
-                               name="nom" required pattern=".*" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="prenom">PRENOM</label>
-                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control"
-                               id="prenom"
-                               name="prenom" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="telephone">TELEPHONE</label>
-                        <input style="border-color: #9166CC" type="tel" class="rounded-pill form-control"
-                               id="telephone"
-                               name="telephone" disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="entreprise">Entreprise</label><br>
-                        <select style="width: 100%; border-color: #9166CC" id="entreprise" name="entreprise"
-                                class="rounded-pill form-select form-select-lg mb-3">
-                            <option value="entreprise_1" selected> entreprise 1</option>
-                            <option value="entreprise_2"> entreprise 2</option>
-                            <option value="entreprise_3"> entreprise 3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="d-flex flex-column" style="width: 40%; margin: 5%">
-
-                    <div class="form-group">
-                        <label for="email">EMAIL</label>
-                        <input style="border-color: #9166CC" type="email" class="rounded-pill form-control"
-                               id="email"
-                               name="email" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="anneeAcademique">ANNEE ACADEMIQUE</label>
-                        <input style="border-color: #9166CC" type="number" class="rounded-pill form-control"
-                               id="anneeAcademique" name="year" min="2000"
-                               max="2050" step="1" disabled required>
                     </div>
                     <div class="form-group">
                         <label for="majeure">MAJEURE</label><br>
                         <input type="text" class="rounded-pill form-control"
-                               style="width: 100%; border-color: #9166CC" id="majeure" name="majeure" disabled>
+                               style="width: 100%; border-color: #9166CC" id="majeure" name="majeure" value="${apprenti.majeure}">
                     </div>
 
                     <div class="form-group">
-                        <label for="maitre_apprenti">Maitre d'apprentissage</label><br>
+                        <label for="anneeAcademique">ANNEE ACADEMIQUE</label>
+                        <input style="border-color: #9166CC" type="number" class="rounded-pill form-control"
+                               id="anneeAcademique" name="anneeAcademique" min="2000"
+                               max="2050" step="1"  value="${apprenti.anneeAcademique}">
+                    </div>
+                </div>
+                <!-- MISSION -->
+                <div class="d-flex flex-column" style="width: 40%; margin: 5%">
+                    <div class="form-group">
+                        <label>MISSION</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="metierCible">METIER CIBLE</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="metierCible"
+                               name="metierCible" required pattern=".*" value="${mission.metierCible}">
+                    </div>
+                    <div class="form-group">
+                        <label for="motsCles">MOTS CLES</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="motsCles"
+                               name="motsCles" required pattern=".*" value="${mission.motsCles}">
+                    </div>
+                    <div class="form-group">
+                        <label for="commentaires_mission">COMMENTAIRES</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="commentaires_mission"
+                               name="commentaires_mission" required pattern=".*" value="${mission.commentaires}">
+                    </div>
+                </div>
+                <!-- MAITRE APPRENTISSAGE -->
+                <div class="d-flex flex-column" style="width: 40%; margin: 5%">
+
+
+                    <div class="form-group">
+                        <label for="maitre_apprenti">MAITRE D'APPRENTISSAGE</label><br>
                         <select style="width: 100%; border-color: #9166CC" id="maitre_apprenti"
-                                name="maitre_apprenti"
-                                class="rounded-pill form-select form-select-lg mb-3">
-                            <option value="maitre_1" selected> Maitre 1</option>
-                            <option value="maitre_2"> Maitre 2</option>
-                            <option value="maitre_3"> Maitre 3</option>
+                                name="currentMaitreApprentissageId"
+                                class="rounded-pill form-select form-select-lg mb-3" value="${apprenti.maitreApprentissage.idMaitreApprentissage}">
+                            <c:forEach items="${maitreApprentissageList}" var="maitreApprentissage">
+                                <option value="${maitreApprentissage.idMaitreApprentissage}">${maitreApprentissage.prenom} ${maitreApprentissage.nom}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
+
+                <!-- VISITE -->
+                <div class="d-flex flex-column" style="width: 40%; margin: 5%">
+
+
+                    <div class="form-group">
+                        <label>VISITE</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateVisite">DATE</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="dateVisite"
+                               name="dateVisite" required pattern=".*" value="${visite.dateVisite}">
+                    </div>
+                    <div class="form-group">
+                        <label for="format">FORMAT</label>
+                        <select style="width: 100%; border-color: #9166CC" id="format"
+                                name="format"
+                                class="rounded-pill form-select form-select-lg mb-3" value="${visite.format}">
+                            <option value="Visio"> Visio </option>
+                            <option value="Presentielle"> Presentielle </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="compteRenduExpress">COMPTE RENDU EXPRESS</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="compteRenduExpress"
+                               name="compteRenduExpress" required pattern=".*" value="${visite.compteRenduExpress}">
+                    </div>
+                </div>
+
+                <!-- MEMOIRE -->
+                <div class="d-flex flex-column" style="width: 40%; margin: 5%">
+
+
+                    <div class="form-group">
+                        <label>MEMOIRE</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme">THEME</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="theme"
+                               name="theme" required pattern=".*" value="${memoire.theme}">
+                    </div>
+                    <div class="form-group">
+                        <label for="note_finale_memoire">NOTE FINALE</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="note_finale_memoire"
+                               name="note_finale_memoire" required pattern=".*" value="${memoire.evaluationEcole.noteFinale}">
+                    </div>
+                    <div class="form-group">
+                        <label for="commentaires_memoire">COMMENTAIRES</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="commentaires_memoire"
+                               name="commentaires_memoire" required pattern=".*" value="${memoire.evaluationEcole.commentaires}">
+                    </div>
+                </div>
+
+                <!-- SOUTENANCE -->
+                <div class="d-flex flex-column" style="width: 40%; margin: 5%">
+
+
+                    <div class="form-group">
+                        <label>SOUTENANCE</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateSoutenance">DATE</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="dateSoutenance"
+                               name="dateSoutenance" required pattern=".*" value="${soutenance.dateSoutenance}">
+                    </div>
+                    <div class="form-group">
+                        <label for="note_finale_soutenance">NOTE FINALE</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="note_finale_soutenance"
+                               name="note_finale_soutenance" required pattern=".*" value="${soutenance.evaluationEcole.noteFinale}">
+                    </div>
+                    <div class="form-group">
+                        <label for="commentaires_soutenance">COMMENTAIRES</label>
+                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="commentaires_soutenance"
+                               name="commentaires_soutenance" required pattern=".*" value="${soutenance.evaluationEcole.commentaires}">
+                    </div>
+                </div>
+
             </div>
 
-            <button type="submit" style="width: 30%; background-color: #9166CC" name="action"
+            <button type="submit" style="width: 30%; background-color: #9166CC" name="action" value="ModifierApprenti"
                     class="text-light mx-auto rounded-pill align-content-center btn border-0">Modifier
             </button>
         </form>

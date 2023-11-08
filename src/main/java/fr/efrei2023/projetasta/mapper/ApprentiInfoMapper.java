@@ -15,7 +15,9 @@ public class ApprentiInfoMapper {
             utilisateurEntity.getEmail(),
             utilisateurEntity.getTelephone(),
             apprentiEntity.getMajeure(),
-            apprentiEntity.getAnneeAcademique()
+            apprentiEntity.getAnneeAcademique(),
+            apprentiEntity.getProgramme(),
+            apprentiEntity.getMission()
         );
     }
 
