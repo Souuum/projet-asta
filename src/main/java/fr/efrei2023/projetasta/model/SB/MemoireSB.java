@@ -30,6 +30,12 @@ public class MemoireSB extends BaseSB<MemoireEntity>{
         return (MemoireEntity) query.getSingleResult();
     }
 
+    public MemoireEntity getByEvaluationEcoleId(int id) {
+        Query query = em.createQuery(SELECT_MEMOIRE_BY_EVALUATION_ECOLE_ID);
+        query.setParameter("id", id);
+        return (MemoireEntity) query.getSingleResult();
+    }
+
 
     @Override
     public void add(MemoireEntity memoireEntity) {

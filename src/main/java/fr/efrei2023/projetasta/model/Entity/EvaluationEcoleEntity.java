@@ -21,6 +21,9 @@ public class EvaluationEcoleEntity {
     @Column(name = "numero_etudiant", nullable = false, length = 50)
     private String numeroEtudiant;
     @Basic
+    @Column(name = "type", nullable = false, length = 50)
+    private String type;
+    @Basic
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
     @Basic
@@ -57,6 +60,9 @@ public class EvaluationEcoleEntity {
 
     public void setNumeroEtudiant(String numeroEtudiant) {
         this.numeroEtudiant = numeroEtudiant;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Timestamp getUpdatedAt() {
@@ -103,4 +109,6 @@ public class EvaluationEcoleEntity {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;
     }
+
+
 }

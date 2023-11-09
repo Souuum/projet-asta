@@ -27,6 +27,14 @@ public class SoutenanceSB extends BaseSB<SoutenanceEntity>{
         return (SoutenanceEntity) query.getSingleResult();
     }
 
+    public SoutenanceEntity getByEvaluationEcoleId(int id) {
+        Query query = em.createQuery(SELECT_SOUTENANCE_BY_EVALUATION_ECOLE_ID);
+        query.setParameter("id", id);
+        if(query.getResultList().isEmpty())
+            return null;
+        return (SoutenanceEntity) query.getSingleResult();
+    }
+
     @Override
     public void add(SoutenanceEntity soutenanceEntity) {
         soutenanceEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));

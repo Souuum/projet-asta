@@ -32,6 +32,8 @@ public class EvaluationEcoleSB extends BaseSB<EvaluationEcoleEntity>{
         Query query = em.createQuery(SELECT_EVALUATIONECOLE_BY_NUMERO_ETUDIANT_AND_TYPE);
         query.setParameter("numeroEtudiant", numeroEtudiant);
         query.setParameter("type", type);
+        if(query.getResultList().isEmpty())
+            return null;
         return (EvaluationEcoleEntity) query.getSingleResult();
 
     }

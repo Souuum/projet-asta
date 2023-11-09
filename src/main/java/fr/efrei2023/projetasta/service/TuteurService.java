@@ -1,10 +1,13 @@
 package fr.efrei2023.projetasta.service;
 
 import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
+import fr.efrei2023.projetasta.dto.MemoireEvaluationDTO;
+import fr.efrei2023.projetasta.dto.SoutenanceEvaluationDTO;
 import fr.efrei2023.projetasta.mapper.ApprentiInfoMapper;
 import fr.efrei2023.projetasta.model.Entity.*;
 import fr.efrei2023.projetasta.model.SB.*;
-import fr.efrei2023.projetasta.utils.EvaluationEcoleConstants.*;
+import fr.efrei2023.projetasta.mapper.MemoireEvaluationMapper;
+import fr.efrei2023.projetasta.mapper.SoutenanceEvaluationMapper;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
@@ -18,6 +21,7 @@ import java.util.List;
 
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
+import static fr.efrei2023.projetasta.utils.EvaluationEcoleConstants.*;
 
 @Stateless
 public class TuteurService {
@@ -44,6 +48,8 @@ public class TuteurService {
     @EJB
     private EvaluationEcoleSB evaluationEcoleEntitySessionBean;
     private ApprentiInfoMapper apprentiInfoMapper = new ApprentiInfoMapper();
+    private MemoireEvaluationMapper memoireEvaluationMapper = new MemoireEvaluationMapper();
+    private SoutenanceEvaluationMapper soutenanceEvaluationMapper = new SoutenanceEvaluationMapper();
 
     public TuteurEnseignantEntity getTuteurByUserId(int id){
         return tuteurEnseignantSessionBean.getByUserId(id);
@@ -67,22 +73,45 @@ public class TuteurService {
 
     public void modifierApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String numeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant");
+        ApprentiEntity apprenti = apprentiSessionBean.getByNumeroEtudiant(numeroEtudiant);
 
         // Apprenti info, mission info and maitre apprentissage info
+        modifyApprentiInfo(request, response, apprenti);
+
+        // Mission
+        createOrModifyVisite(request, response, numeroEtudiant, apprenti);
+
+        // Maitre apprentissage
+        assignMaitreApprentissageToApprenti(request, response, apprenti);
+
+        // Visite
+        createOrModifyVisite(request, response, numeroEtudiant, apprenti);
+
+        // Memoire
+        createOrModifyMemoire(request, response, numeroEtudiant);
+
+        // Soutenance
+        createOrModifySoutenance(request, response, numeroEtudiant);
+
+    }
+
+    public void modifyApprentiInfo(HttpServletRequest request, HttpServletResponse response, ApprentiEntity apprenti) throws IOException, ServletException {
         String programme = request.getParameter("programme");
         String majeure = request.getParameter("majeure");
         String anneeAcademique = request.getParameter("anneeAcademique");
-        String metierCible = request.getParameter("metierCible");
-        String motsCles = request.getParameter("motsCles");
-        String commentaires_mission = request.getParameter("commentaires_mission");
-        String currentMaitreApprentissageId = request.getParameter("currentMaitreApprentissageId");
 
-        ApprentiEntity apprenti = apprentiSessionBean.getByNumeroEtudiant(numeroEtudiant);
         apprenti.setProgramme(programme);
         apprenti.setMajeure(majeure);
         apprenti.setAnneeAcademique(anneeAcademique);
 
-        // Mission
+        apprentiSessionBean.update(apprenti);
+    }
+
+    public void createOrModifyMission(HttpServletRequest request, HttpServletResponse response, ApprentiEntity apprenti) throws IOException, ServletException{
+        String metierCible = request.getParameter("metierCible");
+        String motsCles = request.getParameter("motsCles");
+        String commentaires_mission = request.getParameter("commentaires_mission");
+
         MissionEntity mission = apprenti.getMission();
         if (mission == null) {
             mission = new MissionEntity();
@@ -98,15 +127,16 @@ public class TuteurService {
             missionSessionBean.update(mission);
         }
         apprenti.setMission(mission);
+    }
 
-        // Maitre apprentissage
+    public void assignMaitreApprentissageToApprenti(HttpServletRequest request, HttpServletResponse response, ApprentiEntity apprenti)throws  IOException, ServletException{
+        String currentMaitreApprentissageId = request.getParameter("currentMaitreApprentissageId");
         MaitreApprentissageEntity maitreApprentissage = maitreApprentissageSessionBean.getById(Integer.parseInt(currentMaitreApprentissageId));
         apprenti.setMaitreApprentissage(maitreApprentissage);
 
         apprentiSessionBean.update(apprenti);
-
-
-        // Visite
+    }
+    public void createOrModifyVisite(HttpServletRequest request, HttpServletResponse response, String numeroEtudiant, ApprentiEntity apprenti) throws  IOException, ServletException{
         String dateVisite = request.getParameter("dateVisite");
         String format = request.getParameter("format");
         String compteRenduExpress = request.getParameter("compteRenduExpress");
@@ -127,12 +157,61 @@ public class TuteurService {
             visite.setTuteurEnseignant(apprenti.getTuteurEnseignant());
             visiteSessionBean.update(visite);
         }
+    }
+    public void createOrModifyMemoire(HttpServletRequest request, HttpServletResponse response, String numeroEtudiant) throws IOException, ServletException{
+        String theme = request.getParameter("theme");
+        String noteFinaleMemoire = request.getParameter("note_finale_memoire");
+        String commentairesMemoire = request.getParameter("commentaires_memoire");
 
-        // Memoire
-        //TODO
+        EvaluationEcoleEntity memoireEval = evaluationEcoleEntitySessionBean.getByNumeroEtudiantAndType(numeroEtudiant, MEMOIRE);
+        if(memoireEval == null){
+            memoireEval = new EvaluationEcoleEntity();
+            memoireEval.setType(MEMOIRE);
+            memoireEval.setNumeroEtudiant(numeroEtudiant);
+            memoireEval.setNoteFinale(noteFinaleMemoire);
+            memoireEval.setCommentaires(commentairesMemoire);
+            evaluationEcoleEntitySessionBean.add(memoireEval);
+            MemoireEntity memoire = new MemoireEntity();
+            memoire.setTheme(theme);
+            memoire.setEvaluationEcole(memoireEval);
+            memoireSessionBean.add(memoire);
+        }
+        else {
+            memoireEval.setNoteFinale(noteFinaleMemoire);
+            memoireEval.setCommentaires(commentairesMemoire);
+            evaluationEcoleEntitySessionBean.update(memoireEval);
+            MemoireEntity memoire = memoireSessionBean.getByEvaluationEcoleId(memoireEval.getIdEvaluationEcole());
+            memoire.setTheme(theme);
+            memoireSessionBean.update(memoire);
+        }
+    }
+    public void createOrModifySoutenance(HttpServletRequest request, HttpServletResponse response, String numeroEtudiant) throws IOException, ServletException {
+        String dateSoutenance = request.getParameter("dateSoutenance");
+        String noteFinaleSoutenance = request.getParameter("note_finale_soutenance");
+        String commentairesSoutenance = request.getParameter("commentaires_soutenance");
 
-        // Soutenance
-        //TODO
+        EvaluationEcoleEntity soutenanceEvaluation = evaluationEcoleEntitySessionBean.getByNumeroEtudiantAndType(numeroEtudiant, SOUTENANCE);
+
+        if(soutenanceEvaluation == null){
+            soutenanceEvaluation = new EvaluationEcoleEntity();
+            soutenanceEvaluation.setType(SOUTENANCE);
+            soutenanceEvaluation.setNumeroEtudiant(numeroEtudiant);
+            soutenanceEvaluation.setNoteFinale(noteFinaleSoutenance);
+            soutenanceEvaluation.setCommentaires(commentairesSoutenance);
+            evaluationEcoleEntitySessionBean.add(soutenanceEvaluation);
+            SoutenanceEntity soutenance = new SoutenanceEntity();
+            soutenance.setDateSoutenance(Date.valueOf(dateSoutenance));
+            soutenance.setEvaluationEcole(soutenanceEvaluation);
+            soutenanceSessionBean.add(soutenance);
+        }
+        else{
+            soutenanceEvaluation.setNoteFinale(noteFinaleSoutenance);
+            soutenanceEvaluation.setCommentaires(commentairesSoutenance);
+            evaluationEcoleEntitySessionBean.update(soutenanceEvaluation);
+            SoutenanceEntity soutenance = soutenanceSessionBean.getByEvaluationEcoleId(soutenanceEvaluation.getIdEvaluationEcole());
+            soutenance.setDateSoutenance(Date.valueOf(dateSoutenance));
+            soutenanceSessionBean.update(soutenance);
+        }
     }
 
     public void getListeApprentiInfoFromTuteur(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -158,7 +237,6 @@ public class TuteurService {
         apprenti.setTuteurEnseignant(currentTuteur);
         apprentiSessionBean.update(apprenti);
     }
-    //TODO
     public void modifierApprentiPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String numeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant." + request.getParameter("itemIndex"));
         ApprentiEntity apprenti = apprentiSessionBean.getByNumeroEtudiant(numeroEtudiant);
@@ -168,12 +246,26 @@ public class TuteurService {
         request.getSession().setAttribute("mission", mission);
         request.getSession().setAttribute("apprenti", apprentiInfoDTO);
         VisiteEntity visite = visiteSessionBean.getByNumeroEtudiant(numeroEtudiant);
-        request.getSession().setAttribute("vis!ite", visite);
+        request.getSession().setAttribute("visite", visite);
 
-        //EvaluationEcoleEntity memoireEval = evaluationEcoleEntitySessionBean.getByNumeroEtudiantAndType(numeroEtudiant,  );
-        //request.getSession().setAttribute("memoire", );
-        //SoutenanceEntity soutenance = soutenanceSessionBean.getByNumeroEtudiant(numeroEtudiant);
-        //request.getSession().setAttribute("soutenance", soutenance);
+        EvaluationEcoleEntity memoireEval = evaluationEcoleEntitySessionBean.getByNumeroEtudiantAndType(numeroEtudiant, MEMOIRE);
+        if(memoireEval == null){
+            request.getSession().setAttribute("memoire", null);
+        }
+        else{
+            MemoireEntity memoire = memoireSessionBean.getByEvaluationEcoleId(memoireEval.getIdEvaluationEcole());
+            MemoireEvaluationDTO memoireEvaluationDTO = memoireEvaluationMapper.toMemoireEvaluationDTO(memoireEval, memoire);
+            request.getSession().setAttribute("memoire", memoireEvaluationDTO);
+        }
+        EvaluationEcoleEntity soutenanceEval = evaluationEcoleEntitySessionBean.getByNumeroEtudiantAndType(numeroEtudiant, SOUTENANCE);
+        if(soutenanceEval == null){
+            request.getSession().setAttribute("soutenance", null);
+        }
+        else{
+            SoutenanceEntity soutenance = soutenanceSessionBean.getByEvaluationEcoleId(soutenanceEval.getIdEvaluationEcole());
+            SoutenanceEvaluationDTO soutenanceEvaluationDTO = soutenanceEvaluationMapper.toSoutenanceEvaluationDTO(soutenanceEval, soutenance);
+            request.getSession().setAttribute("soutenance", soutenanceEvaluationDTO);
+        }
     }
     public void modifierMaitreApprentissagePage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String IdMaitreApprentissage = request.getParameter("currentMaitreApprentissageId." + request.getParameter("itemIndex"));

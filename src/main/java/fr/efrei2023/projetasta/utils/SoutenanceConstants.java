@@ -8,5 +8,5 @@ public class SoutenanceConstants {
     //SQL REQUESTS
     public static final String SELECT_ALL_SOUTENANCES = "SELECT s FROM SoutenanceEntity s";
     public static final String SELECT_SOUTENANCE_BY_ID = "SELECT s FROM SoutenanceEntity s WHERE s.idSoutenance = :id";
-    public static final String SELECT_SOUTENANCE_BY_NUMERO_ETUDIANT = "SELECT s FROM SoutenanceEntity s WHERE s.numeroEtudiant = :numeroEtudiant";
+    public static final String SELECT_SOUTENANCE_BY_EVALUATION_ECOLE_ID = "SELECT s FROM SoutenanceEntity s WHERE s.evaluationEcole.idEvaluationEcole = :id";
 }

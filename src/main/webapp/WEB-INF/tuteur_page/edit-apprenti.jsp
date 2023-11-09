@@ -127,12 +127,12 @@
                     <div class="form-group">
                         <label for="note_finale_memoire">NOTE FINALE</label>
                         <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="note_finale_memoire"
-                               name="note_finale_memoire" required pattern=".*" value="${memoire.evaluationEcole.noteFinale}">
+                               name="note_finale_memoire" required pattern=".*" value="${memoire.noteFinale}">
                     </div>
                     <div class="form-group">
                         <label for="commentaires_memoire">COMMENTAIRES</label>
                         <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="commentaires_memoire"
-                               name="commentaires_memoire" required pattern=".*" value="${memoire.evaluationEcole.commentaires}">
+                               name="commentaires_memoire" required pattern=".*" value="${memoire.commentaires}">
                     </div>
                 </div>
 
@@ -151,12 +151,12 @@
                     <div class="form-group">
                         <label for="note_finale_soutenance">NOTE FINALE</label>
                         <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="note_finale_soutenance"
-                               name="note_finale_soutenance" required pattern=".*" value="${soutenance.evaluationEcole.noteFinale}">
+                               name="note_finale_soutenance" required pattern=".*" value="${soutenance.noteFinale}">
                     </div>
                     <div class="form-group">
                         <label for="commentaires_soutenance">COMMENTAIRES</label>
                         <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="commentaires_soutenance"
-                               name="commentaires_soutenance" required pattern=".*" value="${soutenance.evaluationEcole.commentaires}">
+                               name="commentaires_soutenance" required pattern=".*" value="${soutenance.commentaires}">
                     </div>
                 </div>
 

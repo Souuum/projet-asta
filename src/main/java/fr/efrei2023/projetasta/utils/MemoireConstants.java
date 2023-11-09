@@ -8,6 +8,6 @@ public class MemoireConstants {
     //SQL REQUESTS
     public static final String SELECT_ALL_MEMOIRES = "SELECT m FROM MemoireEntity m";
     public static final String SELECT_MEMOIRE_BY_ID = "SELECT m FROM MemoireEntity m WHERE m.idMemoire = :id";
-    public static final String SELECT_MEMOIRE_BY_NUMERO_ETUDIANT = "SELECT m FROM MemoireEntity m WHERE m.numeroEtudiant = :numeroEtudiant";
+    public static final String SELECT_MEMOIRE_BY_EVALUATION_ECOLE_ID = "SELECT m FROM MemoireEntity m WHERE m.evaluationEcole.idEvaluationEcole = :id";
 
 }
