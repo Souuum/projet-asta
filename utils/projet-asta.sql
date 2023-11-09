@@ -93,6 +93,7 @@ CREATE TABLE `evaluation_ecole` (
   `note_finale` varchar(50),
   `commentaires` varchar(50),
   `numero_etudiant` varchar(50) NOT NULL,
+  `type` varchar(50),
   `updated_at` timestamp DEFAULT now(),
   `created_at` timestamp DEFAULT now()
 );
