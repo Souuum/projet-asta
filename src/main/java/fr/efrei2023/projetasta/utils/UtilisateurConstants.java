@@ -9,6 +9,7 @@ public class UtilisateurConstants {
     public static final String PRENOM = "prenom";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
+    public static final String CURRENT_PASSWORD = "currentPassword";
     public static final String TELEPHONE = "telephone";
     public static final String ISADMIN = "isAdmin";
     public static final String UPDATED_AT = "updatedAt";

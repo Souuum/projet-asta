@@ -55,12 +55,16 @@ public class ApprentiController extends HttpServlet {
         } else {
             switch (action) {
 
-                case "modify":
+                case APPRENTI_EDIT_SELF_DATA:
+                    apprentiService.updateApprentiByItSelf(request, response);
+                    break;
+
+                case APPRENTI_EDIT_FEEDBACK:
+                    apprentiService.updateFeedback(request, response);
                     break;
                 default:
                     request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
                     break;
-
                 }
         }
     }
@@ -83,6 +87,8 @@ public class ApprentiController extends HttpServlet {
             request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
         }
     }
+
+
 
     @Override
     public void destroy() {

@@ -23,16 +23,20 @@
         }
     </style>
 </head>
-<body class="overflow-hidden bg-dark text-light">
+<body class=" bg-dark text-light">
 
 <header style="background-color: #2A2E35" class="d-flex flex-row justify-content-around">
     <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
 
     </div>
     <div style="border-radius: 5px" class="p-2 my-auto hover_button">
-        <button title="logout" class="bg-transparent border-0">
+        <form method="POST" action="user-controller" name="LogoutForm">
+
+        <button title="logout" type="submit" name="action" value="logout" class="bg-transparent border-0">
             <i class="bi bi-box-arrow-left"></i>
         </button>
+        </form>
+
     </div>
 </header>
 
@@ -53,21 +57,30 @@
 
                 <div style="border-radius: 20px; background-color: #454E56"
                      class="p-2 flex-row d-flex justify-content-center align-items-center">
-                    <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+                    <form method="POST" action="apprenti-controller" name="editApprentiForm">
 
+                    <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+                        <label for="numeroEtudiant"></label>
+                        <input type="text" id="numeroEtudiant" name="numeroEtudiant" value="${apprenti.numeroEtudiant}" hidden>
                     </div>
                     <div class="m-3 d-flex flex-column">
                         <div>
                             ${user.prenom} ${user.nom}
                         </div>
                         <div>
-                            ${user.email}
+                            <input type="text" id="email" name="email" value="${user.email}">
                         </div>
                     </div>
                     <div class="m-3 d-flex flex-column">
                         <div style="color: #9166CC">Numero de telephone</div>
-                        <div>${user.telephone}</div>
+                        <div>
+                            <input type="text" id="telephone" name="telephone" value="${user.telephone}">
+                        </div>
                     </div>
+                        <div class="m-3">
+                            <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="submit" name="action" value="editSelfData">Editer
+                            </button>
+                        </div>
                     <div class="m-3 d-flex flex-column">
                         <div style="color: #9166CC">Majeure</div>
                         <div>${apprenti.majeure}</div>
@@ -76,11 +89,8 @@
                         <div style="color: #9166CC">Année</div>
                         <div>${apprenti.anneeAcademique}</div>
                     </div>
-                    <div class="m-3">
-                        <button style="color: #9166CC" class="border-0 bg-transparent btn-link" type="button">Editer
-                        </button>
-                    </div>
 
+                    </form>
                 </div>
             </div>
 
@@ -156,10 +166,6 @@
                             </c:choose>
 
                         </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Remarque</div>
-                            <div>pas de remarque</div>
-                        </div>
                     </div>
                 </div>
 
@@ -171,22 +177,29 @@
                 <div class="align-self-stretch flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Remarques</h3>
                     <div style="height: 100%; border-radius: 20px; background-color: #454E56" class=" p-2 flex-column d-flex">
+                        <form method="POST" action="apprenti-controller" name="editFeedbackForm">
+                            <label for="numeroEtudiant"></label>
+                            <input type="text" id="numeroEtudiant" name="numeroEtudiant" value="${apprenti.numeroEtudiant}" hidden>
                         <c:choose>
-                            <c:when test="${apprenti.remarques!=null}">
+                            <c:when test="${apprenti.feedback!=null}">
                                 <div>
-                                    <span style="color: #9166CC">Date:</span> ${apprenti.remarques.date}
-                                </div>
-                                <div>
-                                    <span style="color: #9166CC">Remarques:</span> ${apprenti.remarques.remarques}
+                                    <span style="color: #9166CC">Remarques:</span>
+                                    <input type="text" id="feedback" name="feedback" value="${apprenti.feedback}">
+
                                 </div>
                             </c:when>
                             <c:otherwise>
                                 <div>
-                                    pas de remarques
+                                    <input type="text" id="feedback" name="feedback" value="${apprenti.feedback}">
+
+
                                 </div>
                             </c:otherwise>
                         </c:choose>
+                            <button type="submit" name="action" value="editFeedback" class="btn btn-primary">Editer</button>
+                        </form>
                     </div>
+
                 </div>
                 <div class="flex-fill d-flex flex-column m-2">
                     <h3 style="margin-right: auto">Visite</h3>
@@ -267,12 +280,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
     </div>
 </div>

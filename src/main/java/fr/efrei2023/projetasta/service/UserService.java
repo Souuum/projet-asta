@@ -132,6 +132,30 @@ public class UserService {
         request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
     }
 
+    public void editSelfDataProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        String email = request.getParameter(EMAIL);
+        String telephone = request.getParameter(TELEPHONE);
+        String feedback = request.getParameter(FEEDBACK);
+        String majeure = request.getParameter(MAJEURE);
+        UtilisateurEntity utilisateur= (UtilisateurEntity) request.getSession().getAttribute("user");
+        utilisateur.setEmail(email);
+        utilisateur.setTelephone(telephone);
+        utilisateurSessionBean.update(utilisateur);
+
+        ApprentiEntity unApprenti = apprentiService.getApprentiByUserId(utilisateur.getIdUtilisateur());
+        unApprenti.setFeedback(feedback);
+        unApprenti.setMajeure(majeure);
+
+        request.getSession().setAttribute("user", utilisateur);
+        request.getSession().setAttribute("apprenti", unApprenti);
+        request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
+    }
+
+    public void updateUser(UtilisateurEntity user){
+        utilisateurSessionBean.update(user);
+    }
+
     public UtilisateurEntity getUtilisateur(HttpServletRequest request){
         UtilisateurEntity unUtilisateur = new UtilisateurEntity();
         unUtilisateur.setEmail(request.getParameter(EMAIL));
@@ -143,7 +167,7 @@ public class UserService {
         return utilisateurSessionBean.getUtilisateurByEmail(email).getIsadmin();
     }
 
-    private static String hashPassword(String password) {
+    public static String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));

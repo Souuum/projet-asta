@@ -6,8 +6,13 @@ import fr.efrei2023.projetasta.model.SB.ApprentiSB;
 import fr.efrei2023.projetasta.model.SB.MissionSB;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+
+import static fr.efrei2023.projetasta.service.UserService.hashPassword;
 import static fr.efrei2023.projetasta.utils.ApprentiConstants.*;
 import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 
@@ -40,20 +45,42 @@ public class ApprentiService {
         apprentiSessionBean.add(unApprenti);
     }
 
-    public void updateApprentiByItSelf(HttpServletRequest request){
-        String numéroEtudiant = request.getParameter(NUMERO_ETUDIANT);
-        ApprentiEntity unApprenti = apprentiSessionBean.getById(numéroEtudiant);
+    public void updateApprentiByItSelf(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        String numeroEtudiant = request.getParameter(NUMERO_ETUDIANT);
+
+        ApprentiEntity unApprenti = apprentiSessionBean.getById(numeroEtudiant);
         int idUser = unApprenti.getIdUtilisateur();
         UtilisateurEntity user = userService.getUtilisateurById(idUser);
 
         user.setEmail(request.getParameter(EMAIL));
         user.setTelephone(request.getParameter(TELEPHONE));
-        user.setPassword(request.getParameter(PASSWORD));
 
-        unApprenti.setFeedback(request.getParameter(FEEDBACK));
-        unApprenti.setMajeure(request.getParameter(MAJEURE));
+
         updateApprenti(unApprenti);
+        userService.updateUser(user);
+        request.getSession().setAttribute("user", user);
+        request.getSession().setAttribute("apprenti", unApprenti);
+        request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
     }
+
+    public void updateFeedback(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String numeroEtudiant = request.getParameter(NUMERO_ETUDIANT);
+        ApprentiEntity apprenti = apprentiSessionBean.getById(numeroEtudiant);
+        int idUser = apprenti.getIdUtilisateur();
+        UtilisateurEntity user = userService.getUtilisateurById(idUser);
+        String feedback = request.getParameter(FEEDBACK);
+        System.out.println("feedback");
+        System.out.println(feedback);
+        apprenti.setFeedback(feedback);
+        apprentiSessionBean.update(apprenti);
+        request.getSession().setAttribute("apprenti", apprenti);
+        request.getSession().setAttribute("user", user);
+        request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
+
+    }
+
+
 
     public void updateApprenti(ApprentiEntity unApprenti){
         apprentiSessionBean.update(unApprenti);

@@ -24,8 +24,9 @@
         <div class="d-flex flex-row">
 
             <div class="d-flex flex-column" style="width: 40%; margin: 5%">
-
                 <div class="form-group">
+                    <label for="userId" hidden>ID UTILISATEUR</label>
+                    <input style="border-color: #9166CC" type="text" class="rounded-pill form-control" id="userId" name="userId" hidden value="${user.idUtilisateur}">
                     <label for="numeroEtudiant">NUMERO ETUDIANT</label>
                     <input style="border-color: #9166CC" type="text" class="rounded-pill form-control"
                            id="numeroEtudiant" name="numeroEtudiant"

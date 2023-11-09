@@ -27,8 +27,12 @@ public class ApprentiConstants {
 
     // JSP PAGES
 
-    public static final String APPRENTI_REGISTER_PAGE = "/WEB-INF/apprenti_register.jsp";
-    public static final String APPRENTI_LIST_PAGE = "/WEB-INF/apprenti_list.jsp";
-    public static final String APPRENTI_HOME_PAGE = "/WEB-INF/home_page_apprenti.jsp";
+    public static final String APPRENTI_REGISTER_PAGE = "/WEB-INF/apprenti_page/apprenti_register.jsp";
+    public static final String APPRENTI_LIST_PAGE = "/WEB-INF/apprenti_page/apprenti_list.jsp";
+    public static final String APPRENTI_HOME_PAGE = "/WEB-INF/apprenti_page/home_page_apprenti.jsp";
 
+    // JSP ACTIONS
+
+    public static final String APPRENTI_EDIT_FEEDBACK = "editFeedback";
+    public static final String APPRENTI_EDIT_SELF_DATA = "editSelfData";
 }
