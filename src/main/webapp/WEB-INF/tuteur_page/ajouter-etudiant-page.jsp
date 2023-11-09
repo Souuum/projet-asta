@@ -24,17 +24,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 </head>
-<body class="bg-dark text-light overflow-hidden">
+<body class="bg-dark text-light ">
 
 <header style="background-color: #2A2E35" class="d-flex flex-row justify-content-around">
     <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
 
     </div>
-    <div style="border-radius: 5px" class="p-2 my-auto hover_button">
-        <button title="logout" class="bg-transparent border-0">
-            <i class="bi bi-box-arrow-left"></i>
-        </button>
-    </div>
+    <form action ="user-controller" method="post" name="LogoutForm" class="my-auto">
+        <div style="border-radius: 5px" class="p-2 my-auto hover_button">
+            <button title="logout" class="bg-transparent border-0" name="action" type="submit" value="logout">
+                <i class="bi bi-box-arrow-left"></i>
+            </button>
+        </div>
+    </form>
 </header>
 
 

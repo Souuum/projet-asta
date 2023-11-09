@@ -42,96 +42,61 @@ public class TuteurController extends HttpServlet {
     }
 
     public void processRequest (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getParameter("action");
-        List<MaitreApprentissageEntity> maitreApprentissageList;
-        List<EntrepriseEntity> entrepriseList;
-        List<ApprentiInfoDTO> apprentiDTOList;
+        String action = request.getParameter(ACTION);
 
-        if (action.equals("SignUp") && request.getSession(false).getAttribute("user") == null) {
+        if (action.equals(ACTION_SIGNUP) && request.getSession(false).getAttribute("user") == null) {
             tuteurService.creationProcess(request, response);
         }
         if (request.getSession(false).getAttribute("user") == null) {
             request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
         } else {
             switch (action) {
-                case "+ Ajouter Apprenti":
+                case ACTION_ADD_APPRENTI:
                     tuteurService.getListeApprentisNotFromTuteur(request, response);
                     request.getRequestDispatcher(ASSIGNER_APPRENTI_PAGE).forward(request, response);
                     break;
-                case "+ Ajouter Maitre Apprentissage":
-                    entrepriseList = tuteurService.getListeEntreprises(request, response);
-                    request.getSession().setAttribute("entrepriseList", entrepriseList);
+                case ACTION_ADD_MAITRE_APPRENTISSAGE:
+                    tuteurService.getListeEntreprises(request, response);
                     request.getRequestDispatcher(AJOUTER_MAITRE_APPRENTISSAGE_PAGE).forward(request, response);
                     break;
-                case "+ Ajouter Entreprise":
+                case ACTION_ADD_ENTREPRISE:
                     request.getRequestDispatcher(AJOUTER_ENTREPRISE_PAGE).forward(request, response);
                     break;
-                case "AjouterMaitreApprentissage":
+                case ACTION_AJOUTER_MAITRE_APPRENTISSAGE:
                     tuteurService.addMaitreApprentissage(request, response);
-                    maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);
-                    request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
-                case "AjouterEntreprise":
+                case ACTION_AJOUTER_ENTREPRISE:
                     tuteurService.addEntreprise(request, response);
-                    entrepriseList = tuteurService.getListeEntreprises(request, response);
-                    request.getSession().setAttribute("entrepriseList", entrepriseList);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
-                case "AssignerApprenti":
+                case ACTION_ASSIGNER_APPRENTI:
                     tuteurService.assignerApprenti(request, response);
-                    tuteurService.getListeApprentiInfoFromTuteur(request, response);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
-                case "ModifierApprentiPage":
+                case ACTION_MODIFIER_APPRENTI_PAGE:
                     tuteurService.modifierApprentiPage(request, response);
                     request.getRequestDispatcher(MODIFIER_APPRENTI_PAGE).forward(request, response);
                     break;
-                case "ModifierMaitreApprentissagePage":
+                case ACTION_MODIFIER_MAITRE_APPRENTISSAGE_PAGE:
                     tuteurService.modifierMaitreApprentissagePage(request, response);
                     request.getRequestDispatcher(MODIFIER_MAITRE_APPRENTISSAGE_PAGE).forward(request, response);
                     break;
-                case "ModifierEntreprisePage":
+                case ACTION_MODIFIER_ENTREPRISE_PAGE:
                     tuteurService.modifierEntreprisePage(request, response);
                     request.getRequestDispatcher(MODIFIER_ENTREPRISE_PAGE).forward(request, response);
                     break;
-                case "ModifierApprenti":
+                case ACTION_MODIFIER_APPRENTI:
                     tuteurService.modifierApprenti(request, response);
-                    tuteurService.getListeApprentiInfoFromTuteur(request, response);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
-                case "ModifierMaitreApprentissage":
+                    break;
+                case ACTION_MODIFIER_MAITRE_APPRENTISSAGE:
                     tuteurService.modifierMaitreApprentissage(request, response);
-                    maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);
-                    request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                     break;
-
-                case "ModifierEntreprise":
+                case ACTION_MODIFIER_ENTREPRISE:
                     tuteurService.modifierEntreprise(request, response);
-                    entrepriseList = tuteurService.getListeEntreprises(request, response);
-                    request.getSession().setAttribute("entrepriseList", entrepriseList);
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
-                    break;
-                case "AjouterMission":
-                    //TODO
-                    break;
-                case "ModifierMission":
-                    //TODO
-                    break;
-                case "AjouterVisite":
-                    //TODO
-                    break;
-                case "AjouterSoutenance":
-                    //TODO
-                    break;
-                case "ModifierSoutenance":
-                    //TODO
-                    break;
-                case "AjouterMemoire":
-                    //TODO
-                    break;
-                case "ModifierMemoire":
-                    //TODO
                     break;
                 default:
                     request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
@@ -139,19 +104,8 @@ public class TuteurController extends HttpServlet {
 
             }
         }
-        switch(action){
-
-            case "SignIn":
-                userService.loginProcess(request, response);
-                break;
-
-
-            default:
-                request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
-                break;
-
-        }
     }
+
     @Override
     public void destroy() {
         super.destroy();

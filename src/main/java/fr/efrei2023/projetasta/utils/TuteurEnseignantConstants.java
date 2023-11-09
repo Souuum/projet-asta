@@ -4,6 +4,23 @@ public class TuteurEnseignantConstants {
     // GENERIC FIELD NAMES
     public static final boolean TUTEUR_ROLE = true;
 
+    // Action Names
+    public static final String ACTION = "action";
+    public static final String ACTION_SIGNUP = "SignUp";
+    public static final String ACTION_ADD_APPRENTI = "+ Ajouter Apprenti";
+    public static final String ACTION_ADD_MAITRE_APPRENTISSAGE = "+ Ajouter Maitre Apprentissage";
+    public static final String ACTION_ADD_ENTREPRISE = "+ Ajouter Entreprise";
+    public static final String ACTION_AJOUTER_MAITRE_APPRENTISSAGE = "AjouterMaitreApprentissage";
+    public static final String ACTION_AJOUTER_ENTREPRISE = "AjouterEntreprise";
+    public static final String ACTION_ASSIGNER_APPRENTI = "AssignerApprenti";
+    public static final String ACTION_MODIFIER_APPRENTI = "ModifierApprenti";
+    public static final String ACTION_MODIFIER_MAITRE_APPRENTISSAGE = "ModifierMaitreApprentissage";
+    public static final String ACTION_MODIFIER_ENTREPRISE = "ModifierEntreprise";
+    public static final String ACTION_MODIFIER_APPRENTI_PAGE = "ModifierApprentiPage";
+    public static final String ACTION_MODIFIER_MAITRE_APPRENTISSAGE_PAGE = "ModifierMaitreApprentissagePage";
+    public static final String ACTION_MODIFIER_ENTREPRISE_PAGE = "ModifierEntreprisePage";
+
+
 
     // JSP PAGES
     public static final String TUTEUR_REGISTER_PAGE = "/WEB-INF/tuteur_page/tuteur-register.jsp";

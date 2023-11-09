@@ -8,4 +8,5 @@ public class MaitreApprentissageConstants {
     //SQL REQUESTS
     public static final String SELECT_ALL_MAITREAPPRENTISSAGES = "SELECT m FROM MaitreApprentissageEntity m";
     public static final String SELECT_MAITREAPPRENTISSAGE_BY_ID = "SELECT m FROM MaitreApprentissageEntity m WHERE m.idMaitreApprentissage = :id";
+    public static final String SELECT_MAITREAPPRENTISSAGE_BY_EMAIL = "SELECT m FROM MaitreApprentissageEntity m WHERE m.email = :email";
 }

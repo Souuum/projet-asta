@@ -28,6 +28,15 @@ public class EntrepriseSB extends BaseSB<EntrepriseEntity>{
         return (EntrepriseEntity) query.getSingleResult();
     }
 
+    public EntrepriseEntity getByRaisonSociale(String raisonSociale) {
+        Query query = em.createQuery(SELECT_ENTREPRISE_BY_RAISON_SOCIALE);
+        query.setParameter("raisonSociale", raisonSociale);
+        if(query.getResultList().isEmpty()){
+            return null;
+        }
+        return (EntrepriseEntity) query.getSingleResult();
+    }
+
     @Override
     public void add(EntrepriseEntity entrepriseEntity) {
         entrepriseEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
@@ -59,4 +68,6 @@ public class EntrepriseSB extends BaseSB<EntrepriseEntity>{
         em.remove(entrepriseEntity);
         em.getTransaction().commit();
     }
+
+
 }

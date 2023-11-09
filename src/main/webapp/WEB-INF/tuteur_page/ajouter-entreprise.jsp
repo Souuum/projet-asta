@@ -12,8 +12,30 @@
 <head>
     <title>cree entreprise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hover_button:hover {
+            background-color: #b497de;
+        }
+
+        .hover_button {
+            background-color: #9166CC;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body class="bg-dark text-light">
+
+<header style="background-color: #2A2E35" class="d-flex flex-row justify-content-around">
+    <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
+    </div>
+    <form action ="user-controller" method="post" name="LogoutForm" class="my-auto">
+        <div style="border-radius: 5px" class="p-2 my-auto hover_button">
+            <button title="logout" class="bg-transparent border-0" name="action" type="submit" value="logout">
+                <i class="bi bi-box-arrow-left"></i>
+            </button>
+        </div>
+    </form>
+</header>
 
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
     <div class="h2">Ajouter une <span style="color: #9166CC">entreprise</span></div>

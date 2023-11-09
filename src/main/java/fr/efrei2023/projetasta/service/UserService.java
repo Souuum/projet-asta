@@ -115,8 +115,7 @@ public class UserService {
                 List<MaitreApprentissageEntity> maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);
                 request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
 
-                List<EntrepriseEntity> entrepriseList = tuteurService.getListeEntreprises(request, response);
-                request.getSession().setAttribute("entrepriseList", entrepriseList);
+                tuteurService.getListeEntreprises(request, response);
 
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
             } else {
@@ -126,8 +125,11 @@ public class UserService {
             }
         }
 
+    }
 
-
+    public void logoutProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.getSession().invalidate();
+        request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
     }
 
     public UtilisateurEntity getUtilisateur(HttpServletRequest request){

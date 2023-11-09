@@ -41,7 +41,7 @@ public class UserController extends HttpServlet{
                 userService.loginProcess(request, response);
                 break;
             case "logout":
-                //userService.logoutProcess(request, response);
+                userService.logoutProcess(request, response);
                 break;
             case "registerApprenti":
                 request.getRequestDispatcher(APPRENTI_REGISTER_PAGE).forward(request, response);

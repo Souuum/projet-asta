@@ -29,6 +29,15 @@ public class MaitreApprentissageSB extends BaseSB<MaitreApprentissageEntity>{
         return (MaitreApprentissageEntity) query.getSingleResult();
     }
 
+    public MaitreApprentissageEntity getByEmail(String email) {
+        Query query = em.createQuery(SELECT_MAITREAPPRENTISSAGE_BY_EMAIL);
+        query.setParameter("email", email);
+        if(query.getResultList().isEmpty()){
+            return null;
+        }
+        return (MaitreApprentissageEntity) query.getSingleResult();
+    }
+
     @Override
     public void add(MaitreApprentissageEntity maitreApprentissageEntity) {
         maitreApprentissageEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
@@ -62,4 +71,5 @@ public class MaitreApprentissageSB extends BaseSB<MaitreApprentissageEntity>{
         em.remove(maitreApprentissageEntity);
         em.getTransaction().commit();
     }
+
 }
