@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Edit Entreprise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
-<body>
+<body class="bg-dark text-light">
 <!--overlay Entreprise-->
 <div class="overlay" id="Eoverlay">
 
