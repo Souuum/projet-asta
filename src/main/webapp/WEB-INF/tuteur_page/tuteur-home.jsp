@@ -25,7 +25,7 @@
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
-<body class="bg-dark text-light">
+<body style="overflow: hidden" class="bg-dark text-light">
 
 <header style="background-color: #2A2E35" class="d-flex flex-row justify-content-around">
     <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
@@ -76,7 +76,7 @@
             </div>
 
             <!--apprentissage-->
-            <div id="apprentissage_field" style="display: flex ;border-radius: 20px; background-color: #2A2E35"
+            <div id="apprentissage_field" style="height: 400px;  display: flex ;overflow-y: auto; border-radius: 20px; background-color: #2A2E35"
                  class="w-100 p-4 flex-column justify-content-center align-items-center">
 
                 <div style="width: 100%" class="d-flex flex-row">
