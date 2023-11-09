@@ -26,6 +26,14 @@ public class SoutenanceSB extends BaseSB<SoutenanceEntity>{
         query.setParameter("id", id);
         return (SoutenanceEntity) query.getSingleResult();
     }
+    public SoutenanceEntity getByNumeroEtudiant(String numeroEtudiant) {
+        Query query = em.createQuery(SELECT_SOUTENANCE_BY_NUMERO_ETUDIANT);
+        query.setParameter("numeroEtudiant", numeroEtudiant);
+        if (query.getResultList().isEmpty()) {
+            return null;
+        }
+        return (SoutenanceEntity) query.getSingleResult();
+    }
 
     @Override
     public void add(SoutenanceEntity soutenanceEntity) {

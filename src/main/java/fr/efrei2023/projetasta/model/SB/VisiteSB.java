@@ -30,6 +30,15 @@ public class VisiteSB extends BaseSB<VisiteEntity>{
         return (VisiteEntity) query.getSingleResult();
     }
 
+    public VisiteEntity getByNumeroEtudiant(String numeroEtudiant) {
+        Query query = em.createQuery(SELECT_VISITE_BY_NUMERO_ETUDIANT);
+        query.setParameter("numeroEtudiant", numeroEtudiant);
+        if (query.getResultList().isEmpty()) {
+            return null;
+        }
+        return (VisiteEntity) query.getSingleResult();
+    }
+
     @Override
     public void add(VisiteEntity visiteEntity) {
         visiteEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));

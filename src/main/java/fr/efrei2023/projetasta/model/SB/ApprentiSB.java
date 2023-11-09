@@ -1,6 +1,5 @@
 package fr.efrei2023.projetasta.model.SB;
 import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
-import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
@@ -16,9 +15,9 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("projet-asta");
     EntityManager em = entityManagerFactory.createEntityManager();
 
-    public ApprentiEntity getApprentiById(String id) {
+    public ApprentiEntity getByNumeroEtudiant(String numeroEtudiant) {
         Query query = em.createQuery(FIND_APPRENTI_BY_NUMERO_ETUDIANT);
-        query.setParameter("id", id);
+        query.setParameter("numeroEtudiant", numeroEtudiant);
         return (ApprentiEntity) query.getSingleResult();
     }
 
@@ -100,7 +99,7 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
 
     @Transactional
     public void archiveApprenti(String id) {
-        ApprentiEntity a = getApprentiById(id);
+        ApprentiEntity a = getByNumeroEtudiant(id);
         em.getTransaction().begin();
         a.setIsArchived(true);
         em.getTransaction().commit();
@@ -108,7 +107,7 @@ public class ApprentiSB extends BaseSB<ApprentiEntity>{
 
     @Transactional
     public void unarchivedApprenti(String id) {
-        ApprentiEntity a = getApprentiById(id);
+        ApprentiEntity a = getByNumeroEtudiant(id);
         em.getTransaction().begin();
         a.setIsArchived(false);
         em.getTransaction().commit();

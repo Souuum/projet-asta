@@ -8,4 +8,5 @@ public class VisiteConstants {
     //SQL REQUESTS
     public static final String SELECT_ALL_VISITES = "SELECT v FROM VisiteEntity v";
     public static final String SELECT_VISITE_BY_ID = "SELECT v FROM VisiteEntity v WHERE v.idVisite = :id";
+    public static final String SELECT_VISITE_BY_NUMERO_ETUDIANT = "SELECT v FROM VisiteEntity v WHERE v.numeroEtudiant = :numeroEtudiant";
 }
