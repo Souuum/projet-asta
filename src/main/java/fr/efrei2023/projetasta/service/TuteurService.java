@@ -4,6 +4,7 @@ import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
 import fr.efrei2023.projetasta.mapper.ApprentiInfoMapper;
 import fr.efrei2023.projetasta.model.Entity.*;
 import fr.efrei2023.projetasta.model.SB.*;
+import fr.efrei2023.projetasta.utils.EvaluationEcoleConstants.*;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
@@ -40,6 +41,8 @@ public class TuteurService {
     private SoutenanceSB soutenanceSessionBean;
     @EJB
     private MissionSB missionSessionBean;
+    @EJB
+    private EvaluationEcoleSB evaluationEcoleEntitySessionBean;
     private ApprentiInfoMapper apprentiInfoMapper = new ApprentiInfoMapper();
 
     public TuteurEnseignantEntity getTuteurByUserId(int id){
@@ -165,9 +168,10 @@ public class TuteurService {
         request.getSession().setAttribute("mission", mission);
         request.getSession().setAttribute("apprenti", apprentiInfoDTO);
         VisiteEntity visite = visiteSessionBean.getByNumeroEtudiant(numeroEtudiant);
-        request.getSession().setAttribute("visite", visite);
-        //MemoireEntity memoire = memoireSessionBean.getByNumeroEtudiant(numeroEtudiant);
-        //request.getSession().setAttribute("memoire", memoire);
+        request.getSession().setAttribute("vis!ite", visite);
+
+        //EvaluationEcoleEntity memoireEval = evaluationEcoleEntitySessionBean.getByNumeroEtudiantAndType(numeroEtudiant,  );
+        //request.getSession().setAttribute("memoire", );
         //SoutenanceEntity soutenance = soutenanceSessionBean.getByNumeroEtudiant(numeroEtudiant);
         //request.getSession().setAttribute("soutenance", soutenance);
     }

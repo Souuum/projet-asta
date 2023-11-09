@@ -15,7 +15,7 @@ public class ajouter_apprenti_servlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/tuteur_page/ajouter-etudiant-page.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/tuteur_page/edit-entreprise.jsp").forward(request, response);
         response.setContentType("text/html");
 
         // Hello

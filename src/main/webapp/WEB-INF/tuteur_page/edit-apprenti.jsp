@@ -17,7 +17,7 @@
     <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
 
         <form class="flex-column d-flex justify-content-center align-content-center"
-              style="width: 50%" action="tuteur-controller">
+              style="width: 50%" action="tuteur-controller" method="post">
             <div class="h2">Modification de <span style="color: #9166CC">${apprenti.nom} ${apprenti.prenom}</span></div>
             <br>
             <div class="d-flex flex-row">

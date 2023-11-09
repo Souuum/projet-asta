@@ -28,6 +28,15 @@ public class EvaluationEcoleSB extends BaseSB<EvaluationEcoleEntity>{
         return (EvaluationEcoleEntity) query.getSingleResult();
     }
 
+    public EvaluationEcoleEntity getByNumeroEtudiantAndType(String numeroEtudiant, String type){
+        Query query = em.createQuery(SELECT_EVALUATIONECOLE_BY_NUMERO_ETUDIANT_AND_TYPE);
+        query.setParameter("numeroEtudiant", numeroEtudiant);
+        query.setParameter("type", type);
+        return (EvaluationEcoleEntity) query.getSingleResult();
+
+    }
+
+
     @Override
     public void add(EvaluationEcoleEntity evaluationEcoleEntity) {
         evaluationEcoleEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));

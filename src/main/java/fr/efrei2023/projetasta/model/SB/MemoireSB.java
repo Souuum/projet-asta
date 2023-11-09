@@ -30,15 +30,6 @@ public class MemoireSB extends BaseSB<MemoireEntity>{
         return (MemoireEntity) query.getSingleResult();
     }
 
-    public MemoireEntity getByNumeroEtudiant(String numeroEtudiant) {
-        Query query = em.createQuery(SELECT_MEMOIRE_BY_NUMERO_ETUDIANT);
-        query.setParameter("numeroEtudiant", numeroEtudiant);
-        if (query.getResultList().isEmpty()) {
-            return null;
-        }
-        return (MemoireEntity) query.getSingleResult();
-    }
-
 
     @Override
     public void add(MemoireEntity memoireEntity) {

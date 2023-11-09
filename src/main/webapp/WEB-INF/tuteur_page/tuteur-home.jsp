@@ -58,7 +58,7 @@
     </div>
 
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <form id="AddApprentiForm" action="tuteur-controller">
+        <form id="AddApprentiForm" action="tuteur-controller" method="post">
             <div class="w-100 m-2 d-flex justify-content-between">
                 <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">${user.prenom} ${user.nom}</span>
                 </h2>

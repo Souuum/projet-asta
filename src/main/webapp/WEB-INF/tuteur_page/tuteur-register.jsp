@@ -18,7 +18,7 @@
 <div class="d-flex flex-column w-100 vh-100 justify-content-center align-items-center">
     <div class="h2">Créee votre compte en tant que <span style="color: #9166CC">tuteur</span></div>
     <br>
-    <form class="flex-column d-flex justify-content-center align-content-center" id="registrationForm" style="width: 25%" action ="tuteur-controller">
+    <form class="flex-column d-flex justify-content-center align-content-center" id="registrationForm" style="width: 25%" action ="tuteur-controller" method="post">
         <div class="form-group">
 
         </div>

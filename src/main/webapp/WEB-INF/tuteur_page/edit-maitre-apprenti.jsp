@@ -18,7 +18,7 @@
         <div class="h2">Modification de <span style="color: #9166CC">${maitreApprentissage.nom} ${maitreApprentissage.prenom}</span></div>
         <br>
         <form class="flex-column d-flex justify-content-center align-content-center"
-              style="width: 50%" action="tuteur-controller" >
+              style="width: 50%" action="tuteur-controller" method="post">
             <div style="width: 40%; margin: auto">
                 <input hidden name="currentMaitreApprentissageId" value="${maitreApprentissage.idMaitreApprentissage}">
                 <div class="form-group">
