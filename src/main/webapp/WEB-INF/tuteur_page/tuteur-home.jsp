@@ -76,7 +76,7 @@
             </div>
 
             <!--apprentissage-->
-            <div id="apprentissage_field" style="height: 400px;  display: flex ;overflow-y: auto; border-radius: 20px; background-color: #2A2E35"
+            <div id="apprentissage_field" style="height: 400px;overflow-y: auto; border-radius: 20px; background-color: #2A2E35"
                  class="w-100 p-4 flex-column justify-content-center align-items-center">
 
                 <div style="width: 100%" class="d-flex flex-row">
@@ -200,7 +200,7 @@
 
             <!--Maitre d'apprentissage-->
 
-            <div id="maitre_apprenti_field" style="display: none ;border-radius: 20px; background-color: #2A2E35"
+            <div id="maitre_apprenti_field" style="height: 400px;overflow-y: auto; display: none ;border-radius: 20px; background-color: #2A2E35"
                  class="w-100 p-4 flex-column justify-content-center align-items-center">
 
                 <div style="width: 100%" class="d-flex flex-row">
@@ -308,7 +308,7 @@
 
             <!--Entreprise-->
 
-            <div id="entrperise_field" style="display: none ;border-radius: 20px; background-color: #2A2E35"
+            <div id="entrperise_field" style="height: 400px;overflow-y: auto;display: none ;border-radius: 20px; background-color: #2A2E35"
                  class="w-100 p-4 flex-column justify-content-center align-items-center">
 
                 <div style="width: 100%" class="d-flex flex-row">
@@ -627,17 +627,17 @@
             if (square === header_list[i]) {
                 header_list[i].style.backgroundColor = "#9166CC";
                 if (i === 0) {
-                    document.getElementById("apprentissage_field").style.display = 'flex'
+                    document.getElementById("apprentissage_field").style.display = 'block'
                     document.getElementById("maitre_apprenti_field").style.display = 'none'
                     document.getElementById("entrperise_field").style.display = 'none'
                 } else if (i === 1) {
                     document.getElementById("apprentissage_field").style.display = 'none'
-                    document.getElementById("maitre_apprenti_field").style.display = 'flex'
+                    document.getElementById("maitre_apprenti_field").style.display = 'block'
                     document.getElementById("entrperise_field").style.display = 'none'
                 } else {
                     document.getElementById("apprentissage_field").style.display = 'none'
                     document.getElementById("maitre_apprenti_field").style.display = 'none'
-                    document.getElementById("entrperise_field").style.display = 'flex'
+                    document.getElementById("entrperise_field").style.display = 'block'
                 }
             } else {
                 header_list[i].style.backgroundColor = "rgba(255, 255, 255, 0)";
