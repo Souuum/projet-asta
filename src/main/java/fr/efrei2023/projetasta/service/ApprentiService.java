@@ -38,6 +38,7 @@ public class ApprentiService {
         unApprenti.setProgramme(request.getParameter(PROGRAMME));
         unApprenti.setAnneeAcademique(request.getParameter(ANNEE_ACADEMIQUE));
         unApprenti.setMajeure(request.getParameter(MAJEURE));
+        unApprenti.setProgramme(request.getParameter(PROGRAMME));
         return unApprenti;
     }
 

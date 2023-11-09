@@ -81,9 +81,18 @@
                     <label for="majeure">MAJEURE</label><br>
                     <select style="width: 100%; border-color: #9166CC" id="majeure" name="majeure"
                             class="rounded-pill form-select form-select-lg mb-3">
-                        <option value="majeur_1" selected> Majeur 1</option>
-                        <option value="majeur_2"> Majeur 2</option>
-                        <option value="majeur_3"> Majeur 3</option>
+                        <option value="LSI" selected> LSI</option>
+                        <option value="BDML"> BDML</option>
+                        <option value="RS"> RS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="programme">PROGRAMME</label><br>
+                    <select style="width: 100%; border-color: #9166CC" id="programme" name="programme"
+                            class="rounded-pill form-select form-select-lg mb-3">
+                        <option value="L3" selected> L3</option>
+                        <option value="M1"> M1</option>
+                        <option value="M2"> M2</option>
                     </select>
                 </div>
 
