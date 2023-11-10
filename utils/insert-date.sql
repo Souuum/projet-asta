@@ -34,7 +34,7 @@ INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedb
 
 INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at, type) VALUES ('1','15','good job','20220161',now(),now(),'soutenance');
 INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at, type) VALUES ('2','18','great','20220265',now(),now(),'soutenance');
-INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at, type) VALUES ('3','14','great','20220261',now(),now(),'memoire');
+INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at, type) VALUES ('3','14','great','20220161',now(),now(),'memoire');
 INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at, type) VALUES ('4','17','great','20220265',now(),now(), 'memoire');
 
 INSERT INTO visite(date_visite, format, compte_rendu_express, numero_etudiant, id_tuteur_enseignant, updated_at, created_at) VALUES ('2022-10-10','presentiel','compte_rendu','20220161','1',now(),now());
