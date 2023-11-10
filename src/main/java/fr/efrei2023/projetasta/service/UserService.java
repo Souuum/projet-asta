@@ -120,6 +120,8 @@ public class UserService {
                 request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
             } else {
                 ApprentiEntity apprenti = apprentiService.getApprentiByUserId(unUtilisateur.getIdUtilisateur());
+                VisiteEntity visite = apprentiService.getVisiteByNumeroEtudiant(apprenti.getNumeroEtudiant());
+                request.getSession().setAttribute("visite",visite);
                 request.getSession().setAttribute("apprenti", apprenti);
                 request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
             }

@@ -2,13 +2,16 @@ package fr.efrei2023.projetasta.service;
 
 import fr.efrei2023.projetasta.model.Entity.ApprentiEntity;
 import fr.efrei2023.projetasta.model.Entity.UtilisateurEntity;
+import fr.efrei2023.projetasta.model.Entity.VisiteEntity;
 import fr.efrei2023.projetasta.model.SB.ApprentiSB;
 import fr.efrei2023.projetasta.model.SB.MissionSB;
+import fr.efrei2023.projetasta.model.SB.VisiteSB;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 
 import java.io.IOException;
 
@@ -24,6 +27,9 @@ public class ApprentiService {
 
     @EJB
     private MissionSB missionSessionBean;
+
+   @EJB
+    private VisiteSB visiteSessionBean;
 
     @EJB
     private UserService userService;
@@ -88,5 +94,8 @@ public class ApprentiService {
     }
 
 
+    public VisiteEntity getVisiteByNumeroEtudiant(String id) {
+        return visiteSessionBean.getByNumeroEtudiant(id);
+    }
 
 }
