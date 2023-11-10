@@ -2,8 +2,8 @@ INSERT INTO entreprise(id_entreprise,raison_sociale,adresse,informations,updated
 INSERT INTO entreprise (id_entreprise,raison_sociale, adresse, informations)VALUES ('10','AnotherCompany', '456 Oak Avenue', 'Some information about another company');
 
 
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('1','za','mohamed','tuteur1@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('6','Zoro','Gille','tuteur2@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764181',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('1','za','mohamed','tuteur1@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',1,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('6','Zoro','Gille','tuteur2@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764181',1,now(),now());
 
 INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('2','Ziade','Gilbert','app1@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
 INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('3','Chatti','gille','app2@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
@@ -44,22 +44,3 @@ INSERT INTO soutenance(date_soutenance, id_evaluation_ecole, updated_at, created
 INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','1',now(),now());
 INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','2',now(),now());
 
-# d_entreprise = 10
-# id_utilisateur = 1-> apprentie
-# id_utilisateur = 2-> Tuteur
-# id_maitre_apprenti = 3
-# id_tuteur_enseignent = 2
-# id_mission = 15
-# numero_etudiant = '123'
-# id_evalutation_ecole = 20
-# id_visite = 25
-# id_soutenance = 30
-# id_memoire = 35
-
-# apprentie:
-# user: user1
-# pass: user1
-#
-# Tuteur:
-# user: admin1
-# pass: admin1
