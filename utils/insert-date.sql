@@ -1,14 +1,45 @@
-INSERT INTO entreprise(id_entreprise,raison_sociale,adresse,informations,updated_at,created_at) VALUES (10,'SNCF','Rue sncf','information sncf',now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES (1,'za','mohamed','za@mohamed.fr','user1','07',0,now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES (2,'augustin','jacques','augustin@jacques.fr','admin1','07',1,now(),now());
-INSERT INTO maitre_apprentissage(id_maitre_apprentissage,nom,prenom,email,telephone,id_entreprise,updated_at,created_at) VALUES (3,'john', 'doe', 'doe@john.fr','07',10,now(),now());
-INSERT INTO tuteur_enseignant(id_tuteur_enseignant,id_utilisateur,updated_at,created_at) VALUES (2,2,now(),now());
-INSERT INTO mission(id_mission,mots_cles,metier_cible,commentaires,updated_at,created_at) VALUES (15,'node.js','ingenieur','bon travail',now(),now());
-INSERT INTO apprenti(numero_etudiant, programme, annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived, updated_at, created_at) VALUES ('123','M2','2023','Software enginer','noob',3,2,15,1,0,now(),now());
-INSERT INTO evaluation_ecole(id_evaluation_ecole, note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES (20,'15','good job bro','123',now(),now());
-INSERT INTO visite(id_visite, date_visite, format, compte_rendu_express, numero_etudiant, id_tuteur_enseignant, updated_at, created_at) VALUES (25,'2022-10-10','presentiel','compte_rendu','123',2,now(),now());
-INSERT INTO soutenance(id_soutenance, date_soutenance, id_evaluation_ecole, updated_at, created_at) VALUES (30,'2022-10-10',20,now(),now());
-INSERT INTO memoire(id_memoire, theme, id_evaluation_ecole, updated_at, created_at) VALUES (35,'memoire',20,now(),now());
+INSERT INTO entreprise(id_entreprise,raison_sociale,adresse,informations,updated_at,created_at) VALUES ('1', 'SNCF','Rue sncf','information sncf',now(),now());
+INSERT INTO entreprise (id_entreprise,raison_sociale, adresse, informations)VALUES ('10','AnotherCompany', '456 Oak Avenue', 'Some information about another company');
+
+
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('1','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('2','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('3','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('4','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('5','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
+
+
+
+
+INSERT INTO maitre_apprentissage(id_maitre_apprentissage,nom,prenom,email,telephone,id_entreprise,updated_at,created_at) VALUES ('1','john', 'doe', 'doe@john.fr','0785764175','1',now(),now());
+INSERT INTO maitre_apprentissage(id_maitre_apprentissage,nom,prenom,email,telephone,id_entreprise,updated_at,created_at) VALUES ('2','Jean-Michele', 'doe', 'doe@jeanmichel.fr','07857641713','10',now(),now());
+
+
+INSERT INTO tuteur_enseignant(id_utilisateur,updated_at,created_at) VALUES ('1',now(),now());
+INSERT INTO mission(id_mission ,mots_cles,metier_cible,commentaires,updated_at,created_at) VALUES ('1','node.js','ingenieur','bon travail',now(),now());
+INSERT INTO mission(id_mission ,mots_cles,metier_cible,commentaires,updated_at,created_at) VALUES ('2','node.js','ingenieur','correct travail',now(),now());
+
+
+
+INSERT INTO apprenti(numero_etudiant, programme, annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived, updated_at, created_at) VALUES ('20220161','M2','2023','LSI','Excellent','1','1','1','2',false,now(),now());
+INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20220265','M1','2023','BDML','Good learner','2','1','2','3',false,now(),now());
+
+INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20235145','L3','2023','RS','Fast learner',NULL,'1',NULL,'4',false,now(),now());
+INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20236598','L2','2023','RS','Smart',NULL,'1',NULL,'4',false,now(),now());
+
+
+
+INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES ('1','15','good job','20220161',now(),now());
+INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES ('2','18','great','20220265',now(),now());
+
+INSERT INTO visite(date_visite, format, compte_rendu_express, numero_etudiant, id_tuteur_enseignant, updated_at, created_at) VALUES ('2022-10-10','presentiel','compte_rendu','20220161','1',now(),now());
+INSERT INTO visite(date_visite, format, compte_rendu_express, numero_etudiant, id_tuteur_enseignant, updated_at, created_at) VALUES ('2022-11-11','presentiel','compte_rendu','20220265','1',now(),now());
+
+INSERT INTO soutenance(date_soutenance, id_evaluation_ecole, updated_at, created_at) VALUES ('2022-10-10','1',now(),now());
+INSERT INTO soutenance(date_soutenance, id_evaluation_ecole, updated_at, created_at) VALUES ('2022-12-12','2',now(),now());
+
+INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','1',now(),now());
+INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','2',now(),now());
 
 # d_entreprise = 10
 # id_utilisateur = 1-> apprentie
