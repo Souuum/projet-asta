@@ -28,7 +28,7 @@ INSERT INTO apprenti(numero_etudiant, programme, annee_academique, majeure, feed
 INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20220265','M1','2023','BDML','Good learner','2','1','2','3',false,now(),now());
 
 INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20235145','L3','2023','RS','Fast learner',NULL,'1',NULL,'4',false,now(),now());
-INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20236598','L2','2023','RS','Smart',NULL,'1',NULL,'5',false,now(),now());
+INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedback, id_maitre_apprentissage, id_tuteur_enseignant, id_mission, id_utilisateur, is_archived,updated_at,created_at) VALUES ('20236598','L2','2023','RS','Smart',NULL,NULL,NULL,'5',false,now(),now());
 
 
 
