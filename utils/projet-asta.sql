@@ -1,6 +1,5 @@
 
-
-
+CREATE SCHEMA IF NOT EXISTS `projet-asta`;
 USE `projet-asta`;
 
 DROP TABLE `memoire`;

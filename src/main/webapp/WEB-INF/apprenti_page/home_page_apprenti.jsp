@@ -63,7 +63,7 @@
                     <form method="POST" action="apprenti-controller" name="editApprentiForm">
 
                         <label for="numeroEtudiant"></label>
-                        <input type="text" id="numeroEtudiant" name="numeroEtudiant" value="${apprenti.numeroEtudiant}" hidden>
+                        <input type="text" id="numEtudiant" name="numeroEtudiant" value="${apprenti.numeroEtudiant}" hidden>
                         <p>Numero Etudiant: ${apprenti.numeroEtudiant}</p>
 
                         <div class="m-3 d-flex flex-column">
@@ -193,7 +193,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div>
-                                        <input type="text" id="feedback" name="feedback" value="${apprenti.feedback}">
+                                        <input type="text" id="feedbacks" name="feedback" value="${apprenti.feedback}">
                                     </div>
                                 </c:otherwise>
                             </c:choose>
@@ -235,15 +235,15 @@
                     <h3 style="margin-right: auto">Mémoire/Rapport</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
                         <c:choose>
-                            <c:when test="${apprenti.memoire!=null}">
+                            <c:when test="${memoire!=null}">
                                 <div>
-                                    <span style="color: #9166CC">Date:</span> ${apprenti.memoire.date}
+                                    <span style="color: #9166CC">Theme:</span> ${memoire.theme}
                                 </div>
                                 <div>
-                                    <span style="color: #9166CC">Note:</span> ${apprenti.memoire.note}/20
+                                    <span style="color: #9166CC">Note:</span> ${memoire.noteFinale}/20
                                 </div>
                                 <div>
-                                    <span style="color: #9166CC">Commentaires:</span> ${apprenti.memoire.commentaires}
+                                    <span style="color: #9166CC">Commentaires:</span> ${memoire.commentaires}
                                 </div>
                             </c:when>
                             <c:otherwise>
@@ -259,15 +259,15 @@
                     <h3 style="margin-right: auto">Soutenance</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
                         <c:choose>
-                            <c:when test="${apprenti.soutenance!=null}">
+                            <c:when test="${soutenance!=null}">
                                 <div>
-                                    <span style="color: #9166CC">Date:</span> ${apprenti.soutenance.date}
+                                    <span style="color: #9166CC">Date:</span> ${soutenance.dateSoutenance}
                                 </div>
                                 <div>
-                                    <span style="color: #9166CC">Note finale:</span> ${apprenti.soutenance.noteFinale}/20
+                                    <span style="color: #9166CC">Note finale:</span> ${soutenance.noteFinale}/20
                                 </div>
                                 <div>
-                                    <span style="color: #9166CC">Commentaires:</span> ${apprenti.soutenance.commentaires}
+                                    <span style="color: #9166CC">Commentaires:</span> ${soutenance.commentaires}
                                 </div>
                             </c:when>
                             <c:otherwise>

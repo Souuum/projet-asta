@@ -139,32 +139,31 @@ public class ApprentiService {
         return evaluationEcoleSessionBean.getByNumeroEtudiantAndType(id, SOUTENANCE);
     }
 
-    public MemoireEntity getMemoireByNumeroEtudiant(String id) {
-        EvaluationEcoleEntity memoireEval = getMemoireEvalByNumeroEtudiant(id);
-
-        return memoireSessionBean.getByEvaluationEcoleId(memoireEval.getIdEvaluationEcole());
-    }
-
-    public SoutenanceEntity getSoutenanceByNumeroEtudiant(String id){
-        EvaluationEcoleEntity soutenanceEval = getSoutenanceEvalByNumeroEtudiant(id);
-
-        return soutenanceSessionBean.getByEvaluationEcoleId(soutenanceEval.getIdEvaluationEcole());
-    }
-
     public MemoireEvaluationDTO getMemoireEvaluationDTOByNumeroEtudiant(String id){
-        MemoireEntity memoire = getMemoireByNumeroEtudiant(id);
         EvaluationEcoleEntity memoireEval = getMemoireEvalByNumeroEtudiant(id);
-
+        MemoireEntity memoire;
+        if(memoireEval != null){
+            memoire = memoireSessionBean.getByEvaluationEcoleId(memoireEval.getIdEvaluationEcole());
+        }
+        else{
+            return null;
+        }
         return memoireEvaluationMapper.toMemoireEvaluationDTO(memoireEval, memoire);
 
     }
 
     public SoutenanceEvaluationDTO getSoutenanceEvaluationDTOByNumeroEtudiant(String id){
-        SoutenanceEntity soutenance = getSoutenanceByNumeroEtudiant(id);
         EvaluationEcoleEntity soutenanceEval = getSoutenanceEvalByNumeroEtudiant(id);
-
+        SoutenanceEntity soutenance;
+        if(soutenanceEval != null){
+            soutenance = soutenanceSessionBean.getByEvaluationEcoleId(soutenanceEval.getIdEvaluationEcole());
+        }
+        else{
+            return null;
+        }
         return soutenanceEvaluationMapper.toSoutenanceEvaluationDTO(soutenanceEval, soutenance);
 
     }
+
 
 }

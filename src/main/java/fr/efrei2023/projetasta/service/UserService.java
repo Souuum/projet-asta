@@ -123,7 +123,6 @@ public class UserService {
                 if(apprentiList.size() == 0 || apprentiList == null){
                     request.setAttribute("message", "Vous n'avez pas encore d'apprenti");
                     request.setAttribute("color", "red");
-                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
                 }
                 request.getSession().setAttribute("apprentiListDTO", apprentiListDTO);
 
