@@ -29,5 +29,8 @@ Ce README à pour but d'expliquer les étapes pour démarrer l'application et aj
 - On a un user TUTEUR qui n'a pas d'apprenti
 - Credentials : EMAIL : tuteur1@hotmail.com | PASSWORD : Password1
 
-- On a un APPRENTI qui n'a pas d'apprenti
-- Credentials : EMAIL : tuteur1@hotmail.com | PASSWORD : Password1
+- On a un APPRENTI qui a toutes ses infos
+- Credentials : EMAIL : app1@hotmail.com | PASSWORD : Password1
+
+- On a un APPRENTI qui n'a pas toutes ses infos
+- Credentials : EMAIL : app3@hotmail.com | PASSWORD : Password1
