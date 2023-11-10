@@ -134,69 +134,6 @@
 
                         </div>
                     </c:forEach>
-
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myfullname">
-                                <span>Gilbert Ziade</span>
-                            </div>
-                            <div class="_myemail">
-                                <span>gilbert_z2001@hotmail.com</span>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Numero de telephone</div>
-                            <div>+33 7 85 76 41 77</div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Majeure</div>
-                            <div class="_mymajor"><span>LSI</span></div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Année</div>
-                            <div>2022-2025</div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="APtoggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
-
-                    </div>
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myapprenti p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myfullname">
-                                <span>margo</span>
-                            </div>
-                            <div class="_myemail">
-                                <span>margo@hotmail.com</span>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Numero de telephone</div>
-                            <div>+33 7 85 76 41 77</div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Majeure</div>
-                            <div class="_mymajor"><span>OBI</span></div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Année</div>
-                            <div>2022-2025</div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="APtoggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
@@ -251,60 +188,7 @@
                         </div>
                     </c:forEach>
 
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myfullname">
-                                <span>Gilbert Ziade</span>
-                            </div>
-                            <div class="_myemail">
-                                <span>gilbert_z2001@hotmail.com</span>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Numero de telephone</div>
-                            <div>+33 7 85 76 41 77</div>
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Entreprise</div>
-                            <div class="_myentreprise"><span>XXX</span></div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="MAtoggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
 
-                    </div>
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_mymaitreapprenti p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myfullname">
-                                <span>margo</span>
-                            </div>
-                            <div class="_myemail">
-                                <span>margo@hotmail.com</span>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Numero de telephone</div>
-                            <div>+33 7 85 76 41 77</div>
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Entreprise</div>
-                            <div class="_myentreprise"><span>YYY</span></div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="MAtoggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
@@ -357,60 +241,7 @@
 
                         </div>
                     </c:forEach>
-
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myfullname">
-                                <div style="color: #9166CC">Entreprise</div>
-                                <span>Muvraline</span>
-                            </div>
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myaddress">
-                                <div style="color: #9166CC">Addresse</div>
-                                <span>Villejuif</span>
-                            </div>
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Information</div>
-                            <div>Pas d'info</div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="EtoggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
-                    </div>
-                    <div style="display: flex; border-radius: 20px; background-color: #454E56"
-                         class="_myentreprise p-2 m-3 flex-row justify-content-center align-items-center">
-                        <div style="background-color: #9166CC" class="p-3 rounded-circle m-3">
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myfullname">
-                                <div style="color: #9166CC">Entreprise</div>
-                                <span>Google</span>
-                            </div>
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div class="_myaddress">
-                                <div style="color: #9166CC">Addresse</div>
-                                <span>palaiseau</span>
-                            </div>
-                        </div>
-                        <div style="width:250px " class="d-flex flex-column m-3">
-                            <div style="color: #9166CC">Information</div>
-                            <div>Pas d'information</div>
-                        </div>
-                        <div class="m-3">
-                            <button onclick="EtoggleOverlay()" style="color: #9166CC"
-                                    class="border-0 bg-transparent btn-link" type="button">Editer
-                            </button>
-                        </div>
-
-                    </div>
+                    
                 </div>
             </div>
 

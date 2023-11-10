@@ -404,6 +404,10 @@ public class TuteurService {
         List<ApprentiEntity> apprentiList = getListeApprentisNotAssignedToTuteur();
         List<UtilisateurEntity> utilisateurList = getListeUtilisateursNotAssignedToTuteur();
         List<ApprentiInfoDTO> apprentiInfoDTOList = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
+        if(apprentiList.size() == 0 || apprentiList == null){
+            request.setAttribute("message", "Il n'y a pas d'apprenti disponible");
+            request.setAttribute("color", "red");
+        }
         request.getSession().setAttribute("listeApprentis", apprentiInfoDTOList);
     }
     public List<ApprentiEntity> getListeApprentisFromTuteur(int id) {
