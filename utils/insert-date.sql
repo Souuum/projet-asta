@@ -34,6 +34,8 @@ INSERT INTO apprenti (numero_etudiant,programme,annee_academique, majeure, feedb
 
 INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES ('1','15','good job','20220161',now(),now());
 INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES ('2','18','great','20220265',now(),now());
+INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES ('3','14','great','20220261',now(),now());
+INSERT INTO evaluation_ecole(id_evaluation_ecole,note_finale, commentaires, numero_etudiant, updated_at, created_at) VALUES ('4','17','great','20220265',now(),now());
 
 INSERT INTO visite(date_visite, format, compte_rendu_express, numero_etudiant, id_tuteur_enseignant, updated_at, created_at) VALUES ('2022-10-10','presentiel','compte_rendu','20220161','1',now(),now());
 INSERT INTO visite(date_visite, format, compte_rendu_express, numero_etudiant, id_tuteur_enseignant, updated_at, created_at) VALUES ('2022-11-11','presentiel','compte_rendu','20220265','1',now(),now());
@@ -41,6 +43,6 @@ INSERT INTO visite(date_visite, format, compte_rendu_express, numero_etudiant, i
 INSERT INTO soutenance(date_soutenance, id_evaluation_ecole, updated_at, created_at) VALUES ('2022-10-10','1',now(),now());
 INSERT INTO soutenance(date_soutenance, id_evaluation_ecole, updated_at, created_at) VALUES ('2022-12-12','2',now(),now());
 
-INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','1',now(),now());
-INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','2',now(),now());
+INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','3',now(),now());
+INSERT INTO memoire(theme, id_evaluation_ecole, updated_at, created_at) VALUES ('memoire','4',now(),now());
 
