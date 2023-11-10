@@ -20,7 +20,6 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
 </head>
 <body class="bg-dark text-light">
 
@@ -108,9 +107,9 @@
                     <h2 style="color: #9166CC">VISITE</h2>
                     <div class="form-group">
                         <label for="dateVisite">DATE</label>
-                        <input style="border-color: #9166CC" type="text" class="rounded-pill form-control"
+                        <input style="border-color: #9166CC" type="date" class="rounded-pill form-control"
                                id="dateVisite"
-                               name="dateVisite" required pattern=".*" value="${visite.dateVisite}">
+                               name="dateVisite" required pattern=".*" min="" value="${visite.dateVisite}">
                     </div>
                     <div class="form-group">
                         <label for="format">FORMAT</label>
@@ -181,5 +180,9 @@
     </div>
 
 </div>
+
+<script>
+    document.getElementById("dateVisite").min = new Date().toISOString().split("T")[0];
+</script>
 </body>
 </html>
