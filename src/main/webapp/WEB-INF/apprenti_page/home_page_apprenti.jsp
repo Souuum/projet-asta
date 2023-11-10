@@ -59,10 +59,10 @@
                      class="p-2 flex-row d-flex justify-content-center align-items-center">
                     <form method="POST" action="apprenti-controller" name="editApprentiForm">
 
-                    <div style="background-color: #9166CC" class="p-3 m-3 rounded-circle">
                         <label for="numeroEtudiant"></label>
                         <input type="text" id="numeroEtudiant" name="numeroEtudiant" value="${apprenti.numeroEtudiant}" hidden>
-                    </div>
+                        <p>Numero Etudiant: ${apprenti.numeroEtudiant}</p>
+
                     <div class="m-3 d-flex flex-column">
                         <div>
                             ${user.prenom} ${user.nom}
@@ -205,18 +205,16 @@
                     <h3 style="margin-right: auto">Visite</h3>
                     <div style="border-radius: 20px; background-color: #454E56" class="p-2 flex-column d-flex">
                         <c:choose>
-                            <c:when test="${visites!=null}">
-                                <c:forEach items="${visites}" var="visite">
+                            <c:when test="${visite!=null}">
                                     <div>
-                                        <span style="color: #9166CC">Date:</span> ${visites.date}
+                                        <span style="color: #9166CC">Date:</span> ${visite.dateVisite}
                                     </div>
                                     <div>
-                                        <span style="color: #9166CC">Format:</span> ${visites.format}
+                                        <span style="color: #9166CC">Format:</span> ${visite.format}
                                     </div>
                                     <div>
-                                        <span style="color: #9166CC">Compte-Rendu Express:</span> ${visites.compteRenduExpress}
+                                        <span style="color: #9166CC">Compte-Rendu Express:</span> ${visite.compteRenduExpress}
                                     </div>
-                                </c:forEach>
                             </c:when>
                             <c:otherwise>
                                 <div>
