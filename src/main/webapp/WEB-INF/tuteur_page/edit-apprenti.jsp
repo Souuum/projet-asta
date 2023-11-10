@@ -42,6 +42,9 @@
         <form class="flex-column d-flex justify-content-center align-content-center"
               style="width: 50%" action="tuteur-controller" method="post">
             <div class="h2">Modification de <span style="color: #9166CC">${apprenti.nom} ${apprenti.prenom}</span></div>
+            <c:if test="${not empty message}">
+                <p style="color: ${color}">${message}</p>
+            </c:if>
             <div style="height: 500px; overflow-y: auto" class="m-2 mb-4 d-flex flex-row">
                 <!-- APPRENTI INFOS -->
                 <input hidden name="currentApprentiNumeroEtudiant" value="${apprenti.numeroEtudiant}">

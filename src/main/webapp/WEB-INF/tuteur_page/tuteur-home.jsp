@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -74,6 +73,10 @@
                        style="background-color: #9166CC; margin-left: auto" type="submit"
                        value="+ Ajouter Entreprise">
             </div>
+
+            <c:if test="${not empty message}">
+                <p style="color: ${color}">${message}</p>
+            </c:if>
 
             <!--apprentissage-->
             <div id="apprentissage_field" style="height: 400px;overflow-y: auto; border-radius: 20px; background-color: #2A2E35"

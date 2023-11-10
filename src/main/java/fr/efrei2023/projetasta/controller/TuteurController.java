@@ -18,10 +18,12 @@ import java.io.IOException;
 import java.util.List;
 
 import fr.efrei2023.projetasta.service.*;
+import jakarta.servlet.http.HttpSession;
 
 import static fr.efrei2023.projetasta.utils.ApprentiConstants.APPRENTI_HOME_PAGE;
 import static fr.efrei2023.projetasta.utils.ApprentiConstants.APPRENTI_REGISTER_PAGE;
 import static fr.efrei2023.projetasta.utils.TuteurEnseignantConstants.*;
+import static fr.efrei2023.projetasta.utils.UtilisateurConstants.*;
 
 @WebServlet(name = "TuteurController", value = "/tuteur-controller")
 public class TuteurController extends HttpServlet {
@@ -43,12 +45,12 @@ public class TuteurController extends HttpServlet {
 
     public void processRequest (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter(ACTION);
-
+        HttpSession session = request.getSession(false);
         if (action.equals(ACTION_SIGNUP) && request.getSession(false).getAttribute("user") == null) {
             tuteurService.creationProcess(request, response);
         }
-        if (request.getSession(false).getAttribute("user") == null) {
-            request.getRequestDispatcher(TUTEUR_REGISTER_PAGE).forward(request, response);
+        if (session == null || session.getAttribute("user") == null) {
+            request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         } else {
             switch (action) {
                 case ACTION_ADD_APPRENTI:

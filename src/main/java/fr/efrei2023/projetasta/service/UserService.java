@@ -10,6 +10,8 @@ import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -87,9 +89,14 @@ public class UserService {
             request.setAttribute("messageErreur", EMAIL_NOT_EXIST_ERROR_MESSAGE);
             request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
+        boolean passwordValid;
 
         // Verify if password is correct
-        boolean passwordValid = getUtilisateurPasswordByEmail(email).equals(hashPassword(password));
+        try{
+            passwordValid = getUtilisateurPasswordByEmail(email).equals(hashPassword(password));
+        } catch (NullPointerException e){
+            passwordValid = false;
+        }
         if(!passwordValid) {
             request.setAttribute("messageErreur", PASSWORD_ERROR_MESSAGE);
             request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
@@ -130,8 +137,10 @@ public class UserService {
     }
 
     public void logoutProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getSession().invalidate();
-        request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
     }
 
     public void editSelfDataProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

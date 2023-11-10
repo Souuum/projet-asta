@@ -113,28 +113,32 @@ public class TuteurService {
         }
     }
     public void modifierApprenti(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String numeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant");
-        ApprentiEntity apprenti = apprentiSessionBean.getByNumeroEtudiant(numeroEtudiant);
+        try{
+            String numeroEtudiant = request.getParameter("currentApprentiNumeroEtudiant");
+            ApprentiEntity apprenti = apprentiSessionBean.getByNumeroEtudiant(numeroEtudiant);
+            // Apprenti info, mission info and maitre apprentissage info
+            modifyApprentiInfo(request, response, apprenti);
+            // Mission
+            createOrModifyMission(request, response, apprenti);
+            // Maitre apprentissage
+            assignMaitreApprentissageToApprenti(request, response, apprenti);
+            // Visite
+            createOrModifyVisite(request, response, numeroEtudiant, apprenti);
+            // Memoire
+            createOrModifyMemoire(request, response, numeroEtudiant);
+            // Soutenance
+            createOrModifySoutenance(request, response, numeroEtudiant);
+            request.setAttribute("message", "Apprenti modifié avec succès");
+            request.setAttribute("color", "green");
+            getListeApprentiInfoFromTuteur(request, response);
+        }
+        catch (Exception e){
+            request.setAttribute("message", "Une erreur est survenue");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher(MODIFIER_APPRENTI_PAGE).forward(request, response);
+        }
 
-        // Apprenti info, mission info and maitre apprentissage info
-        modifyApprentiInfo(request, response, apprenti);
 
-        // Mission
-        createOrModifyMission(request, response, apprenti);
-
-        // Maitre apprentissage
-        assignMaitreApprentissageToApprenti(request, response, apprenti);
-
-        // Visite
-        createOrModifyVisite(request, response, numeroEtudiant, apprenti);
-
-        // Memoire
-        createOrModifyMemoire(request, response, numeroEtudiant);
-
-        // Soutenance
-        createOrModifySoutenance(request, response, numeroEtudiant);
-
-        getListeApprentiInfoFromTuteur(request, response);
 
     }
 
@@ -171,25 +175,36 @@ public class TuteurService {
     }
 
     public void modifierMaitreApprentissage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String IdMaitreApprentissage = request.getParameter("currentMaitreApprentissageId");
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String email = request.getParameter("email");
-        String telephone = request.getParameter("telephone");
-        String entrepriseId = request.getParameter("currentEntrepriseId");
+        try{
+            String IdMaitreApprentissage = request.getParameter("currentMaitreApprentissageId");
+            String nom = request.getParameter("nom");
+            String prenom = request.getParameter("prenom");
+            String email = request.getParameter("email");
+            String telephone = request.getParameter("telephone");
+            String entrepriseId = request.getParameter("currentEntrepriseId");
 
-        System.out.println("ENTREPRISEID" + entrepriseId);
-        MaitreApprentissageEntity maitreApprentissage = new MaitreApprentissageEntity();
-        maitreApprentissage.setIdMaitreApprentissage(Integer.parseInt(IdMaitreApprentissage));
-        maitreApprentissage.setNom(nom);
-        maitreApprentissage.setPrenom(prenom);
-        maitreApprentissage.setemail(email);
-        maitreApprentissage.setTelephone(telephone);
-        maitreApprentissage.setEntreprise(entrepriseSessionBean.getById(Integer.parseInt(entrepriseId)));
-        maitreApprentissageSessionBean.update(maitreApprentissage);
+            System.out.println("ENTREPRISEID" + entrepriseId);
+            MaitreApprentissageEntity maitreApprentissage = new MaitreApprentissageEntity();
+            maitreApprentissage.setIdMaitreApprentissage(Integer.parseInt(IdMaitreApprentissage));
+            maitreApprentissage.setNom(nom);
+            maitreApprentissage.setPrenom(prenom);
+            maitreApprentissage.setemail(email);
+            maitreApprentissage.setTelephone(telephone);
+            maitreApprentissage.setEntreprise(entrepriseSessionBean.getById(Integer.parseInt(entrepriseId)));
+            maitreApprentissageSessionBean.update(maitreApprentissage);
 
-        List<MaitreApprentissageEntity> maitreApprentissageList = getListeMaitresApprentissage(request, response);
-        request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
+            List<MaitreApprentissageEntity> maitreApprentissageList = getListeMaitresApprentissage(request, response);
+            request.setAttribute("message", "Maitre apprentissage modifié avec succès");
+            request.setAttribute("color", "green");
+            request.getSession().setAttribute("maitreApprentissageList", maitreApprentissageList);
+
+        } catch (Exception e){
+            request.setAttribute("message", "Une erreur est survenue");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher(MODIFIER_MAITRE_APPRENTISSAGE_PAGE).forward(request, response);
+        }
+
+
     }
 
     // ENTREPRISE PART
@@ -219,24 +234,34 @@ public class TuteurService {
     }
 
     public void modifierEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String IdEntreprise = request.getParameter("currentEntrepriseId");
-        String raisonSociale = request.getParameter("raisonSociale");
-        String adresse = request.getParameter("adresse");
-        String informations = request.getParameter("informations");
+        try{
+            String IdEntreprise = request.getParameter("currentEntrepriseId");
+            String raisonSociale = request.getParameter("raisonSociale");
+            String adresse = request.getParameter("adresse");
+            String informations = request.getParameter("informations");
 
-        System.out.println("IDENTREPRISE" + IdEntreprise);
-        System.out.println("RAISONSOCIALE" + raisonSociale);
-        System.out.println("ADRESSE" + adresse);
-        System.out.println("INFORMATIONS" + informations);
+            System.out.println("IDENTREPRISE" + IdEntreprise);
+            System.out.println("RAISONSOCIALE" + raisonSociale);
+            System.out.println("ADRESSE" + adresse);
+            System.out.println("INFORMATIONS" + informations);
 
-        EntrepriseEntity entreprise = new EntrepriseEntity();
-        entreprise.setIdEntreprise(Integer.parseInt(IdEntreprise));
-        entreprise.setRaisonSociale(raisonSociale);
-        entreprise.setAdresse(adresse);
-        entreprise.setInformations(informations);
-        entrepriseSessionBean.update(entreprise);
+            EntrepriseEntity entreprise = new EntrepriseEntity();
+            entreprise.setIdEntreprise(Integer.parseInt(IdEntreprise));
+            entreprise.setRaisonSociale(raisonSociale);
+            entreprise.setAdresse(adresse);
+            entreprise.setInformations(informations);
+            entrepriseSessionBean.update(entreprise);
 
-        getListeEntreprises(request, response);
+            request.setAttribute("message", "Entreprise modifiée avec succès");
+            request.setAttribute("color", "green");
+            getListeEntreprises(request, response);
+        } catch (Exception e){
+            request.setAttribute("message", "Une erreur est survenue");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher(MODIFIER_ENTREPRISE_PAGE).forward(request, response);
+        }
+
+
     }
 
     //CREATE or MODIFY METHODS

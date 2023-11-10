@@ -25,6 +25,10 @@
                         <p class="text-secondary">Se connecter pour continuer</p>
                     </div>
 
+                    <c:if test="${not empty messageErreur}">
+                        <p style="color: red">${messageErreur}</p>
+                    </c:if>
+
                     <div class="mb-3">
                         <label for="email" class="form-label text-white">Adresse mail</label>
                         <input type="text" class="form-control" id="email" name="email" placeholder="Entrer votre mail">
