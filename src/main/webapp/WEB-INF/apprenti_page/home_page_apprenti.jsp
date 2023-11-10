@@ -48,6 +48,9 @@
             <h2 style="margin-right: auto">Bonjour <span style="color: #9166CC">${user.prenom} ${user.nom}</span></h2>
         </div>
 
+        <c:if test="${not empty message}">
+            <p style="color: ${color}">${message}</p>
+        </c:if>
 
         <div style="height: 75%; border-radius: 20px; background-color: #2A2E35"
              class="w-100 p-4 justify-content-center align-items-center overflow-auto">

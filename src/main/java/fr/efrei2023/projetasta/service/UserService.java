@@ -1,6 +1,8 @@
 package fr.efrei2023.projetasta.service;
 
 import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
+import fr.efrei2023.projetasta.dto.MemoireEvaluationDTO;
+import fr.efrei2023.projetasta.dto.SoutenanceEvaluationDTO;
 import fr.efrei2023.projetasta.model.Entity.*;
 import fr.efrei2023.projetasta.model.SB.UtilisateurSB;
 import fr.efrei2023.projetasta.dto.ApprentiInfoDTO;
@@ -128,7 +130,11 @@ public class UserService {
             } else {
                 ApprentiEntity apprenti = apprentiService.getApprentiByUserId(unUtilisateur.getIdUtilisateur());
                 VisiteEntity visite = apprentiService.getVisiteByNumeroEtudiant(apprenti.getNumeroEtudiant());
+                MemoireEvaluationDTO memoire = apprentiService.getMemoireEvaluationDTOByNumeroEtudiant(apprenti.getNumeroEtudiant());
+                SoutenanceEvaluationDTO soutenance = apprentiService.getSoutenanceEvaluationDTOByNumeroEtudiant(apprenti.getNumeroEtudiant());
                 request.getSession().setAttribute("visite",visite);
+                request.getSession().setAttribute("memoire",memoire);
+                request.getSession().setAttribute("soutenance",soutenance);
                 request.getSession().setAttribute("apprenti", apprenti);
                 request.getRequestDispatcher(APPRENTI_HOME_PAGE).forward(request, response);
             }
