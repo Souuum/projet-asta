@@ -2,11 +2,13 @@ INSERT INTO entreprise(id_entreprise,raison_sociale,adresse,informations,updated
 INSERT INTO entreprise (id_entreprise,raison_sociale, adresse, informations)VALUES ('10','AnotherCompany', '456 Oak Avenue', 'Some information about another company');
 
 
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('1','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('2','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('3','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('4','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
-INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('5','za','mohamed','za@mohamed.fr','user1','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('1','za','mohamed','tuteur1@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('6','Zoro','Gille','tuteur2@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764181',0,now(),now());
+
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('2','Ziade','Gilbert','app1@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('3','Chatti','gille','app2@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('4','Soum','Hugo','app3@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
+INSERT INTO utilisateur(id_utilisateur,nom,prenom,email,password,telephone,isadmin,updated_at,created_at) VALUES ('5','song','Valerie','ap3@hotmail.com','19513fdc9da4fb72a4a05eb66917548d','0785764171',0,now(),now());
 
 
 
@@ -16,6 +18,7 @@ INSERT INTO maitre_apprentissage(id_maitre_apprentissage,nom,prenom,email,teleph
 
 
 INSERT INTO tuteur_enseignant(id_utilisateur,updated_at,created_at) VALUES ('1',now(),now());
+INSERT INTO tuteur_enseignant(id_utilisateur,updated_at,created_at) VALUES ('6',now(),now());
 INSERT INTO mission(id_mission ,mots_cles,metier_cible,commentaires,updated_at,created_at) VALUES ('1','node.js','ingenieur','bon travail',now(),now());
 INSERT INTO mission(id_mission ,mots_cles,metier_cible,commentaires,updated_at,created_at) VALUES ('2','node.js','ingenieur','correct travail',now(),now());
 
