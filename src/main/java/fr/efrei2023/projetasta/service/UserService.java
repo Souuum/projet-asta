@@ -116,7 +116,13 @@ public class UserService {
 
                 List<ApprentiEntity> apprentiList = tuteurService.getListeApprentisFromTuteur(tuteur.getIdTuteurEnseignant());
                 List<UtilisateurEntity> utilisateurList = tuteurService.getListeUtilisateurFromTuteur(tuteur.getIdTuteurEnseignant());
+
                 List<ApprentiInfoDTO> apprentiListDTO = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
+                if(apprentiList.size() == 0 || apprentiList == null){
+                    request.setAttribute("message", "Vous n'avez pas encore d'apprenti");
+                    request.setAttribute("color", "red");
+                    request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+                }
                 request.getSession().setAttribute("apprentiListDTO", apprentiListDTO);
 
                 List<MaitreApprentissageEntity> maitreApprentissageList = tuteurService.getListeMaitresApprentissage(request, response);

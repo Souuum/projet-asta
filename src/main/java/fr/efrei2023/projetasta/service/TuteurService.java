@@ -392,6 +392,11 @@ public class TuteurService {
         List<ApprentiEntity> apprentiList = getListeApprentisFromTuteur(currentTuteur.getIdTuteurEnseignant());
         List<UtilisateurEntity> utilisateurList = getListeUtilisateurFromTuteur(currentTuteur.getIdTuteurEnseignant());
         List<ApprentiInfoDTO> apprentiInfoDTOList = apprentiInfoMapper.toApprentiInfoDTOList(apprentiList, utilisateurList);
+        if(apprentiList.size() == 0 || apprentiList == null){
+            request.setAttribute("message", "Vous n'avez pas encore d'apprenti");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher(TUTEUR_HOME_PAGE).forward(request, response);
+        }
         request.getSession().setAttribute("apprentiListDTO", apprentiInfoDTOList);
     }
 
